@@ -29,10 +29,21 @@ const structuredData = [
   structuredData={structuredData}
 >
 
-  <!-- ========== HERO ========== -->
+  <!-- ========== HERO (fullwidth bg image + parallax + wave) ========== -->
   <section class="hero" aria-label="Apresentação">
-    <div class="hero-bg"></div>
-    <div class="container hero-grid">
+    <div class="hero-bg-wrapper parallax-container">
+      <img
+        src="/images/hero/jackeline-hero.png"
+        alt=""
+        class="hero-bg-img parallax-image"
+        width="1440"
+        height="900"
+        fetchpriority="high"
+        aria-hidden="true"
+      />
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="container hero-content-wrapper">
       <div class="hero-content reveal fade-up">
         <h1 class="text-hero">
           Jackeline Queiroz.
@@ -45,15 +56,11 @@ const structuredData = [
           Fale com a gente
         </Button>
       </div>
-      <div class="hero-image reveal scale-in">
-        <img
-          src="/images/hero/jackeline-hero.png"
-          alt="Dra Jackeline Queiroz, nutricionista funcional e esportiva"
-          width="624"
-          height="791"
-          fetchpriority="high"
-        />
-      </div>
+    </div>
+    <div class="hero-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 150" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,80 C240,140 480,20 720,80 C960,140 1200,40 1440,80 L1440,150 L0,150 Z" fill="var(--color-cream)" />
+      </svg>
     </div>
   </section>
 
@@ -335,36 +342,49 @@ const structuredData = [
     padding-bottom: 0;
   }
 
-  .hero-bg {
+  .hero-bg-wrapper {
     position: absolute;
-    inset: 0;
-    background-color: var(--color-blue-800);
-    background-image:
-      radial-gradient(ellipse at 70% 50%, rgba(74, 106, 143, 0.35) 0%, transparent 60%),
-      radial-gradient(ellipse at 30% 80%, rgba(200, 134, 10, 0.05) 0%, transparent 50%);
+    inset: -80px 0 0 0;
   }
 
-  .hero-grid {
+  .hero-bg-img {
+    width: 100%;
+    height: calc(100% + 160px);
+    object-fit: cover;
+    object-position: center 30%;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(30, 52, 80, 0.55) 0%,
+      rgba(30, 52, 80, 0.4) 40%,
+      rgba(30, 52, 80, 0.3) 70%,
+      rgba(30, 52, 80, 0.5) 100%
+    );
+  }
+
+  .hero-content-wrapper {
     position: relative;
     z-index: 2;
-    display: grid;
-    grid-template-columns: 1fr;
-    align-items: center;
-    gap: var(--space-8);
-    padding-top: calc(80px + var(--space-12));
-    padding-bottom: var(--space-8);
+    padding-top: calc(80px + var(--space-16));
+    padding-bottom: calc(var(--space-32) + 80px);
   }
 
   .hero-content {
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
+    max-width: 600px;
   }
 
   .hero .text-hero {
     color: var(--color-white);
     max-width: 12ch;
     margin-bottom: var(--space-4);
+    text-shadow: 0 2px 20px rgba(0,0,0,0.15);
   }
 
   .hero .text-hero em {
@@ -374,22 +394,25 @@ const structuredData = [
   .hero-subtitle {
     font-family: var(--font-secondary);
     font-size: clamp(1rem, 1.5vw, 1.25rem);
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 0.9);
     margin-bottom: var(--space-6);
     max-width: 40ch;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.1);
   }
 
-  .hero-image {
-    display: flex;
-    justify-content: center;
+  .hero-wave {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    line-height: 0;
   }
 
-  .hero-image img {
-    max-height: 70vh;
-    width: auto;
-    max-width: 100%;
-    object-fit: contain;
-    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
+  .hero-wave svg {
+    width: 100%;
+    height: clamp(80px, 10vw, 150px);
+    display: block;
   }
 
   /* ========== WELCOME ========== */
@@ -819,15 +842,6 @@ const structuredData = [
 
   /* ========== RESPONSIVE ========== */
   @media (min-width: 768px) {
-    .hero-grid {
-      grid-template-columns: 1.1fr 1fr;
-      padding-bottom: 0;
-    }
-
-    .hero-image img {
-      max-height: 85vh;
-    }
-
     .welcome-grid {
       grid-template-columns: 1fr 1fr;
     }
