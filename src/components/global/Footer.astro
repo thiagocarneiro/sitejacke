@@ -1,0 +1,218 @@
+---
+import { mainNav, siteInfo } from '../../data/navigation';
+---
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container footer-inner">
+    <!-- Col 1: Brand -->
+    <div class="footer-brand">
+      <a href="/" class="footer-logo" aria-label="Página inicial">
+        <span class="footer-logo-icon" aria-hidden="true">
+          <svg width="32" height="20" viewBox="0 0 32 20" fill="none">
+            <path d="M2 18C8 6 24 6 30 18" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+          </svg>
+        </span>
+        <span class="footer-logo-text">
+          <strong>Jackeline Queiroz</strong>
+          <small>Nutricionista Funcional e Esportiva</small>
+        </span>
+      </a>
+
+      <div class="footer-social">
+        <a href={siteInfo.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" />
+            <circle cx="12" cy="12" r="5" />
+            <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" />
+          </svg>
+        </a>
+        <a href={siteInfo.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z" />
+            <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" stroke="none" />
+          </svg>
+        </a>
+        <a href={`mailto:${siteInfo.email}`} aria-label="Email">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2" />
+            <path d="M22 4L12 13 2 4" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Col 2: Navigation -->
+    <div class="footer-nav">
+      <h3 class="footer-heading">Navegação</h3>
+      <ul>
+        <li><a href="/">Home</a></li>
+        {mainNav.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Col 3: Locations -->
+    <div class="footer-locations">
+      <h3 class="footer-heading">Endereços</h3>
+      {siteInfo.locations.map((loc) => (
+        <div class="location-item">
+          <strong>{loc.name}</strong>
+          <p>{loc.address}</p>
+          <p>{loc.city}</p>
+          <p class="location-hours">{loc.hours}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="footer-bottom">
+    <div class="container">
+      <p>&copy; {new Date().getFullYear()} Jackeline Queiroz. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: var(--color-blue-800);
+    color: var(--color-white);
+    padding-top: var(--space-16);
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+    padding-bottom: var(--space-12);
+  }
+
+  /* Brand */
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    text-decoration: none;
+    margin-bottom: var(--space-6);
+  }
+
+  .footer-logo-icon {
+    color: var(--color-orange-400);
+    display: flex;
+  }
+
+  .footer-logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .footer-logo-text strong {
+    font-family: var(--font-primary);
+    font-size: 1.05rem;
+    font-weight: var(--weight-semibold);
+    color: var(--color-white);
+  }
+
+  .footer-logo-text small {
+    font-family: var(--font-secondary);
+    font-size: var(--text-caption);
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.03em;
+  }
+
+  .footer-social {
+    display: flex;
+    gap: var(--space-4);
+  }
+
+  .footer-social a {
+    color: rgba(255, 255, 255, 0.6);
+    transition: color var(--duration-fast) ease;
+  }
+
+  .footer-social a:hover {
+    color: var(--color-orange-400);
+  }
+
+  /* Nav */
+  .footer-heading {
+    font-family: var(--font-primary);
+    font-size: var(--text-small);
+    font-weight: var(--weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: var(--space-4);
+  }
+
+  .footer-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .footer-nav a {
+    font-family: var(--font-secondary);
+    font-size: var(--text-body);
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color var(--duration-fast) ease;
+  }
+
+  .footer-nav a:hover {
+    color: var(--color-orange-400);
+  }
+
+  /* Locations */
+  .footer-locations {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .location-item {
+    line-height: 1.6;
+  }
+
+  .location-item strong {
+    font-family: var(--font-primary);
+    font-weight: var(--weight-medium);
+    color: var(--color-white);
+    display: block;
+    margin-bottom: var(--space-1);
+  }
+
+  .location-item p {
+    font-size: var(--text-small);
+    color: rgba(255, 255, 255, 0.7);
+    max-width: none;
+  }
+
+  .location-hours {
+    color: var(--color-orange-400) !important;
+    font-size: var(--text-caption) !important;
+    margin-top: var(--space-1);
+  }
+
+  /* Bottom */
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: var(--space-6) 0;
+  }
+
+  .footer-bottom p {
+    font-size: var(--text-caption);
+    color: rgba(255, 255, 255, 0.4);
+    text-align: center;
+    max-width: none;
+  }
+
+  @media (min-width: 768px) {
+    .footer-inner {
+      grid-template-columns: 1.5fr 1fr 1.5fr;
+    }
+  }
+</style>

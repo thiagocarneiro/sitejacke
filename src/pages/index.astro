@@ -1,0 +1,889 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.astro';
+import WaveDivider from '../components/ui/WaveDivider.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import MarqueeText from '../components/ui/MarqueeText.astro';
+import ServiceCard from '../components/ui/ServiceCard.astro';
+import TestimonialCard from '../components/ui/TestimonialCard.astro';
+import FAQAccordion from '../components/ui/FAQAccordion.astro';
+import { siteInfo } from '../data/navigation';
+import { services, testimonials, blogPreviews } from '../data/services';
+import { faqItems } from '../data/faq';
+import { getLocalBusinessSchema, getFAQSchema, getBreadcrumbSchema, getWebsiteSchema } from '../data/seo';
+
+const structuredData = [
+  getLocalBusinessSchema(),
+  getFAQSchema(),
+  getWebsiteSchema(),
+  getBreadcrumbSchema([
+    { name: 'Home', url: 'https://nutricionistajackeline.com.br/' },
+  ]),
+];
+---
+
+<BaseLayout
+  title="Dra Jackeline Queiroz | Nutricionista Funcional e Esportiva em São Paulo"
+  description="Nutricionista funcional e esportiva com mais de 10 anos de experiência. Emagrecimento, composição corporal e performance esportiva. Atendimento em Bela Vista e Pinheiros, São Paulo."
+  transparentHeader={true}
+  structuredData={structuredData}
+>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" aria-label="Apresentação">
+    <div class="hero-bg"></div>
+    <div class="container hero-grid">
+      <div class="hero-content reveal fade-up">
+        <h1 class="text-hero">
+          Jackeline Queiroz.
+          <em>nutrição que transforma.</em>
+        </h1>
+        <p class="hero-subtitle">
+          Especializada em composição corporal e saúde da mulher
+        </p>
+        <Button href={siteInfo.whatsappUrl} variant="primary" size="lg" isExternal>
+          Fale com a gente
+        </Button>
+      </div>
+      <div class="hero-image reveal scale-in">
+        <img
+          src="/images/hero/jackeline-hero.png"
+          alt="Dra Jackeline Queiroz, nutricionista funcional e esportiva"
+          width="624"
+          height="791"
+          fetchpriority="high"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WELCOME ========== -->
+  <section class="welcome" aria-labelledby="welcome-heading">
+    <div class="container welcome-grid">
+      <div class="welcome-image reveal scale-in">
+        <img
+          src="/images/about/jackeline-about.png"
+          alt="Dra Jackeline Queiroz em atendimento"
+          width="520"
+          height="600"
+          loading="lazy"
+        />
+      </div>
+      <div class="welcome-text reveal fade-up">
+        <span class="overline">Nutrição Esportiva Funcional</span>
+        <h2 id="welcome-heading">
+          Nutrição personalizada para quem quer <em>resultados reais</em> e sustentáveis
+        </h2>
+        <p>
+          Bem vindo ao espaço dedicado a ajudar você a alcançar seus objetivos de emagrecimento,
+          ganho de massa magra e performance com saúde e vitalidade. Descubra como uma abordagem
+          personalizada pode fazer toda a diferença em sua jornada de bem-estar.
+        </p>
+        <Button href={siteInfo.whatsappUrl} variant="primary" isExternal>
+          Conhecer o atendimento
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WAVE: cream → dark ========== -->
+  <WaveDivider topColor="var(--color-cream)" bottomColor="var(--color-blue-800)" variant={1} />
+
+  <!-- ========== APPROACH ========== -->
+  <section class="approach text-on-dark" aria-labelledby="approach-heading">
+    <div class="container">
+      <div class="section-heading align-center on-dark" style="margin-bottom: var(--space-10);">
+        <h2 id="approach-heading"><em>a abordagem</em> Jackeline Queiroz</h2>
+      </div>
+
+      <div class="approach-grid stagger">
+        <div class="approach-card reveal fade-up">
+          <div class="approach-icon" aria-hidden="true">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--color-orange-400)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <h3>Individualização</h3>
+          <p>Cada pessoa é única. Seu plano alimentar é construído respeitando suas particularidades bioquímicas, rotina, preferências e objetivos individuais.</p>
+        </div>
+        <div class="approach-card reveal fade-up">
+          <div class="approach-icon" aria-hidden="true">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--color-orange-400)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <h3>Sustentabilidade</h3>
+          <p>Sem dietas restritivas ou soluções temporárias. O foco é mudança de hábitos que funcionem no dia a dia e que você consiga manter a longo prazo.</p>
+        </div>
+        <div class="approach-card reveal fade-up">
+          <div class="approach-icon" aria-hidden="true">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--color-orange-400)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="11" x2="13" y2="11"/></svg>
+          </div>
+          <h3>Evidência Científica</h3>
+          <p>Abordagem baseada em nutrição clínica, esportiva e funcional, com mais de 10 anos de experiência em consultório e formação contínua.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== MARQUEE ========== -->
+  <div class="marquee-section">
+    <MarqueeText text="nossos serviços" />
+  </div>
+
+  <!-- ========== SERVICES ========== -->
+  <section class="services" aria-labelledby="services-heading">
+    <div class="container">
+      <SectionHeading overline="FORMATOS DE ACOMPANHAMENTO">
+        <Fragment set:html={'Conheça os <em>formatos</em> de atendimento'} />
+      </SectionHeading>
+
+      <div class="services-stack stagger">
+        {services.map((svc, i) => (
+          <div class="reveal fade-up">
+            <ServiceCard
+              number={svc.number}
+              title={svc.title}
+              description={svc.description}
+              href={svc.href}
+              linkText={svc.linkText}
+              variant={i % 2 === 0 ? 'dark' : 'light'}
+              icon={svc.icon}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT SUMMARY ========== -->
+  <section class="about-summary" aria-labelledby="about-heading">
+    <div class="container about-grid">
+      <div class="about-text reveal fade-up">
+        <span class="overline">Sobre a Dra Jackeline</span>
+        <h2 id="about-heading">
+          Nutricionista clínica e esportiva funcional com mais de <em>10 anos</em> de experiência
+        </h2>
+        <p>
+          Sou especializada em comportamento alimentar e meu trabalho é focado em ajudar pessoas
+          a emagrecer, melhorar a composição corporal e evoluir na performance esportiva — sem
+          extremismos, sem dietas restritivas e com foco em mudança de hábitos sustentáveis.
+        </p>
+        <p>
+          Atendo desde pessoas que buscam mais saúde até atletas e praticantes de crossfit,
+          corrida, triathlon e lutas, sempre com um acompanhamento individualizado e aplicado à vida real.
+        </p>
+        <Button href="/sobre" variant="outline">
+          Saiba mais
+        </Button>
+      </div>
+      <div class="about-image reveal scale-in">
+        <img
+          src="/images/about/jackeline-about.png"
+          alt="Dra Jackeline Queiroz, nutricionista funcional e esportiva em São Paulo"
+          width="480"
+          height="580"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WAVE: cream → dark (testimonials) ========== -->
+  <WaveDivider topColor="var(--color-cream)" bottomColor="var(--color-blue-800)" variant={2} />
+
+  <!-- ========== TESTIMONIALS ========== -->
+  <section class="testimonials" aria-labelledby="testimonials-heading">
+    <div class="testimonials-bg parallax-container">
+      <img
+        src="/images/hero/jackeline-hero.png"
+        alt=""
+        class="testimonials-bg-img parallax-image"
+        width="1440"
+        height="800"
+        loading="lazy"
+        aria-hidden="true"
+      />
+      <div class="testimonials-overlay"></div>
+    </div>
+    <div class="container testimonials-content">
+      <div class="testimonials-labels">
+        <span class="overline">Depoimentos</span>
+        <span class="overline">Resultados Reais</span>
+      </div>
+      <h2 id="testimonials-heading" class="sr-only">Depoimentos de pacientes</h2>
+      <div class="reveal fade-up">
+        <TestimonialCard
+          quote={testimonials[0].quote}
+          author={testimonials[0].author}
+          stars={5}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WAVE: dark → cream ========== -->
+  <WaveDivider topColor="var(--color-blue-800)" bottomColor="var(--color-cream)" variant={3} flip />
+
+  <!-- ========== RESULTS / VALUE PROP ========== -->
+  <section class="results" aria-labelledby="results-heading">
+    <div class="container">
+      <div class="results-card reveal fade-up">
+        <h2 id="results-heading" class="text-hero results-title">
+          resultados reais <em>levam tempo.</em>
+        </h2>
+        <p>
+          Mudanças reais no corpo e na saúde acontecem com constância e acompanhamento.
+          Por isso, muitos pacientes optam pelos programas de acompanhamento, que permitem
+          avaliar a evolução, ajustar estratégias e construir resultados sustentáveis.
+        </p>
+        <ul class="results-list">
+          <li>Emagrecer com saúde</li>
+          <li>Melhorar a composição corporal</li>
+          <li>Ganhar massa magra</li>
+          <li>Melhorar performance esportiva</li>
+          <li>Cuidar da saúde hormonal e metabólica</li>
+        </ul>
+        <Button href="/atendimento-e-consultas" variant="primary" size="lg">
+          Conheça os formatos
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FAQ ========== -->
+  <section class="faq" aria-labelledby="faq-heading">
+    <div class="container container--narrow">
+      <SectionHeading align="center" overline="DÚVIDAS FREQUENTES">
+        Tudo que você precisa saber
+      </SectionHeading>
+      <div class="reveal fade-up">
+        <FAQAccordion items={faqItems} />
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== BLOG PREVIEW ========== -->
+  <section class="blog-preview" aria-labelledby="blog-heading">
+    <div class="container">
+      <SectionHeading overline="BLOG">
+        Artigos recentes
+      </SectionHeading>
+
+      <div class="blog-grid stagger">
+        {blogPreviews.map((post, i) => (
+          <article class="blog-card reveal fade-up hover-lift">
+            <div class="blog-card-image">
+              <div class:list={['blog-card-placeholder', `blog-placeholder-${i + 1}`]}>
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" aria-hidden="true">
+                  <path d="M4 19.5A2.5 2.5 0 016.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
+                </svg>
+              </div>
+            </div>
+            <div class="blog-card-content">
+              <h3>{post.title}</h3>
+              <p>{post.excerpt}</p>
+              <a href={post.href} target="_blank" rel="noopener noreferrer" class="blog-card-link">
+                Leia o artigo →
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WAVE: cream → dark (CTA) ========== -->
+  <WaveDivider topColor="var(--color-cream)" bottomColor="var(--color-blue-800)" variant={1} />
+
+  <!-- ========== FINAL CTA ========== -->
+  <section class="final-cta text-on-dark" aria-labelledby="cta-heading">
+    <div class="container final-cta-grid">
+      <div class="final-cta-image">
+        <img
+          src="/images/about/jackeline-contact.png"
+          alt="Dra Jackeline Queiroz pronta para atender você"
+          width="480"
+          height="560"
+          loading="lazy"
+        />
+      </div>
+      <div class="final-cta-card reveal fade-up">
+        <span class="overline">Dê o próximo passo</span>
+        <h2 id="cta-heading">
+          E se você não precisasse resolver <em>tudo sozinha?</em>
+        </h2>
+        <p>
+          Ter orientação profissional faz toda a diferença. Com acompanhamento individualizado,
+          você não precisa adivinhar o que funciona — recebe direcionamento, suporte e ajustes
+          ao longo do caminho para construir resultados que se mantêm.
+        </p>
+        <Button href={siteInfo.whatsappUrl} variant="primary" size="lg" isExternal>
+          Agende sua Consulta
+        </Button>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* ========== HERO ========== */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-color: var(--color-blue-800);
+    background-image:
+      radial-gradient(ellipse at 70% 50%, rgba(74, 106, 143, 0.35) 0%, transparent 60%),
+      radial-gradient(ellipse at 30% 80%, rgba(200, 134, 10, 0.05) 0%, transparent 50%);
+  }
+
+  .hero-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    gap: var(--space-8);
+    padding-top: calc(80px + var(--space-12));
+    padding-bottom: var(--space-8);
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .hero .text-hero {
+    color: var(--color-white);
+    max-width: 12ch;
+    margin-bottom: var(--space-4);
+  }
+
+  .hero .text-hero em {
+    color: var(--color-orange-400);
+  }
+
+  .hero-subtitle {
+    font-family: var(--font-secondary);
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: var(--space-6);
+    max-width: 40ch;
+  }
+
+  .hero-image {
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero-image img {
+    max-height: 70vh;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
+  }
+
+  /* ========== WELCOME ========== */
+  .welcome {
+    background-color: var(--color-cream);
+  }
+
+  .welcome-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+    align-items: center;
+  }
+
+  .welcome-image img {
+    border-radius: var(--radius-2xl);
+    width: 100%;
+    max-width: 520px;
+    object-fit: cover;
+  }
+
+  .welcome-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .welcome-text h2 {
+    max-width: 20ch;
+  }
+
+  .welcome-text h2 em {
+    font-style: italic;
+    color: var(--color-orange-500);
+  }
+
+  .welcome-text p {
+    margin-bottom: var(--space-2);
+  }
+
+  /* ========== APPROACH ========== */
+  .approach {
+    background-color: var(--color-blue-800);
+    padding-bottom: var(--space-4);
+    background-image:
+      radial-gradient(ellipse at 20% 80%, rgba(74, 106, 143, 0.25) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(200, 134, 10, 0.04) 0%, transparent 40%);
+  }
+
+  .approach h2 {
+    color: var(--color-white);
+    text-align: center;
+    font-size: var(--text-h1);
+  }
+
+  .approach h2 em {
+    font-style: italic;
+    font-weight: var(--weight-regular);
+    color: var(--color-orange-400);
+  }
+
+  .approach-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+    margin-top: var(--space-12);
+  }
+
+  .approach-card {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-8) var(--space-6);
+    border-radius: var(--radius-xl);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: background var(--duration-normal) ease, border-color var(--duration-normal) ease;
+  }
+
+  .approach-card:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .approach-icon {
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-2);
+    background: rgba(219, 164, 74, 0.1);
+    border-radius: var(--radius-lg);
+  }
+
+  .approach-card h3 {
+    color: var(--color-orange-400);
+    font-size: var(--text-h3);
+  }
+
+  .approach-card p {
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 35ch;
+  }
+
+  /* ========== MARQUEE ========== */
+  .marquee-section {
+    background-color: var(--color-orange-100);
+    color: var(--color-orange-600);
+    overflow: hidden;
+  }
+
+  /* ========== SERVICES ========== */
+  .services {
+    background-color: var(--color-cream);
+  }
+
+  .services-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  /* ========== ABOUT SUMMARY ========== */
+  .about-summary {
+    background-color: var(--color-cream);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+    align-items: center;
+  }
+
+  .about-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .about-text h2 em {
+    font-style: italic;
+    color: var(--color-orange-500);
+  }
+
+  .about-image img {
+    border-radius: var(--radius-2xl);
+    width: 100%;
+    max-width: 480px;
+    object-fit: cover;
+  }
+
+  /* ========== TESTIMONIALS ========== */
+  .testimonials {
+    position: relative;
+    overflow: hidden;
+    padding-block: var(--space-24);
+  }
+
+  .testimonials-bg {
+    position: absolute;
+    inset: -60px 0;
+  }
+
+  .testimonials-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: blur(2px);
+  }
+
+  .testimonials-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(30, 52, 80, 0.9) 0%,
+      rgba(46, 74, 110, 0.85) 50%,
+      rgba(30, 52, 80, 0.92) 100%
+    );
+  }
+
+  .testimonials-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .testimonials-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--space-10);
+  }
+
+  .testimonials-labels .overline {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: var(--text-caption);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  /* ========== RESULTS ========== */
+  .results {
+    background-color: var(--color-cream);
+  }
+
+  .results-card {
+    background-color: var(--color-blue-800);
+    background-image:
+      radial-gradient(ellipse at 30% 20%, rgba(74, 106, 143, 0.3) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 80%, rgba(200, 134, 10, 0.05) 0%, transparent 40%);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-12) var(--space-8);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .results-title {
+    color: var(--color-white);
+    font-size: clamp(2rem, 5vw, 4rem);
+  }
+
+  .results-title em {
+    color: var(--color-orange-400);
+  }
+
+  .results-card > p {
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 55ch;
+    text-align: center;
+  }
+
+  .results-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    justify-content: center;
+    list-style: none;
+  }
+
+  .results-list li {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-white);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-full);
+    font-size: var(--text-small);
+    font-family: var(--font-secondary);
+  }
+
+  /* ========== FAQ ========== */
+  .faq {
+    background-color: var(--color-cream);
+  }
+
+  /* ========== BLOG ========== */
+  .blog-preview {
+    background-color: var(--color-cream);
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .blog-card {
+    background: var(--color-white);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    border: 1px solid rgba(46, 74, 110, 0.06);
+  }
+
+  .blog-card-placeholder {
+    width: 100%;
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(46, 74, 110, 0.15);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .blog-card-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.4;
+    background-image: radial-gradient(circle at 30% 40%, rgba(46, 74, 110, 0.08) 0%, transparent 50%),
+                       radial-gradient(circle at 70% 60%, rgba(200, 134, 10, 0.06) 0%, transparent 50%);
+  }
+
+  .blog-card-placeholder :global(svg) {
+    opacity: 0.6;
+  }
+
+  .blog-placeholder-1 {
+    background: linear-gradient(145deg, var(--color-blue-100) 0%, var(--color-orange-100) 60%, var(--color-blue-50) 100%);
+  }
+  .blog-placeholder-2 {
+    background: linear-gradient(145deg, var(--color-orange-100) 0%, var(--color-blue-100) 60%, var(--color-orange-50) 100%);
+  }
+  .blog-placeholder-3 {
+    background: linear-gradient(145deg, var(--color-blue-50) 0%, var(--color-orange-50) 40%, var(--color-blue-100) 100%);
+  }
+
+  .blog-card-content {
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .blog-card-content h3 {
+    font-size: var(--text-h4);
+    line-height: 1.3;
+  }
+
+  .blog-card-content p {
+    font-size: var(--text-small);
+    color: var(--color-charcoal-600);
+    max-width: none;
+  }
+
+  .blog-card-link {
+    font-family: var(--font-primary);
+    font-size: var(--text-small);
+    font-weight: var(--weight-medium);
+    color: var(--color-orange-500);
+    text-decoration: none;
+  }
+
+  .blog-card-link:hover {
+    text-decoration: underline;
+  }
+
+  /* ========== FINAL CTA ========== */
+  .final-cta {
+    background-color: var(--color-blue-800);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .final-cta-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    align-items: end;
+    position: relative;
+  }
+
+  .final-cta-image {
+    position: relative;
+    z-index: 1;
+  }
+
+  .final-cta-image img {
+    border-radius: var(--radius-2xl);
+    width: 100%;
+    max-width: 480px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .final-cta-card {
+    background-color: var(--color-cream);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-10);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    position: relative;
+    z-index: 2;
+  }
+
+  .final-cta-card .overline {
+    color: var(--color-orange-500);
+  }
+
+  .final-cta-card h2 {
+    color: var(--color-charcoal-900);
+    font-size: var(--text-h2);
+  }
+
+  .final-cta-card h2 em {
+    font-style: italic;
+    color: var(--color-orange-500);
+  }
+
+  .final-cta-card p {
+    color: var(--color-charcoal-600);
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (min-width: 768px) {
+    .hero-grid {
+      grid-template-columns: 1.1fr 1fr;
+      padding-bottom: 0;
+    }
+
+    .hero-image img {
+      max-height: 85vh;
+    }
+
+    .welcome-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .approach-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .about-grid {
+      grid-template-columns: 1.2fr 1fr;
+    }
+
+    .blog-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .final-cta-grid {
+      grid-template-columns: 1fr 1.1fr;
+    }
+
+    .final-cta-card {
+      margin-left: -60px;
+      margin-bottom: var(--space-10);
+    }
+
+    .results-card {
+      padding: var(--space-16) var(--space-12);
+    }
+  }
+</style>
+
+<!-- Scroll Reveal Script -->
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+
+  if (reveals.length > 0 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -50px 0px' }
+    );
+
+    reveals.forEach((el) => observer.observe(el));
+  } else {
+    reveals.forEach((el) => el.classList.add('is-visible'));
+  }
+</script>
+
+<!-- Parallax Script -->
+<script>
+  const parallaxImages = document.querySelectorAll('.parallax-image');
+
+  if (parallaxImages.length > 0 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let ticking = false;
+
+    const updateParallax = () => {
+      parallaxImages.forEach((img) => {
+        const container = img.closest('.parallax-container') as HTMLElement;
+        if (!container) return;
+        const rect = container.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        if (rect.bottom < -100 || rect.top > viewportHeight + 100) return;
+        const progress = (viewportHeight - rect.top) / (viewportHeight + rect.height);
+        const offset = (progress - 0.5) * 150;
+        (img as HTMLElement).style.transform = `translate3d(0, ${offset}px, 0) scale(1.15)`;
+      });
+      ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    updateParallax();
+  }
+</script>

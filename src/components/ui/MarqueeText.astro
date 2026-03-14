@@ -1,0 +1,47 @@
+---
+interface Props {
+  text: string;
+  separator?: string;
+  speed?: number;
+}
+
+const { text, separator = '✦', speed = 20 } = Astro.props;
+const items = Array(8).fill(`${text} ${separator} `).join('');
+---
+
+<div class="marquee" aria-hidden="true" style={`--marquee-speed: ${speed}s;`}>
+  <div class="marquee-track" style={`animation-duration: var(--marquee-speed);`}>
+    <span class="marquee-content">{items}</span>
+    <span class="marquee-content">{items}</span>
+  </div>
+</div>
+
+<style>
+  .marquee {
+    overflow: hidden;
+    padding: var(--space-6) 0;
+    user-select: none;
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee var(--marquee-speed, 20s) linear infinite;
+  }
+
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  .marquee-content {
+    font-family: var(--font-primary);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: var(--weight-bold);
+    text-transform: lowercase;
+    white-space: nowrap;
+    color: inherit;
+    letter-spacing: -0.01em;
+    padding-right: var(--space-4);
+    opacity: 0.5;
+  }
+</style>

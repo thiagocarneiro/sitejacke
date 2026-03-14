@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WaveDivider from '../../components/ui/WaveDivider.astro';
+import { blogPreviews } from '../../data/services';
+import { getBreadcrumbSchema } from '../../data/seo';
+
+const structuredData = [
+  getBreadcrumbSchema([
+    { name: 'Home', url: 'https://nutricionistajackeline.com.br/' },
+    { name: 'Blog', url: 'https://nutricionistajackeline.com.br/blog' },
+  ]),
+];
+---
+
+<BaseLayout
+  title="Blog | Dra Jackeline Queiroz - Nutrição, Saúde e Bem-estar"
+  description="Artigos sobre nutrição funcional, emagrecimento, saúde da mulher e performance esportiva. Conteúdo pela Dra Jackeline Queiroz."
+  structuredData={structuredData}
+>
+
+  <!-- HERO -->
+  <section class="blog-hero text-on-dark" aria-labelledby="blog-heading">
+    <div class="container" style="text-align:center;">
+      <div class="reveal fade-up">
+        <span class="overline">Blog</span>
+        <h1 id="blog-heading">Artigos sobre nutrição, <em>saúde</em> e bem-estar</h1>
+        <p style="max-width:50ch;margin-inline:auto;color:rgba(255,255,255,0.8);">
+          Conteúdo educativo para ajudar você a entender como a nutrição impacta sua saúde, seu corpo e seu desempenho.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <WaveDivider topColor="var(--color-blue-800)" bottomColor="var(--color-cream)" variant={2} flip />
+
+  <!-- POSTS -->
+  <section class="blog-posts" aria-labelledby="posts-heading">
+    <div class="container">
+      <h2 id="posts-heading" class="sr-only">Artigos</h2>
+      <div class="blog-grid stagger">
+        {blogPreviews.map((post, i) => (
+          <article class="blog-card reveal fade-up hover-lift">
+            <div class="blog-card-image">
+              <div class:list={['blog-card-placeholder', `blog-placeholder-${i + 1}`]}>
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" aria-hidden="true">
+                  <path d="M4 19.5A2.5 2.5 0 016.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
+                </svg>
+              </div>
+            </div>
+            <div class="blog-card-content">
+              <h3>{post.title}</h3>
+              <p>{post.excerpt}</p>
+              <a href={post.href} target="_blank" rel="noopener noreferrer" class="blog-card-link">
+                Leia o artigo →
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <p class="blog-soon reveal fade-up">
+        Em breve, mais artigos aqui. Enquanto isso, acompanhe o conteúdo no
+        <a href="https://www.instagram.com/jackequeiroz.nutricionista/" target="_blank" rel="noopener noreferrer">Instagram</a>.
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .blog-hero {
+    background-color: var(--color-blue-800);
+    padding-top: calc(80px + var(--space-16));
+    padding-bottom: var(--space-12);
+  }
+  .blog-hero h1 { color: var(--color-white); }
+  .blog-hero h1 em { color: var(--color-orange-400); font-style: italic; }
+
+  .blog-posts { background-color: var(--color-cream); }
+
+  .blog-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-8); }
+
+  .blog-card {
+    background: var(--color-white);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    border: 1px solid rgba(46, 74, 110, 0.06);
+  }
+
+  .blog-card-placeholder {
+    width: 100%;
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(4, 60, 151, 0.2);
+  }
+  .blog-placeholder-1 { background: linear-gradient(135deg, var(--color-blue-100) 0%, var(--color-orange-100) 100%); }
+  .blog-placeholder-2 { background: linear-gradient(135deg, var(--color-orange-100) 0%, var(--color-blue-100) 100%); }
+  .blog-placeholder-3 { background: linear-gradient(135deg, var(--color-blue-50) 0%, var(--color-orange-50) 50%, var(--color-blue-100) 100%); }
+
+  .blog-card-content {
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .blog-card-content h3 { font-size: var(--text-h4); line-height: 1.3; }
+  .blog-card-content p { font-size: var(--text-small); color: var(--color-charcoal-600); max-width: none; }
+
+  .blog-card-link {
+    font-family: var(--font-primary);
+    font-size: var(--text-small);
+    font-weight: var(--weight-medium);
+    color: var(--color-orange-500);
+    text-decoration: none;
+  }
+  .blog-card-link:hover { text-decoration: underline; }
+
+  .blog-soon {
+    text-align: center;
+    margin-top: var(--space-12);
+    color: var(--color-charcoal-600);
+    font-size: var(--text-body);
+  }
+  .blog-soon a { color: var(--color-orange-500); text-decoration: underline; }
+
+  @media (min-width: 768px) {
+    .blog-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  if (reveals.length > 0 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const observer = new IntersectionObserver(
+      (entries) => { entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-visible'); observer.unobserve(e.target); } }); },
+      { threshold: 0.15, rootMargin: '0px 0px -50px 0px' }
+    );
+    reveals.forEach((el) => observer.observe(el));
+  } else { reveals.forEach((el) => el.classList.add('is-visible')); }
+</script>

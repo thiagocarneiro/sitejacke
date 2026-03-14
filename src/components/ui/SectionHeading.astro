@@ -1,0 +1,72 @@
+---
+interface Props {
+  overline?: string;
+  subtitle?: string;
+  align?: 'left' | 'center';
+  onDark?: boolean;
+}
+
+const {
+  overline,
+  subtitle,
+  align = 'left',
+  onDark = false,
+} = Astro.props;
+---
+
+<div class:list={['section-heading', `align-${align}`, { 'on-dark': onDark }]}>
+  {overline && <span class="overline">{overline}</span>}
+  <h2>
+    <slot />
+  </h2>
+  {subtitle && <p class="section-subtitle">{subtitle}</p>}
+</div>
+
+<style>
+  .section-heading {
+    margin-bottom: var(--space-10);
+  }
+
+  .align-center {
+    text-align: center;
+  }
+
+  .align-center h2,
+  .align-center .section-subtitle {
+    margin-inline: auto;
+  }
+
+  .section-heading .overline {
+    display: block;
+    margin-bottom: var(--space-3);
+  }
+
+  .section-heading h2 {
+    margin-bottom: var(--space-4);
+  }
+
+  .section-heading h2 :global(em),
+  .section-heading h2 :global(i) {
+    font-style: italic;
+    font-weight: var(--weight-regular);
+  }
+
+  .section-subtitle {
+    font-size: var(--text-body);
+    color: var(--color-charcoal-600);
+    max-width: 55ch;
+    line-height: var(--leading-relaxed);
+  }
+
+  .on-dark .overline {
+    color: var(--color-orange-400);
+  }
+
+  .on-dark h2 {
+    color: var(--color-white);
+  }
+
+  .on-dark .section-subtitle {
+    color: rgba(255, 255, 255, 0.75);
+  }
+</style>

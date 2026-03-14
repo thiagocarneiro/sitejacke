@@ -1,0 +1,288 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.astro';
+import WaveDivider from '../components/ui/WaveDivider.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import ServiceCard from '../components/ui/ServiceCard.astro';
+import { siteInfo } from '../data/navigation';
+import { services } from '../data/services';
+import { getBreadcrumbSchema, getLocalBusinessSchema } from '../data/seo';
+
+const structuredData = [
+  getLocalBusinessSchema(),
+  getBreadcrumbSchema([
+    { name: 'Home', url: 'https://nutricionistajackeline.com.br/' },
+    { name: 'Atendimento e Consultas', url: 'https://nutricionistajackeline.com.br/atendimento-e-consultas' },
+  ]),
+];
+---
+
+<BaseLayout
+  title="Consulta Nutricional em São Paulo | Atendimento Dra Jackeline Queiroz"
+  description="Conheça os formatos de acompanhamento nutricional: consulta avulsa, trimestral e 6 meses. Nutrição personalizada para emagrecimento, composição corporal e performance."
+  structuredData={structuredData}
+>
+
+  <!-- HERO -->
+  <section class="atend-hero text-on-dark" aria-labelledby="atend-heading">
+    <div class="container" style="text-align: center;">
+      <div class="reveal fade-up">
+        <span class="overline">Atendimento</span>
+        <h1 id="atend-heading">Não é uma consulta. É um <em>acompanhamento estratégico.</em></h1>
+        <p style="max-width:55ch; margin-inline:auto; color:rgba(255,255,255,0.8);">
+          A consultoria nutricional é um formato de atendimento contínuo, criado para pessoas que não querem
+          apenas receber um plano alimentar, mas sim conseguir aplicar a alimentação na vida real e sustentar resultados.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <WaveDivider topColor="var(--color-blue-800)" bottomColor="var(--color-cream)" variant={2} flip />
+
+  <!-- FORMAT -->
+  <section class="format" aria-labelledby="format-heading">
+    <div class="container format-grid">
+      <div class="format-text reveal fade-up">
+        <span class="overline">Formato de Consultoria</span>
+        <h2 id="format-heading">Acompanhamento individualizado e adaptado à <em>sua rotina</em></h2>
+        <p>O atendimento nutricional é individualizado e adaptado à rotina de cada paciente. O trabalho é focado em composição corporal, saúde metabólica e performance.</p>
+        <p>A abordagem une nutrição clínica, esportiva e funcional, com atenção especial à saúde da mulher e processos inflamatórios, como lipedema, endometriose e alterações intestinais.</p>
+        <p>Mais do que entregar um cardápio, o objetivo é entender a rotina, ajustar estratégias e construir hábitos alimentares que realmente funcionem no dia a dia.</p>
+        <Button href={siteInfo.whatsappUrl} variant="primary" isExternal>
+          Entrar em contato
+        </Button>
+      </div>
+      <div class="format-image reveal scale-in">
+        <img src="/images/about/jackeline-about.png" alt="Dra Jackeline Queiroz durante atendimento" width="480" height="580" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="atend-services" aria-labelledby="atend-services-heading">
+    <div class="container">
+      <SectionHeading overline="FORMATOS">
+        <Fragment set:html={'Escolha o formato ideal para <em>seu objetivo</em>'} />
+      </SectionHeading>
+      <div class="services-stack stagger">
+        {services.map((svc, i) => (
+          <div class="reveal fade-up">
+            <ServiceCard
+              number={svc.number}
+              title={svc.title}
+              description={svc.description}
+              href={siteInfo.whatsappUrl}
+              linkText="Entrar em contato"
+              variant={i % 2 === 0 ? 'dark' : 'light'}
+              icon={svc.icon}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <WaveDivider topColor="var(--color-cream)" bottomColor="var(--color-blue-800)" variant={1} />
+
+  <!-- WHO IS IT FOR -->
+  <section class="who text-on-dark" aria-labelledby="who-heading">
+    <div class="container container--narrow" style="text-align:center;">
+      <div class="reveal fade-up">
+        <span class="overline">Para quem é</span>
+        <h2 id="who-heading">Para quem já tentou sozinho e quer <em>fazer diferente</em></h2>
+        <ul class="who-list">
+          <li>Já tentou emagrecer ou melhorar a alimentação várias vezes</li>
+          <li>Sabe o que precisa fazer, mas tem dificuldade em manter constância</li>
+          <li>Treina, mas sente que a alimentação não acompanha o esforço</li>
+          <li>Busca resultado físico sem dietas restritivas ou soluções temporárias</li>
+        </ul>
+        <p style="color:rgba(255,255,255,0.8); margin-top:var(--space-6); max-width:50ch; margin-inline:auto;">
+          Você não recebe apenas um plano alimentar. Você recebe direcionamento, suporte e acompanhamento
+          ao longo do caminho, para construir autonomia e segurança nas escolhas alimentares.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <WaveDivider topColor="var(--color-blue-800)" bottomColor="var(--color-cream)" variant={3} flip />
+
+  <!-- STEPS -->
+  <section class="steps" aria-labelledby="steps-heading">
+    <div class="container">
+      <SectionHeading overline="COMO FUNCIONA" align="center">
+        O passo a passo da <em>sua consulta</em>
+      </SectionHeading>
+      <div class="steps-grid stagger">
+        <div class="step-card reveal fade-up">
+          <span class="step-number">01</span>
+          <h3>Anamnese completa</h3>
+          <p>Rotina, hábitos, antecedentes, alimentação, exercícios e preferências — entendemos tudo sobre você.</p>
+        </div>
+        <div class="step-card reveal fade-up">
+          <span class="step-number">02</span>
+          <h3>Avaliação física</h3>
+          <p>Medidas com certificação ISAK internacional e ultrassom Bodymetrix para dados precisos de composição corporal.</p>
+        </div>
+        <div class="step-card reveal fade-up">
+          <span class="step-number">03</span>
+          <h3>Estratégia nutricional</h3>
+          <p>Plano alimentar personalizado, construído junto com você, para ser viável e executável no dia a dia.</p>
+        </div>
+        <div class="step-card reveal fade-up">
+          <span class="step-number">04</span>
+          <h3>Acompanhamento</h3>
+          <p>Plano alimentar e avaliação enviados por e-mail, acesso ao app do paciente e contato direto via WhatsApp.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COUNTERS -->
+  <section class="counters" aria-label="Números">
+    <div class="container">
+      <div class="counters-grid stagger">
+        <div class="counter-item reveal fade-up">
+          <span class="counter-value">+10</span>
+          <span class="counter-label">anos de experiência</span>
+        </div>
+        <div class="counter-item reveal fade-up">
+          <span class="counter-value">3</span>
+          <span class="counter-label">pós-graduações</span>
+        </div>
+        <div class="counter-item reveal fade-up">
+          <span class="counter-value">2</span>
+          <span class="counter-label">unidades em SP</span>
+        </div>
+        <div class="counter-item reveal fade-up">
+          <span class="counter-value">ISAK</span>
+          <span class="counter-label">certificação internacional</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <WaveDivider topColor="var(--color-cream)" bottomColor="var(--color-blue-800)" variant={1} />
+  <section class="page-cta text-on-dark">
+    <div class="container" style="text-align:center;">
+      <div class="reveal fade-up">
+        <h2>Pronta para <em>começar?</em></h2>
+        <p style="max-width:45ch; margin-inline:auto; color:rgba(255,255,255,0.8); margin-bottom:var(--space-8);">
+          Entre em contato e agende sua consulta. O primeiro passo é sempre o mais importante.
+        </p>
+        <Button href={siteInfo.whatsappUrl} variant="primary" size="lg" isExternal>
+          Agende sua Consulta
+        </Button>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .atend-hero {
+    background-color: var(--color-blue-800);
+    padding-top: calc(80px + var(--space-16));
+    padding-bottom: var(--space-12);
+  }
+  .atend-hero h1 { color: var(--color-white); font-size: var(--text-h1); }
+  .atend-hero h1 em { color: var(--color-orange-400); font-style: italic; }
+
+  .format { background-color: var(--color-cream); }
+  .format-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-10); align-items: center; }
+  .format-text { display: flex; flex-direction: column; gap: var(--space-4); }
+  .format-text h2 em { color: var(--color-orange-500); font-style: italic; }
+  .format-image img { border-radius: var(--radius-2xl); width: 100%; max-width: 480px; }
+
+  .atend-services { background-color: var(--color-cream); }
+  .services-stack { display: flex; flex-direction: column; gap: var(--space-8); }
+
+  .who {
+    background-color: var(--color-blue-800);
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(74, 106, 143, 0.25) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 50%, rgba(200, 134, 10, 0.04) 0%, transparent 40%);
+  }
+  .who h2 { color: var(--color-white); }
+  .who h2 em { color: var(--color-orange-400); font-style: italic; }
+  .who-list { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-6); }
+  .who-list li {
+    color: rgba(255,255,255,0.85);
+    font-size: var(--text-body);
+    padding: var(--space-3) var(--space-6);
+    background: rgba(255,255,255,0.08);
+    border-radius: var(--radius-full);
+    display: inline-block;
+  }
+
+  .steps { background-color: var(--color-cream); }
+  .steps-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
+  .step-card {
+    background: var(--color-white);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    text-align: center;
+    border: 1px solid rgba(46, 74, 110, 0.06);
+    position: relative;
+    overflow: hidden;
+  }
+  .step-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-orange-400), var(--color-orange-500));
+  }
+  .step-number {
+    font-family: var(--font-primary);
+    font-size: var(--text-h1);
+    font-weight: var(--weight-bold);
+    color: var(--color-orange-100);
+    display: block;
+    margin-bottom: var(--space-3);
+  }
+  .step-card h3 { margin-bottom: var(--space-2); color: var(--color-blue-700); }
+  .step-card p { color: var(--color-charcoal-600); max-width: none; }
+
+  .counters { background-color: var(--color-cream); padding-block: var(--space-12); }
+  .counters-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); text-align: center; }
+  .counter-item {
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    background: var(--color-white);
+    border: 1px solid rgba(46, 74, 110, 0.06);
+  }
+  .counter-value {
+    font-family: var(--font-primary);
+    font-size: var(--text-h1);
+    font-weight: var(--weight-bold);
+    color: var(--color-orange-500);
+    display: block;
+    line-height: 1.1;
+    margin-bottom: var(--space-2);
+  }
+  .counter-label { font-size: var(--text-small); color: var(--color-charcoal-600); }
+
+  .page-cta { background-color: var(--color-blue-800); padding-block: var(--space-16); }
+  .page-cta h2 { color: var(--color-white); }
+  .page-cta h2 em { color: var(--color-orange-400); font-style: italic; }
+
+  @media (min-width: 768px) {
+    .format-grid { grid-template-columns: 1.2fr 1fr; }
+    .steps-grid { grid-template-columns: repeat(4, 1fr); }
+    .counters-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+</style>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  if (reveals.length > 0 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const observer = new IntersectionObserver(
+      (entries) => { entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-visible'); observer.unobserve(e.target); } }); },
+      { threshold: 0.15, rootMargin: '0px 0px -50px 0px' }
+    );
+    reveals.forEach((el) => observer.observe(el));
+  } else { reveals.forEach((el) => el.classList.add('is-visible')); }
+</script>

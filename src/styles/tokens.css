@@ -1,0 +1,116 @@
+:root {
+  /* === PRIMARY — Warm Amber (softened from pure orange) === */
+  --color-orange-500: #c8860a;
+  --color-orange-600: #a97212;
+  --color-orange-400: #dba44a;
+  --color-orange-100: #f7efe2;
+  --color-orange-50: #fbf7f1;
+
+  /* === PRIMARY — Slate Navy (softened from royal blue) === */
+  --color-blue-700: #2e4a6e;
+  --color-blue-800: #1e3450;
+  --color-blue-600: #4a6a8f;
+  --color-blue-100: #e9eff5;
+  --color-blue-50: #f3f6f9;
+
+  /* === NEUTRALS (warm-tinted) === */
+  --color-charcoal-900: #252a30;
+  --color-charcoal-800: #3a4048;
+  --color-charcoal-600: #5e6570;
+  --color-charcoal-400: #929aa5;
+  --color-charcoal-200: #d5d9de;
+  --color-charcoal-100: #eceef0;
+  --color-cream: #f8f6f3;
+  --color-white: #ffffff;
+
+  /* === COMPLEMENTARY === */
+  --color-teal-500: #4a8f85;
+  --color-teal-100: #e8f3f1;
+
+  /* === SEMANTIC === */
+  --color-bg-primary: var(--color-cream);
+  --color-bg-dark: var(--color-blue-800);
+  --color-bg-accent: var(--color-orange-100);
+  --color-bg-card-dark: var(--color-blue-700);
+  --color-bg-card-accent: var(--color-orange-50);
+  --color-text-primary: var(--color-charcoal-900);
+  --color-text-secondary: var(--color-charcoal-600);
+  --color-text-on-dark: var(--color-white);
+  --color-text-accent: var(--color-orange-500);
+  --color-text-link: var(--color-blue-600);
+  --color-cta-primary: var(--color-orange-500);
+  --color-cta-primary-hover: var(--color-orange-600);
+  --color-cta-secondary: var(--color-blue-700);
+
+  /* === TYPOGRAPHY === */
+  --font-primary: 'Prompt', sans-serif;
+  --font-secondary: 'Roboto', sans-serif;
+
+  --text-hero: clamp(3rem, 6vw, 5.5rem);
+  --text-h1: clamp(2.25rem, 4vw, 3.75rem);
+  --text-h2: clamp(1.75rem, 3vw, 2.75rem);
+  --text-h3: clamp(1.25rem, 2vw, 1.75rem);
+  --text-h4: clamp(1.125rem, 1.5vw, 1.375rem);
+  --text-body: clamp(1rem, 1.2vw, 1.125rem);
+  --text-small: 0.875rem;
+  --text-caption: 0.75rem;
+  --text-overline: 0.8125rem;
+
+  --leading-tight: 1.15;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.8;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* === SPACING (8px base) === */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* === LAYOUT === */
+  --container-max: 1280px;
+  --container-narrow: 960px;
+  --container-text: 720px;
+  --gutter: clamp(1rem, 3vw, 2rem);
+  --section-padding: clamp(4rem, 8vw, 8rem);
+
+  /* === BORDERS & RADIUS === */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-2xl: 40px;
+  --radius-full: 9999px;
+
+  /* === SHADOWS === */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 16px 50px rgba(0, 0, 0, 0.12);
+
+  /* === TRANSITIONS === */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --duration-fast: 200ms;
+  --duration-normal: 400ms;
+  --duration-slow: 650ms;
+  --duration-reveal: 800ms;
+
+  /* === Z-INDEX === */
+  --z-header: 100;
+  --z-mobile-menu: 150;
+  --z-whatsapp: 90;
+  --z-modal: 200;
+}

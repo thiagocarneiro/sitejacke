@@ -1,0 +1,56 @@
+---
+interface Props {
+  topColor?: string;
+  bottomColor?: string;
+  variant?: 1 | 2 | 3;
+  flip?: boolean;
+}
+
+const {
+  topColor = 'var(--color-cream)',
+  bottomColor = 'var(--color-blue-800)',
+  variant = 1,
+  flip = false,
+} = Astro.props;
+
+const paths: Record<number, string> = {
+  1: 'M0,64 C320,120 480,0 720,48 C960,96 1120,16 1440,64 L1440,0 L0,0 Z',
+  2: 'M0,48 C240,96 480,16 720,64 C960,112 1200,32 1440,48 L1440,0 L0,0 Z',
+  3: 'M0,32 C360,96 720,0 1080,64 C1260,96 1380,48 1440,32 L1440,0 L0,0 Z',
+};
+---
+
+<div
+  class:list={['wave-divider', { 'wave-flip': flip }]}
+  style={`--wave-top: ${topColor}; --wave-bottom: ${bottomColor};`}
+  aria-hidden="true"
+>
+  <svg
+    viewBox="0 0 1440 120"
+    preserveAspectRatio="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d={paths[variant]} fill="var(--wave-top)" />
+  </svg>
+</div>
+
+<style>
+  .wave-divider {
+    position: relative;
+    width: 100%;
+    line-height: 0;
+    background-color: var(--wave-bottom);
+    margin-top: -1px;
+    overflow: hidden;
+  }
+
+  .wave-divider svg {
+    width: 100%;
+    height: clamp(60px, 8vw, 120px);
+    display: block;
+  }
+
+  .wave-flip {
+    transform: rotate(180deg);
+  }
+</style>

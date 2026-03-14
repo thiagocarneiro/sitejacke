@@ -1,0 +1,52 @@
+---
+import SEOHead from '../components/global/SEOHead.astro';
+import Header from '../components/global/Header.astro';
+import Footer from '../components/global/Footer.astro';
+import WhatsAppWidget from '../components/global/WhatsAppWidget.astro';
+
+import '../styles/tokens.css';
+import '../styles/typography.css';
+import '../styles/global.css';
+import '../styles/animations.css';
+
+interface Props {
+  title: string;
+  description: string;
+  transparentHeader?: boolean;
+  canonicalUrl?: string;
+  ogImage?: string;
+  structuredData?: object | object[];
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  transparentHeader = false,
+  canonicalUrl,
+  ogImage,
+  structuredData,
+  noindex,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <SEOHead
+    title={title}
+    description={description}
+    canonicalUrl={canonicalUrl}
+    ogImage={ogImage}
+    structuredData={structuredData}
+    noindex={noindex}
+  />
+  <body>
+    <a href="#main-content" class="skip-to-content">Pular para o conteúdo</a>
+    <Header transparent={transparentHeader} />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+    <WhatsAppWidget />
+  </body>
+</html>

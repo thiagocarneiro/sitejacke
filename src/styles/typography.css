@@ -1,0 +1,125 @@
+/* === FONT FACES === */
+/* Prompt - Primary (headings, display) */
+@font-face {
+  font-family: 'Prompt';
+  src: url('/fonts/Prompt-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('/fonts/Prompt-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('/fonts/Prompt-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('/fonts/Prompt-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('/fonts/Prompt-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Roboto - Secondary (body, UI) */
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* === HEADING STYLES === */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-primary);
+  color: var(--color-text-primary);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: var(--text-h1); font-weight: var(--weight-bold); }
+h2 { font-size: var(--text-h2); font-weight: var(--weight-semibold); }
+h3 { font-size: var(--text-h3); font-weight: var(--weight-medium); }
+h4 { font-size: var(--text-h4); font-weight: var(--weight-medium); }
+
+/* === BODY TEXT === */
+body {
+  font-family: var(--font-secondary);
+  font-size: var(--text-body);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+  color: var(--color-text-primary);
+}
+
+p {
+  color: var(--color-charcoal-800);
+  max-width: 65ch;
+}
+
+/* === UTILITY CLASSES === */
+.text-hero {
+  font-family: var(--font-primary);
+  font-size: var(--text-hero);
+  font-weight: var(--weight-bold);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.text-hero em,
+.text-hero i {
+  font-style: italic;
+  font-weight: var(--weight-regular);
+}
+
+.overline {
+  font-family: var(--font-secondary);
+  font-size: var(--text-overline);
+  font-weight: var(--weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-text-accent);
+}
+
+.text-on-dark {
+  color: var(--color-text-on-dark);
+}
+
+.text-on-dark h1,
+.text-on-dark h2,
+.text-on-dark h3,
+.text-on-dark h4,
+.text-on-dark p {
+  color: var(--color-text-on-dark);
+}
+
+.text-on-dark .overline {
+  color: var(--color-orange-400);
+}

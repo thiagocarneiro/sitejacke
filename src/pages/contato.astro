@@ -1,0 +1,202 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.astro';
+import WaveDivider from '../components/ui/WaveDivider.astro';
+import { siteInfo } from '../data/navigation';
+import { getBreadcrumbSchema, getLocalBusinessSchema } from '../data/seo';
+
+const structuredData = [
+  getLocalBusinessSchema(),
+  getBreadcrumbSchema([
+    { name: 'Home', url: 'https://nutricionistajackeline.com.br/' },
+    { name: 'Contato', url: 'https://nutricionistajackeline.com.br/contato' },
+  ]),
+];
+---
+
+<BaseLayout
+  title="Contato | Dra Jackeline Queiroz - Nutricionista São Paulo"
+  description="Entre em contato com a Dra Jackeline Queiroz. WhatsApp (11) 97063-2874. Consultórios em Bela Vista e Pinheiros, São Paulo. Horário: 08h às 21h."
+  structuredData={structuredData}
+>
+
+  <!-- HERO -->
+  <section class="contato-hero" aria-labelledby="contato-heading">
+    <div class="container contato-hero-grid">
+      <div class="contato-hero-image reveal scale-in">
+        <img src="/images/about/jackeline-contact.png" alt="Dra Jackeline Queiroz" width="400" height="500" fetchpriority="high" />
+      </div>
+      <div class="contato-hero-text reveal fade-up">
+        <span class="overline">Contato</span>
+        <h1 id="contato-heading">Não sabe por onde <em>começar?</em> Este é um bom lugar.</h1>
+        <p style="color:rgba(255,255,255,0.8);">
+          Entre em contato para tirar suas dúvidas, agendar uma consulta ou saber mais sobre
+          os formatos de acompanhamento. Estou aqui para te ajudar.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <WaveDivider topColor="var(--color-blue-800)" bottomColor="var(--color-cream)" variant={2} flip />
+
+  <!-- CONTACT INFO -->
+  <section class="contact-info" aria-labelledby="info-heading">
+    <div class="container">
+      <h2 id="info-heading" class="sr-only">Informações de contato</h2>
+      <div class="contact-grid stagger">
+        <a href={siteInfo.whatsappUrl} target="_blank" rel="noopener noreferrer" class="contact-card reveal fade-up hover-lift">
+          <div class="contact-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--color-orange-500)"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </div>
+          <h3>WhatsApp</h3>
+          <span class="contact-value">{siteInfo.phoneDisplay}</span>
+        </a>
+
+        <a href={`mailto:${siteInfo.email}`} class="contact-card reveal fade-up hover-lift">
+          <div class="contact-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-orange-500)" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+          </div>
+          <h3>Email</h3>
+          <span class="contact-value">{siteInfo.email}</span>
+        </a>
+
+        <a href={siteInfo.instagram} target="_blank" rel="noopener noreferrer" class="contact-card reveal fade-up hover-lift">
+          <div class="contact-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-orange-500)" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="var(--color-orange-500)" stroke="none"/></svg>
+          </div>
+          <h3>Instagram</h3>
+          <span class="contact-value">{siteInfo.instagramHandle}</span>
+        </a>
+      </div>
+
+      <p class="contact-hours reveal fade-up">
+        Horário de atendimento: <strong>08h às 21h</strong>, segunda a sexta-feira
+      </p>
+    </div>
+  </section>
+
+  <WaveDivider topColor="var(--color-cream)" bottomColor="var(--color-orange-100)" variant={3} />
+
+  <!-- LOCATIONS -->
+  <section class="locations" aria-labelledby="locations-heading">
+    <div class="container">
+      <h2 id="locations-heading" style="text-align:center; margin-bottom:var(--space-10);">Nossos <em>endereços</em></h2>
+      <div class="locations-grid stagger">
+        {siteInfo.locations.map((loc) => (
+          <div class="location-card reveal fade-up hover-lift">
+            <h3>{loc.name}</h3>
+            <p class="location-address">{loc.address}</p>
+            <p class="location-city">{loc.city}</p>
+            <p class="location-hours-tag">{loc.hours}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <WaveDivider topColor="var(--color-orange-100)" bottomColor="var(--color-blue-800)" variant={1} />
+
+  <!-- CTA -->
+  <section class="page-cta text-on-dark">
+    <div class="container" style="text-align:center;">
+      <div class="reveal fade-up">
+        <h2>Pronta para dar o <em>próximo passo?</em></h2>
+        <p style="max-width:45ch;margin-inline:auto;color:rgba(255,255,255,0.8);margin-bottom:var(--space-8);">
+          Agende sua consulta pelo WhatsApp e comece sua jornada de transformação.
+        </p>
+        <Button href={siteInfo.whatsappUrl} variant="primary" size="lg" isExternal>
+          Agende sua Consulta
+        </Button>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .contato-hero {
+    background-color: var(--color-blue-800);
+    padding-top: calc(80px + var(--space-12));
+    overflow: hidden;
+  }
+  .contato-hero-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-8); align-items: center; }
+  .contato-hero-image img { border-radius: var(--radius-2xl); width: 100%; max-width: 400px; }
+  .contato-hero-text { display: flex; flex-direction: column; gap: var(--space-4); }
+  .contato-hero-text .overline { color: var(--color-orange-400); }
+  .contato-hero-text h1 { color: var(--color-white); }
+  .contato-hero-text h1 em { color: var(--color-orange-400); font-style: italic; }
+
+  .contact-info { background-color: var(--color-cream); }
+  .contact-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-6); margin-bottom: var(--space-8); }
+  .contact-card {
+    background: var(--color-white);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  .contact-icon { margin-bottom: var(--space-2); }
+  .contact-card h3 { color: var(--color-charcoal-900); font-size: var(--text-h4); }
+  .contact-value { color: var(--color-blue-600); font-size: var(--text-small); }
+  .contact-hours { text-align: center; color: var(--color-charcoal-600); font-size: var(--text-body); }
+
+  .locations { background-color: var(--color-orange-100); }
+  .locations h2 em { color: var(--color-orange-500); font-style: italic; }
+  .locations-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
+  .location-card {
+    background: var(--color-white);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    text-align: center;
+    border: 1px solid rgba(46, 74, 110, 0.06);
+    position: relative;
+    overflow: hidden;
+  }
+  .location-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-blue-600), var(--color-blue-700));
+  }
+  .location-card h3 { color: var(--color-blue-700); font-size: var(--text-h3); margin-bottom: var(--space-3); }
+  .location-address { color: var(--color-charcoal-800); font-weight: var(--weight-medium); }
+  .location-city { color: var(--color-charcoal-600); font-size: var(--text-small); }
+  .location-hours-tag {
+    display: inline-block;
+    margin-top: var(--space-3);
+    padding: var(--space-1) var(--space-4);
+    background: var(--color-orange-100);
+    color: var(--color-orange-600);
+    border-radius: var(--radius-full);
+    font-size: var(--text-caption);
+    font-weight: var(--weight-medium);
+  }
+
+  .page-cta { background-color: var(--color-blue-800); padding-block: var(--space-16); }
+  .page-cta h2 { color: var(--color-white); }
+  .page-cta h2 em { color: var(--color-orange-400); font-style: italic; }
+
+  @media (min-width: 768px) {
+    .contato-hero-grid { grid-template-columns: auto 1fr; }
+    .contact-grid { grid-template-columns: repeat(3, 1fr); }
+    .locations-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  if (reveals.length > 0 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const observer = new IntersectionObserver(
+      (entries) => { entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-visible'); observer.unobserve(e.target); } }); },
+      { threshold: 0.15, rootMargin: '0px 0px -50px 0px' }
+    );
+    reveals.forEach((el) => observer.observe(el));
+  } else { reveals.forEach((el) => el.classList.add('is-visible')); }
+</script>

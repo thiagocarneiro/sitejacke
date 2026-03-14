@@ -1,0 +1,489 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.astro';
+import WaveDivider from '../components/ui/WaveDivider.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import { siteInfo } from '../data/navigation';
+import { getLocalBusinessSchema, getBreadcrumbSchema } from '../data/seo';
+
+const structuredData = [
+  getLocalBusinessSchema(),
+  getBreadcrumbSchema([
+    { name: 'Home', url: 'https://nutricionistajackeline.com.br/' },
+    { name: 'Sobre', url: 'https://nutricionistajackeline.com.br/sobre' },
+  ]),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Jackeline Queiroz',
+    jobTitle: 'Nutricionista Funcional e Esportiva',
+    description: 'Nutricionista clínica e esportiva funcional com mais de 10 anos de experiência em São Paulo.',
+    knowsAbout: ['Nutrição Funcional', 'Nutrição Esportiva', 'Emagrecimento', 'Composição Corporal', 'Saúde da Mulher'],
+    alumniOf: [
+      { '@type': 'CollegeOrUniversity', name: 'Centro Universitário do Triângulo Mineiro' },
+      { '@type': 'CollegeOrUniversity', name: 'VP Consultoria Nutricional' },
+      { '@type': 'CollegeOrUniversity', name: 'Instituto Ganep' },
+    ],
+    memberOf: { '@type': 'Organization', name: 'IBNF - Instituto Brasileiro de Nutrição Funcional' },
+    url: 'https://nutricionistajackeline.com.br/sobre',
+  },
+];
+---
+
+<BaseLayout
+  title="Sobre Dra Jackeline Queiroz | Nutricionista com +10 Anos de Experiência"
+  description="Conheça a Dra Jackeline Queiroz: nutricionista funcional e esportiva em São Paulo, com 3 pós-graduações e mais de 10 anos de experiência em consultório."
+  structuredData={structuredData}
+>
+
+  <!-- ========== HERO ========== -->
+  <section class="sobre-hero" aria-labelledby="sobre-heading">
+    <div class="container sobre-hero-grid">
+      <div class="sobre-hero-images reveal scale-in">
+        <img
+          src="/images/about/jackeline-about.png"
+          alt="Dra Jackeline Queiroz, nutricionista"
+          width="500"
+          height="600"
+          fetchpriority="high"
+        />
+      </div>
+      <div class="sobre-hero-card reveal fade-up">
+        <span class="overline">Conheça a Dra Jackeline</span>
+        <h1 id="sobre-heading">Uma rotina de saúde que funciona <em>com a sua vida</em>, não contra ela</h1>
+        <p>
+          Nutricionista clínica e esportiva funcional com especialização em comportamento alimentar
+          e mais de 10 anos de experiência em consultório.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WAVE ========== -->
+  <WaveDivider topColor="var(--color-blue-800)" bottomColor="var(--color-cream)" variant={2} flip />
+
+  <!-- ========== BIO ========== -->
+  <section class="bio" aria-labelledby="bio-heading">
+    <div class="container bio-grid">
+      <div class="bio-text reveal fade-up">
+        <h2 id="bio-heading" class="sr-only">Biografia</h2>
+        <p>
+          Sou mineira, formada em Nutrição pelo Centro Universitário do Triângulo Mineiro, em 2008,
+          e desde então construí uma trajetória sólida unindo ciência, prática clínica e comportamento alimentar.
+        </p>
+        <p>
+          Ao longo da minha formação, realizei diversos cursos de extensão nas áreas de nutrição esportiva,
+          bioquímica, exames laboratoriais, nutrição estética, nutrição comportamental e coaching em nutrição,
+          sempre com foco em aprofundar o olhar clínico e individualizado.
+        </p>
+        <p>
+          Hoje, somo mais de 10 anos de experiência em consultório, com foco em emagrecimento, ganho de massa
+          magra e performance esportiva, acompanhando praticantes de crossfit, corrida, triathlon e lutas,
+          sempre respeitando rotina, treinos e individualidade.
+        </p>
+        <p>
+          Com toda essa vivência, desenvolvi um método de acompanhamento que torna a jornada em busca do
+          objetivo mais leve, possível, saudável e sustentável — sem dietas extremas ou soluções temporárias.
+        </p>
+        <blockquote>
+          "Amo acompanhar de perto a transformação, evolução e superação dos meus pacientes — porque
+          resultado de verdade acontece quando existe orientação, constância e apoio ao longo do caminho."
+        </blockquote>
+      </div>
+      <div class="bio-image reveal scale-in">
+        <img
+          src="/images/about/jackeline-contact.png"
+          alt="Dra Jackeline Queiroz em seu consultório"
+          width="480"
+          height="580"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== EXPERIENCE ========== -->
+  <section class="experience" aria-labelledby="experience-heading">
+    <div class="container container--narrow">
+      <SectionHeading overline="EXPERIÊNCIA" align="center">
+        Trajetória <em>profissional</em>
+      </SectionHeading>
+
+      <div class="experience-timeline stagger">
+        <div class="timeline-item reveal fade-up">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <h3>Hospital Santa Catarina — EMTN</h3>
+            <p>
+              Integrou a Equipe Multidisciplinar de Terapia Nutricional em São Paulo,
+              atuando com nutrição enteral e parenteral. Base clínica sólida e olhar
+              responsável sobre o cuidado com o paciente.
+            </p>
+          </div>
+        </div>
+        <div class="timeline-item reveal fade-up">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <h3>Consultório — desde 2010</h3>
+            <p>
+              Atendimentos clínicos com foco em emagrecimento, saúde e bem-estar. Acompanhamento de
+              intolerâncias alimentares, doenças autoimunes, gestação, diabetes, dislipidemias e
+              inflamações intestinais.
+            </p>
+          </div>
+        </div>
+        <div class="timeline-item reveal fade-up">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <h3>Nutrição Esportiva</h3>
+            <p>
+              Atendimentos voltados para praticantes de atividade física e atletas amadores,
+              com foco em performance, rendimento esportivo e composição corporal.
+            </p>
+          </div>
+        </div>
+        <div class="timeline-item reveal fade-up">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <h3>Nutrição Comportamental</h3>
+            <p>
+              O cuidado nutricional vai além do alimento em si. Os atendimentos levam em consideração
+              o comportamento alimentar, os hábitos, a rotina e a relação com a comida.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WAVE ========== -->
+  <WaveDivider topColor="var(--color-cream)" bottomColor="var(--color-blue-800)" variant={1} />
+
+  <!-- ========== CREDENTIALS ========== -->
+  <section class="credentials text-on-dark" aria-labelledby="credentials-heading">
+    <div class="container">
+      <SectionHeading overline="FORMAÇÃO" align="center" onDark>
+        Currículo e <em>credenciais</em>
+      </SectionHeading>
+
+      <div class="credentials-grid stagger">
+        <div class="credential-card reveal fade-up">
+          <h3>Nutrição Clínica Funcional</h3>
+          <p>Pós-graduação pela VP Consultoria Nutricional, São Paulo</p>
+        </div>
+        <div class="credential-card reveal fade-up">
+          <h3>Nutrição Esportiva Funcional</h3>
+          <p>Pós-graduação pela VP Consultoria Nutricional, São Paulo</p>
+        </div>
+        <div class="credential-card reveal fade-up">
+          <h3>Nutrição Clínica e Terapia Nutricional</h3>
+          <p>Pós-graduação pelo Instituto Ganep, com atendimento prático no Hospital Beneficência Portuguesa</p>
+        </div>
+      </div>
+
+      <div class="credentials-extra reveal fade-up">
+        <h3>Formação complementar</h3>
+        <ul>
+          <li>Nutrição pela Universidade do Triângulo Mineiro, Uberlândia – MG</li>
+          <li>Cursos em Nutrição Funcional e Ortomolecular: Saúde da Mulher, Detoxificação, Suplementos Esportivos, Exames Laboratoriais, Vitaminas e Minerais, Bioquímica, Microbiota Intestinal</li>
+          <li>Participação em Congressos Nacionais e Internacionais</li>
+          <li>Membro do IBNF — Instituto Brasileiro de Nutrição Funcional</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WAVE ========== -->
+  <WaveDivider topColor="var(--color-blue-800)" bottomColor="var(--color-cream)" variant={3} flip />
+
+  <!-- ========== DIFFERENTIALS ========== -->
+  <section class="differentials" aria-labelledby="differentials-heading">
+    <div class="container">
+      <SectionHeading overline="DIFERENCIAIS TÉCNICOS" align="center">
+        Ferramentas e <em>tecnologia</em>
+      </SectionHeading>
+
+      <div class="differentials-grid stagger">
+        <div class="diff-card reveal fade-up hover-lift">
+          <h3>Certificação ISAK</h3>
+          <p>Avaliação física certificada internacionalmente pelo ISAK, modelo australiano de padronização de medidas corporais.</p>
+        </div>
+        <div class="diff-card reveal fade-up hover-lift">
+          <h3>Ultrassom Bodymetrix</h3>
+          <p>Aparelho de ultrassom que mostra em imagem o tecido de gordura e massa magra, com dados importantes para saúde e performance.</p>
+        </div>
+        <div class="diff-card reveal fade-up hover-lift">
+          <h3>App do Paciente</h3>
+          <p>Acesso ao aplicativo com plano alimentar, avaliação física, diário alimentar, receitas e novidades, além de contato direto via WhatsApp.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== VALUES ========== -->
+  <section class="values" aria-labelledby="values-heading">
+    <div class="container container--narrow">
+      <SectionHeading align="center">
+        Valores e <em>diferenciais</em>
+      </SectionHeading>
+
+      <div class="values-text reveal fade-up">
+        <p>
+          Minha proposta vai além de um plano alimentar. É um processo de cuidado e reequilíbrio,
+          construído de forma individual, respeitando suas características bioquímicas, comportamentais e emocionais.
+        </p>
+        <p>
+          O planejamento alimentar é pensado para nutrir o corpo de forma adequada, favorecendo a melhora do
+          metabolismo, da saúde e da qualidade de vida. A estética faz parte do processo, mas surge como
+          consequência de um organismo mais equilibrado e funcional.
+        </p>
+        <p>
+          Acredito em um processo de transformação de dentro para fora, onde o equilíbrio de nutrientes fornecidos
+          às células promove melhora metabólica, bem-estar e saúde. Quando o corpo funciona melhor, o resultado
+          físico acontece de forma natural e duradoura.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WAVE + CTA ========== -->
+  <WaveDivider topColor="var(--color-cream)" bottomColor="var(--color-blue-800)" variant={1} />
+
+  <section class="page-cta text-on-dark" aria-labelledby="sobre-cta-heading">
+    <div class="container" style="text-align: center;">
+      <div class="reveal fade-up">
+        <span class="overline">Vem comigo</span>
+        <h2 id="sobre-cta-heading">Vamos <em>conversar?</em></h2>
+        <p style="max-width: 45ch; margin-inline: auto; color: rgba(255,255,255,0.8); margin-bottom: var(--space-8);">
+          Agende sua consulta e descubra como a nutrição personalizada pode transformar sua saúde e seus resultados.
+        </p>
+        <Button href={siteInfo.whatsappUrl} variant="primary" size="lg" isExternal>
+          Agende sua Consulta
+        </Button>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* HERO */
+  .sobre-hero {
+    background-color: var(--color-blue-800);
+    padding-top: calc(80px + var(--space-12));
+    overflow: hidden;
+  }
+
+  .sobre-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    align-items: center;
+  }
+
+  .sobre-hero-images img {
+    border-radius: var(--radius-2xl);
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .sobre-hero-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .sobre-hero-card .overline { color: var(--color-orange-400); }
+  .sobre-hero-card h1 { color: var(--color-white); }
+  .sobre-hero-card h1 em { color: var(--color-orange-400); font-style: italic; }
+  .sobre-hero-card p { color: rgba(255,255,255,0.8); }
+
+  /* BIO */
+  .bio { background-color: var(--color-cream); }
+
+  .bio-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+    align-items: start;
+  }
+
+  .bio-text { display: flex; flex-direction: column; gap: var(--space-4); }
+
+  .bio-text blockquote {
+    font-family: var(--font-primary);
+    font-style: italic;
+    font-size: var(--text-h4);
+    color: var(--color-orange-500);
+    border-left: 3px solid var(--color-orange-500);
+    padding-left: var(--space-6);
+    margin-top: var(--space-4);
+  }
+
+  .bio-image img {
+    border-radius: var(--radius-2xl);
+    width: 100%;
+    max-width: 480px;
+  }
+
+  /* EXPERIENCE */
+  .experience { background-color: var(--color-cream); }
+
+  .experience-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    position: relative;
+    padding-left: var(--space-8);
+  }
+
+  .experience-timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--color-charcoal-200);
+  }
+
+  .timeline-item { position: relative; }
+
+  .timeline-marker {
+    position: absolute;
+    left: calc(-1 * var(--space-8) + 4px);
+    top: 6px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--color-orange-500);
+    border: 3px solid var(--color-cream);
+  }
+
+  .timeline-content h3 {
+    font-size: var(--text-h4);
+    margin-bottom: var(--space-2);
+  }
+
+  .timeline-content p {
+    color: var(--color-charcoal-600);
+  }
+
+  /* CREDENTIALS */
+  .credentials {
+    background-color: var(--color-blue-800);
+    background-image:
+      radial-gradient(ellipse at 20% 80%, rgba(74, 106, 143, 0.25) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(200, 134, 10, 0.04) 0%, transparent 40%);
+  }
+
+  .credentials-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    margin-bottom: var(--space-10);
+  }
+
+  .credential-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    transition: background var(--duration-normal) ease, border-color var(--duration-normal) ease;
+  }
+
+  .credential-card:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.15);
+  }
+
+  .credential-card h3 {
+    color: var(--color-orange-400);
+    font-size: var(--text-h4);
+    margin-bottom: var(--space-2);
+  }
+
+  .credential-card p {
+    color: rgba(255,255,255,0.7);
+    font-size: var(--text-small);
+  }
+
+  .credentials-extra {
+    text-align: center;
+  }
+
+  .credentials-extra h3 {
+    color: var(--color-orange-400);
+    font-size: var(--text-h4);
+    margin-bottom: var(--space-4);
+  }
+
+  .credentials-extra ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .credentials-extra li {
+    color: rgba(255,255,255,0.7);
+    font-size: var(--text-small);
+  }
+
+  /* DIFFERENTIALS */
+  .differentials { background-color: var(--color-cream); }
+
+  .differentials-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .diff-card {
+    background: var(--color-white);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    border: 1px solid rgba(46, 74, 110, 0.06);
+  }
+
+  .diff-card h3 {
+    color: var(--color-blue-700);
+    margin-bottom: var(--space-3);
+    padding-bottom: var(--space-3);
+    border-bottom: 2px solid var(--color-orange-100);
+  }
+
+  .diff-card p { color: var(--color-charcoal-600); max-width: none; }
+
+  /* VALUES */
+  .values { background-color: var(--color-cream); }
+  .values-text { display: flex; flex-direction: column; gap: var(--space-4); text-align: center; }
+  .values-text p { margin-inline: auto; }
+
+  /* CTA */
+  .page-cta {
+    background-color: var(--color-blue-800);
+    padding-block: var(--space-16);
+  }
+
+  .page-cta h2 { color: var(--color-white); }
+  .page-cta h2 em { color: var(--color-orange-400); font-style: italic; }
+
+  @media (min-width: 768px) {
+    .sobre-hero-grid { grid-template-columns: 1fr 1.2fr; }
+    .bio-grid { grid-template-columns: 1.3fr 1fr; }
+    .credentials-grid { grid-template-columns: repeat(3, 1fr); }
+    .differentials-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  if (reveals.length > 0 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const observer = new IntersectionObserver(
+      (entries) => { entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-visible'); observer.unobserve(e.target); } }); },
+      { threshold: 0.15, rootMargin: '0px 0px -50px 0px' }
+    );
+    reveals.forEach((el) => observer.observe(el));
+  } else { reveals.forEach((el) => el.classList.add('is-visible')); }
+</script>

@@ -1,0 +1,420 @@
+---
+import { mainNav, siteInfo } from '../../data/navigation';
+
+interface Props {
+  transparent?: boolean;
+}
+
+const { transparent = false } = Astro.props;
+---
+
+<header
+  class:list={['site-header', { 'header-transparent': transparent }]}
+  id="site-header"
+>
+  <div class="container header-inner">
+    <!-- Logo -->
+    <a href="/" class="header-logo" aria-label="Página inicial - Dra Jackeline Queiroz">
+      <span class="logo-icon" aria-hidden="true">
+        <svg width="32" height="20" viewBox="0 0 32 20" fill="none">
+          <path d="M2 18C8 6 24 6 30 18" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+        </svg>
+      </span>
+      <span class="logo-text">
+        <strong>Jackeline Queiroz</strong>
+        <small>Nutricionista</small>
+      </span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="header-nav" aria-label="Navegação principal">
+      <ul class="nav-list">
+        {mainNav.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="nav-link link-animated"
+              aria-current={Astro.url.pathname === item.href ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- CTA + Mobile Toggle -->
+    <div class="header-actions">
+      <a href={siteInfo.whatsappUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+        Agende sua Consulta
+      </a>
+      <button
+        class="mobile-toggle"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <span class="hamburger" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <nav aria-label="Menu mobile">
+    <ul class="mobile-nav-list">
+      {mainNav.map((item) => (
+        <li>
+          <a href={item.href} class="mobile-nav-link">{item.label}</a>
+        </li>
+      ))}
+    </ul>
+    <a href={siteInfo.whatsappUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary mobile-cta">
+      Agende sua Consulta
+    </a>
+  </nav>
+</div>
+
+<style>
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: var(--z-header);
+    padding: var(--space-4) 0;
+    background-color: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(12px);
+    transition: background-color var(--duration-normal) ease,
+                box-shadow var(--duration-normal) ease,
+                padding var(--duration-normal) ease;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .site-header.header-transparent {
+    background-color: transparent;
+    backdrop-filter: none;
+    box-shadow: none;
+  }
+
+  .site-header.header-transparent.header-scrolled {
+    background-color: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(12px);
+    box-shadow: var(--shadow-sm);
+    padding: var(--space-3) 0;
+  }
+
+  .site-header.header-scrolled {
+    padding: var(--space-3) 0;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-8);
+  }
+
+  /* Logo */
+  .header-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .logo-icon {
+    color: var(--color-orange-500);
+    display: flex;
+  }
+
+  .header-transparent .logo-icon {
+    color: var(--color-orange-400);
+  }
+
+  .header-transparent.header-scrolled .logo-icon {
+    color: var(--color-orange-500);
+  }
+
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .logo-text strong {
+    font-family: var(--font-primary);
+    font-size: 1.05rem;
+    font-weight: var(--weight-semibold);
+    color: var(--color-charcoal-900);
+    letter-spacing: -0.01em;
+  }
+
+  .logo-text small {
+    font-family: var(--font-secondary);
+    font-size: var(--text-caption);
+    color: var(--color-charcoal-600);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .header-transparent .logo-text strong {
+    color: var(--color-white);
+  }
+
+  .header-transparent .logo-text small {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .header-transparent.header-scrolled .logo-text strong {
+    color: var(--color-charcoal-900);
+  }
+
+  .header-transparent.header-scrolled .logo-text small {
+    color: var(--color-charcoal-600);
+  }
+
+  /* Nav */
+  .header-nav {
+    display: none;
+  }
+
+  .nav-list {
+    display: flex;
+    gap: var(--space-8);
+    list-style: none;
+  }
+
+  .nav-link {
+    font-family: var(--font-secondary);
+    font-size: var(--text-small);
+    font-weight: var(--weight-medium);
+    color: var(--color-charcoal-800);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    padding: var(--space-2) 0;
+  }
+
+  .header-transparent .nav-link {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .header-transparent.header-scrolled .nav-link {
+    color: var(--color-charcoal-800);
+  }
+
+  .nav-link[aria-current='page'] {
+    color: var(--color-orange-500);
+  }
+
+  /* Actions */
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-primary);
+    font-weight: var(--weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: transform var(--duration-fast) ease,
+                background-color var(--duration-fast) ease,
+                box-shadow var(--duration-fast) ease;
+  }
+
+  .btn:hover {
+    transform: scale(1.02);
+  }
+
+  .btn-primary {
+    background-color: var(--color-cta-primary);
+    color: var(--color-white);
+    font-size: var(--text-small);
+    padding: var(--space-3) var(--space-6);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-cta-primary-hover);
+  }
+
+  .btn-sm {
+    font-size: var(--text-caption);
+    padding: var(--space-2) var(--space-6);
+  }
+
+  .header-actions .btn {
+    display: none;
+  }
+
+  /* Mobile Toggle */
+  .mobile-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-2);
+    z-index: calc(var(--z-mobile-menu) + 1);
+  }
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 24px;
+  }
+
+  .hamburger span {
+    display: block;
+    height: 2px;
+    background-color: var(--color-charcoal-900);
+    border-radius: 2px;
+    transition: transform var(--duration-normal) var(--ease-out-expo),
+                opacity var(--duration-fast) ease;
+  }
+
+  .header-transparent .hamburger span {
+    background-color: var(--color-white);
+  }
+
+  .header-transparent.header-scrolled .hamburger span {
+    background-color: var(--color-charcoal-900);
+  }
+
+  .mobile-toggle[aria-expanded='true'] .hamburger span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .mobile-toggle[aria-expanded='true'] .hamburger span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-toggle[aria-expanded='true'] .hamburger span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Mobile Menu */
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-mobile-menu);
+    background-color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--duration-normal) var(--ease-out-expo);
+  }
+
+  .mobile-menu[aria-hidden='false'] {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mobile-nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    margin-bottom: var(--space-10);
+  }
+
+  .mobile-nav-link {
+    font-family: var(--font-primary);
+    font-size: var(--text-h2);
+    font-weight: var(--weight-semibold);
+    color: var(--color-charcoal-900);
+    text-decoration: none;
+  }
+
+  .mobile-cta {
+    font-size: var(--text-small);
+    padding: var(--space-4) var(--space-10);
+  }
+
+  /* Desktop */
+  @media (min-width: 768px) {
+    .header-nav {
+      display: block;
+    }
+
+    .header-actions .btn {
+      display: inline-flex;
+    }
+
+    .mobile-toggle {
+      display: none;
+    }
+
+    .mobile-menu {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  // Header scroll behavior
+  const header = document.getElementById('site-header');
+  if (header) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        header.classList.toggle('header-scrolled', !entry.isIntersecting);
+      },
+      { threshold: 0, rootMargin: '-80px 0px 0px 0px' }
+    );
+
+    // Observe the first section or body
+    const target = document.querySelector('main > section:first-child') || document.body;
+    observer.observe(target);
+  }
+
+  // Mobile menu toggle
+  const toggle = document.querySelector('.mobile-toggle') as HTMLButtonElement;
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (toggle && mobileMenu) {
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+      mobileMenu.setAttribute('aria-hidden', String(isOpen));
+      document.body.classList.toggle('menu-open', !isOpen);
+    });
+
+    // Close on link click
+    mobileMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        toggle.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('menu-open');
+      });
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        toggle.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('menu-open');
+        toggle.focus();
+      }
+    });
+  }
+</script>
