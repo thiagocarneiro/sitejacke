@@ -43,8 +43,14 @@
   --color-cta-secondary: var(--color-blue-700);
 
   /* === TYPOGRAPHY === */
-  --font-primary: 'Lora', Georgia, serif;
-  --font-secondary: 'Source Sans 3', 'Helvetica Neue', sans-serif;
+  /* 3-font system matching Green Goddess reference */
+  --font-heading: 'Urbanist', sans-serif;        /* Urbane → Urbanist */
+  --font-body: 'Raleway', sans-serif;             /* Raleway (exact match) */
+  --font-meta: 'Playfair Display', Georgia, serif; /* Swear Display → Playfair */
+  --font-button: 'Raleway', sans-serif;            /* Calmetta → Raleway */
+  /* Legacy aliases */
+  --font-primary: var(--font-heading);
+  --font-secondary: var(--font-body);
 
   --text-hero: clamp(3rem, 6vw, 5.5rem);
   --text-h1: clamp(2.25rem, 4vw, 3.75rem);
