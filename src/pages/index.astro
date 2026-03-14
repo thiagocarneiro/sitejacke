@@ -218,8 +218,7 @@ const structuredData = [
     </div>
   </section>
 
-  <!-- ========== WAVE: dark → cream ========== -->
-  <WaveDivider topColor="var(--color-blue-800)" bottomColor="var(--color-cream)" variant={3} flip />
+  <!-- seamless transition: testimonials dark bg flows into cream via padding -->
 
   <!-- ========== RESULTS / VALUE PROP ========== -->
   <section class="results" aria-labelledby="results-heading">
@@ -289,21 +288,22 @@ const structuredData = [
     </div>
   </section>
 
-  <!-- ========== WAVE: cream → dark (CTA) ========== -->
-  <WaveDivider topColor="var(--color-cream)" bottomColor="var(--color-blue-800)" variant={1} />
-
-  <!-- ========== FINAL CTA ========== -->
-  <section class="final-cta text-on-dark" aria-labelledby="cta-heading">
-    <div class="container final-cta-grid">
-      <div class="final-cta-image">
-        <img
-          src="/images/about/jackeline-contact.png"
-          alt="Dra Jackeline Queiroz pronta para atender você"
-          width="480"
-          height="560"
-          loading="lazy"
-        />
-      </div>
+  <!-- ========== FINAL CTA (reference-inspired: full bg + overlapping card) ========== -->
+  <section class="final-cta" aria-labelledby="cta-heading">
+    <div class="final-cta-bg">
+      <img
+        src="/images/about/jackeline-contact.png"
+        alt=""
+        class="final-cta-bg-person"
+        width="480"
+        height="560"
+        loading="lazy"
+        aria-hidden="true"
+      />
+      <div class="final-cta-bg-overlay"></div>
+    </div>
+    <div class="container final-cta-layout">
+      <div class="final-cta-spacer"></div>
       <div class="final-cta-card reveal fade-up">
         <span class="overline">Dê o próximo passo</span>
         <h2 id="cta-heading">
@@ -549,7 +549,8 @@ const structuredData = [
   .testimonials {
     position: relative;
     overflow: hidden;
-    padding-block: var(--space-24);
+    padding-top: var(--space-24);
+    padding-bottom: var(--space-32);
   }
 
   .testimonials-bg {
@@ -736,41 +737,66 @@ const structuredData = [
 
   /* ========== FINAL CTA ========== */
   .final-cta {
-    background-color: var(--color-blue-800);
+    position: relative;
     overflow: hidden;
-    position: relative;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    padding-block: var(--space-16);
   }
 
-  .final-cta-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-8);
-    align-items: end;
-    position: relative;
+  .final-cta-bg {
+    position: absolute;
+    inset: 0;
   }
 
-  .final-cta-image {
-    position: relative;
+  .final-cta-bg-person {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: auto;
+    height: 100%;
+    max-width: 55%;
+    object-fit: contain;
+    object-position: left bottom;
     z-index: 1;
   }
 
-  .final-cta-image img {
-    border-radius: var(--radius-2xl);
-    width: 100%;
-    max-width: 480px;
-    object-fit: cover;
-    display: block;
+  .final-cta-bg-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(30, 52, 80, 0.6) 0%,
+      rgba(30, 52, 80, 0.85) 40%,
+      rgba(30, 52, 80, 0.95) 70%,
+      rgba(30, 52, 80, 0.98) 100%
+    );
+    z-index: 2;
+  }
+
+  .final-cta-layout {
+    position: relative;
+    z-index: 3;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    align-items: center;
+  }
+
+  .final-cta-spacer {
+    display: none;
   }
 
   .final-cta-card {
-    background-color: var(--color-cream);
+    background-color: rgba(248, 246, 243, 0.95);
+    backdrop-filter: blur(8px);
     border-radius: var(--radius-2xl);
     padding: var(--space-10);
     display: flex;
     flex-direction: column;
     gap: var(--space-4);
-    position: relative;
-    z-index: 2;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
   }
 
   .final-cta-card .overline {
@@ -818,13 +844,22 @@ const structuredData = [
       grid-template-columns: repeat(3, 1fr);
     }
 
-    .final-cta-grid {
+    .final-cta-layout {
       grid-template-columns: 1fr 1.1fr;
     }
 
-    .final-cta-card {
-      margin-left: -60px;
-      margin-bottom: var(--space-10);
+    .final-cta-spacer {
+      display: block;
+    }
+
+    .final-cta-bg-overlay {
+      background: linear-gradient(
+        to right,
+        rgba(30, 52, 80, 0.3) 0%,
+        rgba(30, 52, 80, 0.5) 30%,
+        rgba(30, 52, 80, 0.88) 55%,
+        rgba(30, 52, 80, 0.98) 100%
+      );
     }
 
     .results-card {
