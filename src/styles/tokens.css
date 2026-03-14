@@ -90,7 +90,7 @@
   --container-narrow: 960px;
   --container-text: 720px;
   --gutter: clamp(1rem, 3vw, 2rem);
-  --section-padding: clamp(4rem, 8vw, 8rem);
+  --section-padding: clamp(2.5rem, 5vw, 4.5rem);
 
   /* === BORDERS & RADIUS === */
   --radius-sm: 8px;
