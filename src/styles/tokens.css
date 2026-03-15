@@ -53,11 +53,11 @@
   --font-secondary: var(--font-body);
 
   --text-hero: clamp(3rem, 6vw, 5.5rem);
-  --text-h1: clamp(2.4rem, 4.5vw, 2.8rem);
-  --text-h2: clamp(2rem, 3.5vw, 2.8rem);
-  --text-h3: clamp(1.4rem, 2.2vw, 2.2rem);
-  --text-h4: clamp(1.2rem, 1.6vw, 1.6rem);
-  --text-body: clamp(1rem, 1.2vw, 1.1rem);
+  --text-h1: clamp(2.2rem, 3.8vw, 3.2rem);
+  --text-h2: clamp(2rem, 3.8vw, 3.2rem);
+  --text-h3: clamp(1.5rem, 2.5vw, 2.4rem);
+  --text-h4: clamp(1.2rem, 1.8vw, 1.7rem);
+  --text-body: 1.1rem;
   --text-small: 0.9rem;
   --text-caption: 0.75rem;
   --text-overline: 0.8125rem;
