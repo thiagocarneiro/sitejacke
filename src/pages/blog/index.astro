@@ -18,20 +18,27 @@ const structuredData = [
   structuredData={structuredData}
 >
 
-  <!-- HERO -->
-  <section class="blog-hero text-on-dark" aria-labelledby="blog-heading">
-    <div class="container" style="text-align:center;">
+  <!-- HERO (fullwidth bg + overlay + wave) -->
+  <section class="blog-hero" aria-labelledby="blog-heading">
+    <div class="blog-hero-bg" aria-hidden="true">
+      <img src="/images/about/nutricionista-jackeline.png" alt="" class="blog-hero-bg-img" width="1440" height="900" fetchpriority="high" />
+      <div class="blog-hero-overlay"></div>
+    </div>
+    <div class="container blog-hero-content">
       <div class="reveal fade-up">
         <span class="overline">Blog</span>
         <h1 id="blog-heading">Artigos sobre nutrição, <em>saúde</em> e bem-estar</h1>
-        <p style="max-width:50ch;margin-inline:auto;color:rgba(255,255,255,0.8);">
+        <p>
           Conteúdo educativo para ajudar você a entender como a nutrição impacta sua saúde, seu corpo e seu desempenho.
         </p>
       </div>
     </div>
+    <div class="blog-hero-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 150" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,80 C240,140 480,20 720,80 C960,140 1200,40 1440,80 L1440,150 L0,150 Z" fill="var(--color-cream)" />
+      </svg>
+    </div>
   </section>
-
-  <WaveDivider topColor="var(--color-blue-800)" bottomColor="var(--color-cream)" variant={2} flip />
 
   <!-- POSTS -->
   <section class="blog-posts" aria-labelledby="posts-heading">
@@ -69,12 +76,34 @@ const structuredData = [
 
 <style>
   .blog-hero {
-    background-color: var(--color-blue-800);
-    padding-top: calc(80px + var(--space-16));
-    padding-bottom: var(--space-12);
+    position: relative;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
   }
-  .blog-hero h1 { color: var(--color-white); }
-  .blog-hero h1 em { color: var(--color-orange-400); font-style: italic; }
+  .blog-hero-bg { position: absolute; inset: 0; z-index: 0; }
+  .blog-hero-bg-img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+  .blog-hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(30,52,80,0.55) 0%, rgba(30,52,80,0.45) 40%, rgba(30,52,80,0.4) 70%, rgba(30,52,80,0.55) 100%);
+  }
+  .blog-hero-content {
+    position: relative; z-index: 2;
+    padding-top: calc(80px + var(--space-16));
+    padding-bottom: calc(var(--space-20) + 60px);
+    max-width: 700px;
+    text-align: center;
+    margin-inline: auto;
+  }
+  .blog-hero-content .overline { color: var(--color-orange-400); }
+  .blog-hero-content h1 { color: var(--color-white); margin-top: var(--space-3); text-shadow: 0 2px 20px rgba(0,0,0,0.15); }
+  .blog-hero-content h1 em { color: var(--color-orange-400); font-style: italic; }
+  .blog-hero-content p { color: rgba(255,255,255,0.9); margin-top: var(--space-4); margin-inline: auto; max-width: 50ch; text-shadow: 0 1px 8px rgba(0,0,0,0.1); }
+  .blog-hero-wave { position: absolute; bottom: -2px; left: 0; right: 0; z-index: 3; line-height: 0; }
+  .blog-hero-wave svg { width: 100%; height: clamp(70px, 9vw, 130px); display: block; }
 
   .blog-posts { background-color: var(--color-cream); }
 

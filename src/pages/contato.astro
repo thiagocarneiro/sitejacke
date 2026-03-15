@@ -20,24 +20,28 @@ const structuredData = [
   structuredData={structuredData}
 >
 
-  <!-- HERO -->
+  <!-- HERO (fullwidth bg + overlay + wave) -->
   <section class="contato-hero" aria-labelledby="contato-heading">
-    <div class="container contato-hero-grid">
-      <div class="contato-hero-image reveal scale-in">
-        <img src="/images/about/jackeline-contact.png" alt="Dra Jackeline Queiroz" width="400" height="500" fetchpriority="high" />
-      </div>
-      <div class="contato-hero-text reveal fade-up">
+    <div class="contato-hero-bg" aria-hidden="true">
+      <img src="/images/replicate_lora/out-0.png" alt="" class="contato-hero-bg-img" width="1440" height="900" fetchpriority="high" />
+      <div class="contato-hero-overlay"></div>
+    </div>
+    <div class="container contato-hero-content">
+      <div class="reveal fade-up">
         <span class="overline">Contato</span>
         <h1 id="contato-heading">Não sabe por onde <em>começar?</em> Este é um bom lugar.</h1>
-        <p style="color:rgba(255,255,255,0.8);">
+        <p>
           Entre em contato para tirar suas dúvidas, agendar uma consulta ou saber mais sobre
           os formatos de acompanhamento. Estou aqui para te ajudar.
         </p>
       </div>
     </div>
+    <div class="contato-hero-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 150" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,80 C240,140 480,20 720,80 C960,140 1200,40 1440,80 L1440,150 L0,150 Z" fill="var(--color-cream)" />
+      </svg>
+    </div>
   </section>
-
-  <WaveDivider topColor="var(--color-blue-800)" bottomColor="var(--color-cream)" variant={2} flip />
 
   <!-- CONTACT INFO -->
   <section class="contact-info" aria-labelledby="info-heading">
@@ -115,16 +119,32 @@ const structuredData = [
 
 <style>
   .contato-hero {
-    background-color: var(--color-blue-800);
-    padding-top: calc(80px + var(--space-12));
+    position: relative;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
     overflow: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
   }
-  .contato-hero-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-8); align-items: center; }
-  .contato-hero-image img { border-radius: var(--radius-2xl); width: 100%; max-width: 400px; }
-  .contato-hero-text { display: flex; flex-direction: column; gap: var(--space-4); }
-  .contato-hero-text .overline { color: var(--color-orange-400); }
-  .contato-hero-text h1 { color: var(--color-white); }
-  .contato-hero-text h1 em { color: var(--color-orange-400); font-style: italic; }
+  .contato-hero-bg { position: absolute; inset: 0; z-index: 0; }
+  .contato-hero-bg-img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+  .contato-hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(30,52,80,0.5) 0%, rgba(30,52,80,0.4) 40%, rgba(30,52,80,0.35) 70%, rgba(30,52,80,0.5) 100%);
+  }
+  .contato-hero-content {
+    position: relative; z-index: 2;
+    padding-top: calc(80px + var(--space-16));
+    padding-bottom: calc(var(--space-20) + 60px);
+    max-width: 700px;
+  }
+  .contato-hero-content .overline { color: var(--color-orange-400); }
+  .contato-hero-content h1 { color: var(--color-white); margin-top: var(--space-3); text-shadow: 0 2px 20px rgba(0,0,0,0.15); }
+  .contato-hero-content h1 em { color: var(--color-orange-400); font-style: italic; }
+  .contato-hero-content p { color: rgba(255,255,255,0.9); margin-top: var(--space-4); text-shadow: 0 1px 8px rgba(0,0,0,0.1); }
+  .contato-hero-wave { position: absolute; bottom: -2px; left: 0; right: 0; z-index: 3; line-height: 0; }
+  .contato-hero-wave svg { width: 100%; height: clamp(70px, 9vw, 130px); display: block; }
 
   .contact-info { background-color: var(--color-cream); }
   .contact-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-6); margin-bottom: var(--space-8); }
@@ -184,7 +204,6 @@ const structuredData = [
   .page-cta h2 em { color: var(--color-orange-400); font-style: italic; }
 
   @media (min-width: 768px) {
-    .contato-hero-grid { grid-template-columns: auto 1fr; }
     .contact-grid { grid-template-columns: repeat(3, 1fr); }
     .locations-grid { grid-template-columns: repeat(2, 1fr); }
   }
