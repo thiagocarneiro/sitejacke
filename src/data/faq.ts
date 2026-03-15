@@ -56,3 +56,72 @@ export const faqItems = [
     answer: '<p><strong>Bela Vista:</strong> Av. Angélica, 2491, 9º andar.</p><p><strong>Pinheiros:</strong> Av. Brigadeiro Faria Lima, 1461, 6º andar (quartas pela manhã).</p><p><strong>Perdizes:</strong> Av. Antártica, 675, 19º e 20º andar (consultar horários).</p>',
   },
 ];
+
+export const emagrecimentoFaqItems = [
+  {
+    question: 'Quanto tempo leva para emagrecer com acompanhamento nutricional?',
+    answer: '<p>Depende de fatores individuais como metabolismo, composição corporal e rotina. O foco não é velocidade, mas <strong>resultados sustentáveis</strong> com acompanhamento contínuo. Muitos pacientes começam a perceber mudanças nas primeiras semanas.</p>',
+  },
+  {
+    question: 'Preciso cortar carboidratos para emagrecer?',
+    answer: '<p>Não. Carboidratos são essenciais para energia e performance. A estratégia é <strong>ajustar quantidade, tipo e momento</strong> conforme seus objetivos e rotina — sem cortes radicais ou restrições desnecessárias.</p>',
+  },
+  {
+    question: 'A consulta é só para quem quer emagrecer?',
+    answer: '<p>Não. O foco é <strong>composição corporal e saúde metabólica</strong>. Também atendo quem busca ganhar massa magra, melhorar performance esportiva ou cuidar da saúde de forma geral.</p>',
+  },
+  {
+    question: 'O plano alimentar é restritivo?',
+    answer: '<p>Não. O plano é <strong>individualizado</strong>, construído junto com você, respeitando preferências, rotina e objetivos. Sem cardápios prontos ou dietas genéricas — a ideia é que funcione no seu dia a dia.</p>',
+  },
+  {
+    question: 'Qual a diferença entre nutricionista funcional e esportiva?',
+    answer: '<p>A <strong>nutricionista funcional</strong> avalia sinais e individualidades bioquímicas do organismo. A <strong>nutricionista esportiva</strong> foca em performance e composição corporal. A Dra Jackeline combina ambas as abordagens para resultados mais completos.</p>',
+  },
+];
+
+export const saudeMulherFaqItems = [
+  {
+    question: 'Nutrição pode ajudar com TPM?',
+    answer: '<p>Sim. A alimentação influencia diretamente os níveis de <strong>inflamação e equilíbrio hormonal</strong>. Ajustes nutricionais podem reduzir sintomas como inchaços, cólicas e alterações de humor de forma significativa.</p>',
+  },
+  {
+    question: 'Nutricionista trata menopausa?',
+    answer: '<p>O nutricionista não trata menopausa, mas a <strong>nutrição é fundamental</strong> para minimizar sintomas como ondas de calor, ganho de peso e alterações metabólicas. O acompanhamento nutricional complementa o tratamento médico.</p>',
+  },
+  {
+    question: 'Preciso estar fazendo reposição hormonal?',
+    answer: '<p>Não. A nutrição complementa qualquer tratamento, <strong>com ou sem reposição hormonal</strong>. O acompanhamento é adaptado à sua situação e necessidades individuais.</p>',
+  },
+  {
+    question: 'Em quanto tempo vou sentir diferença?',
+    answer: '<p>Muitas pacientes relatam <strong>melhora em 3 a 4 semanas</strong>. Resultados mais expressivos acontecem com acompanhamento contínuo de 3 a 6 meses, conforme a resposta individual de cada organismo.</p>',
+  },
+  {
+    question: 'Atende gestantes e lactantes?',
+    answer: '<p>Sim, com <strong>acompanhamento específico</strong> para cada fase, garantindo nutrição adequada para mãe e bebê com segurança e individualização.</p>',
+  },
+];
+
+export const inflamacaoFaqItems = [
+  {
+    question: 'Nutricionista pode ajudar com endometriose?',
+    answer: '<p>O nutricionista não trata endometriose, mas a <strong>nutrição funcional é uma aliada importante</strong> para modular a inflamação, melhorar sintomas e qualidade de vida. O acompanhamento nutricional complementa o tratamento médico.</p>',
+  },
+  {
+    question: 'Nutrição ajuda no lipedema?',
+    answer: '<p>Sim. Uma <strong>alimentação anti-inflamatória</strong> e a modulação intestinal podem ajudar a controlar sintomas, reduzir inchaços e melhorar o conforto no dia a dia.</p>',
+  },
+  {
+    question: 'O que é dieta anti-inflamatória?',
+    answer: '<p>É um padrão alimentar que prioriza <strong>alimentos com propriedades anti-inflamatórias</strong>, como vegetais, gorduras boas, especiarias e alimentos fermentados — e reduz o consumo de alimentos que podem aumentar a inflamação.</p>',
+  },
+  {
+    question: 'Preciso fazer exames antes da consulta?',
+    answer: '<p>Não é obrigatório. Se você tiver <strong>exames recentes, traga</strong>. Caso necessário, novos exames podem ser solicitados durante o acompanhamento para uma avaliação mais completa.</p>',
+  },
+  {
+    question: 'Quanto tempo de acompanhamento para resultados?',
+    answer: '<p>Depende da condição. Geralmente entre <strong>3 e 6 meses</strong> de acompanhamento para resultados mais significativos e sustentáveis, com ajustes progressivos conforme a resposta do organismo.</p>',
+  },
+];

@@ -1,0 +1,571 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.astro';
+import WaveDivider from '../components/ui/WaveDivider.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import TestimonialCard from '../components/ui/TestimonialCard.astro';
+import FinalCTA from '../components/ui/FinalCTA.astro';
+import FAQAccordion from '../components/ui/FAQAccordion.astro';
+
+import { siteInfo } from '../data/navigation';
+import { testimonials } from '../data/services';
+import { emagrecimentoFaqItems } from '../data/faq';
+import { getBreadcrumbSchema, getLocalBusinessSchema } from '../data/seo';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: emagrecimentoFaqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer.replace(/<[^>]*>/g, ''),
+    },
+  })),
+};
+
+const structuredData = [
+  getLocalBusinessSchema(),
+  faqSchema,
+  getBreadcrumbSchema([
+    { name: 'Home', url: 'https://nutricionistajackeline.com.br/' },
+    { name: 'Nutricionista para Emagrecimento em SP', url: 'https://nutricionistajackeline.com.br/nutricionista-emagrecimento-sao-paulo/' },
+  ]),
+];
+---
+
+<BaseLayout
+  title="Nutricionista para Emagrecimento em SP | Dra Jackeline Queiroz"
+  description="Nutricionista especializada em emagrecimento saudável em São Paulo. Composição corporal, massa magra e hábitos sustentáveis. Agende pelo WhatsApp."
+  structuredData={structuredData}
+>
+
+  <!-- ========== HERO ========== -->
+  <section class="lp-hero" aria-labelledby="lp-heading">
+    <div class="lp-hero-bg" id="hero-parallax-bg" aria-hidden="true">
+      <img src="/images/lp/emagrecimento-hero.webp" alt="" class="lp-hero-bg-img" width="1440" height="900" fetchpriority="high" />
+      <div class="lp-hero-overlay"></div>
+    </div>
+    <div class="container lp-hero-content">
+      <div class="reveal fade-up">
+        <span class="overline">Nutricionista em São Paulo</span>
+        <h1 id="lp-heading">Emagrecimento saudável começa com uma nutrição que <em>faz sentido para você.</em></h1>
+        <p>
+          Muito além de contar calorias: acompanhamento nutricional individualizado para perder gordura,
+          ganhar massa magra e construir hábitos que duram.
+        </p>
+      </div>
+    </div>
+    <div class="lp-hero-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 150" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,80 C240,140 480,20 720,80 C960,140 1200,40 1440,80 L1440,150 L0,150 Z" fill="var(--color-cream)" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- ========== INTRO / PROBLEMA-SOLUÇÃO ========== -->
+  <section class="intro" aria-labelledby="intro-heading">
+    <div class="container intro-grid">
+      <div class="intro-text reveal fade-up">
+        <span class="overline">Nutricionista para Emagrecimento</span>
+        <h2 id="intro-heading">Emagrecer com saúde é muito mais do que <em>restringir calorias</em></h2>
+        <p>
+          O emagrecimento saudável vai muito além de simplesmente reduzir calorias. Muitas pessoas tentam
+          dietas restritivas, mas acabam recuperando o peso ou tendo dificuldade em manter resultados ao longo do tempo.
+        </p>
+        <p>
+          No meu atendimento nutricional, o foco está em melhorar a composição corporal, reduzir gordura corporal
+          e construir hábitos alimentares sustentáveis. Cada estratégia é adaptada à rotina, preferências alimentares
+          e objetivos de cada paciente.
+        </p>
+        <ul class="intro-checklist">
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-orange-500)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Emagrecer com saúde
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-orange-500)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Reduzir gordura corporal
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-orange-500)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Melhorar a composição corporal
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-orange-500)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Ganhar massa magra
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-orange-500)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Melhorar desempenho em treinos
+          </li>
+        </ul>
+        <Button href={siteInfo.whatsappUrl} variant="primary" isExternal>
+          Agendar consulta
+        </Button>
+      </div>
+      <div class="intro-image reveal scale-in">
+        <img src="/images/lp/emagrecimento-intro.webp" alt="Dra Jackeline Queiroz, nutricionista especializada em emagrecimento em São Paulo" width="520" height="600" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WAVE: cream → dark ========== -->
+  <WaveDivider topColor="var(--color-cream)" bottomColor="var(--color-blue-800)" variant={1} />
+
+  <!-- ========== PARA QUEM É ========== -->
+  <section class="who text-on-dark" aria-labelledby="who-heading">
+    <div class="container container--narrow">
+      <div class="reveal fade-up" style="text-align: center;">
+        <span class="overline">Para quem é</span>
+        <h2 id="who-heading">Se você se identifica com algum desses cenários, essa <em>consulta é para você</em></h2>
+      </div>
+
+      <div class="who-grid stagger">
+        <div class="who-card reveal fade-up">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-orange-400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span>Quer perder peso de forma saudável, sem dietas restritivas</span>
+        </div>
+        <div class="who-card reveal fade-up">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-orange-400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span>Já tentou emagrecer várias vezes e não conseguiu manter os resultados</span>
+        </div>
+        <div class="who-card reveal fade-up">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-orange-400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span>Treina, mas não vê resultado na composição corporal</span>
+        </div>
+        <div class="who-card reveal fade-up">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-orange-400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span>Quer ganhar massa magra e melhorar a performance esportiva</span>
+        </div>
+        <div class="who-card reveal fade-up">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-orange-400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span>Sente cansaço e dificuldade para emagrecer mesmo fazendo "tudo certo"</span>
+        </div>
+      </div>
+
+      <p class="who-reinforcement reveal fade-up">
+        Cada organismo funciona de um jeito. Por isso o acompanhamento é completamente individualizado —
+        considerando o que faz sentido para o seu corpo, sua rotina e seus objetivos.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== WAVE: dark → cream ========== -->
+  <WaveDivider topColor="var(--color-blue-800)" bottomColor="var(--color-cream)" variant={3} flip />
+
+  <!-- ========== COMO FUNCIONA ========== -->
+  <section class="steps" aria-labelledby="steps-heading">
+    <div class="container">
+      <SectionHeading overline="COMO FUNCIONA" align="center">
+        O caminho para resultados <em>reais e sustentáveis</em>
+      </SectionHeading>
+      <div class="steps-grid stagger">
+        <div class="step-card reveal fade-up">
+          <div class="step-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-orange-500)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="12" y2="18"/></svg>
+          </div>
+          <span class="step-number">01</span>
+          <h3>Avaliação completa</h3>
+          <p>Hábitos alimentares, saúde intestinal, inflamação metabólica, rotina e nível de atividade física — entendemos tudo sobre você.</p>
+        </div>
+        <div class="step-card reveal fade-up">
+          <div class="step-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-orange-500)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+          </div>
+          <span class="step-number">02</span>
+          <h3>Avaliação física</h3>
+          <p>Composição corporal com certificação ISAK internacional e ultrassom Bodymetrix para dados precisos de gordura e massa magra.</p>
+        </div>
+        <div class="step-card reveal fade-up">
+          <div class="step-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-orange-500)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+          </div>
+          <span class="step-number">03</span>
+          <h3>Estratégia nutricional</h3>
+          <p>Plano alimentar personalizado, adaptado à sua rotina e objetivos — sem cardápios prontos ou dietas genéricas.</p>
+        </div>
+        <div class="step-card reveal fade-up">
+          <div class="step-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-orange-500)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <span class="step-number">04</span>
+          <h3>Acompanhamento contínuo</h3>
+          <p>Ajustes progressivos, suporte via WhatsApp e evolução monitorada para resultados que se mantêm.</p>
+        </div>
+      </div>
+
+      <div class="steps-cta reveal fade-up">
+        <Button href={siteInfo.whatsappUrl} variant="primary" size="lg" isExternal>
+          Agendar minha consulta
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== STATS BANNER ========== -->
+  <section class="stats-banner" aria-label="Números da trajetória">
+    <div class="container">
+      <div class="stats-grid stagger">
+        <div class="stat-item reveal fade-up">
+          <span class="stat-number">+15</span>
+          <span class="stat-label">anos de experiência em consultório</span>
+        </div>
+        <div class="stat-item reveal fade-up">
+          <span class="stat-number">3</span>
+          <span class="stat-label">pós-graduações concluídas</span>
+        </div>
+        <div class="stat-item reveal fade-up">
+          <span class="stat-number">3</span>
+          <span class="stat-label">consultórios em São Paulo</span>
+        </div>
+        <div class="stat-item reveal fade-up">
+          <span class="stat-number">+2000</span>
+          <span class="stat-label">pacientes acompanhados</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WAVE: orange-100 → dark ========== -->
+  <WaveDivider topColor="var(--color-orange-100)" bottomColor="var(--color-blue-800)" variant={2} />
+
+  <!-- ========== TESTIMONIAL ========== -->
+  <section class="testimonial-section" aria-labelledby="testimonial-heading">
+    <div class="container">
+      <h2 id="testimonial-heading" class="sr-only">Depoimento de paciente</h2>
+      <div class="reveal fade-up">
+        <TestimonialCard
+          quote={testimonials[0].quote}
+          author={testimonials[0].author}
+          stars={5}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WAVE: dark → cream ========== -->
+  <WaveDivider topColor="var(--color-blue-800)" bottomColor="var(--color-cream)" variant={3} flip />
+
+  <!-- ========== DIFERENCIAIS ========== -->
+  <section class="why-choose" aria-labelledby="why-choose-heading">
+    <div class="container container--narrow">
+      <SectionHeading overline="DIFERENCIAIS" align="center">
+        Por que escolher a <em>Dra Jackeline Queiroz?</em>
+      </SectionHeading>
+      <div class="why-grid stagger">
+        <div class="why-item reveal fade-up">
+          <strong>+15 anos de experiência clínica</strong>
+          <p>Mais de 2000 pacientes acompanhados em consultório em São Paulo.</p>
+        </div>
+        <div class="why-item reveal fade-up">
+          <strong>3 pós-graduações</strong>
+          <p>Nutrição Clínica Funcional, Nutrição Esportiva Funcional e Nutrição Clínica e Terapia Nutricional.</p>
+        </div>
+        <div class="why-item reveal fade-up">
+          <strong>Certificação ISAK internacional</strong>
+          <p>Avaliação antropométrica com padrão internacional de precisão.</p>
+        </div>
+        <div class="why-item reveal fade-up">
+          <strong>Ultrassom Bodymetrix</strong>
+          <p>Tecnologia de ultrassom para medição precisa de gordura corporal e massa magra.</p>
+        </div>
+        <div class="why-item reveal fade-up">
+          <strong>3 consultórios em São Paulo</strong>
+          <p>Bela Vista, Pinheiros e Perdizes — flexibilidade de localização para sua rotina.</p>
+        </div>
+        <div class="why-item reveal fade-up">
+          <strong>Abordagem integrada</strong>
+          <p>Nutrição clínica, esportiva e funcional combinadas para resultados mais completos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FAQ ========== -->
+  <section class="lp-faq" aria-labelledby="lp-faq-heading">
+    <div class="container container--narrow">
+      <SectionHeading overline="DÚVIDAS FREQUENTES" align="center">
+        Perguntas sobre <em>emagrecimento</em>
+      </SectionHeading>
+      <FAQAccordion items={emagrecimentoFaqItems} />
+    </div>
+  </section>
+
+  <!-- ========== FINAL CTA ========== -->
+  <FinalCTA
+    overline="Dê o próximo passo"
+    heading="Pronta para emagrecer"
+    headingEmphasis="com saúde?"
+    description="Agende sua consulta e descubra como uma abordagem personalizada pode transformar seus resultados. O primeiro passo é sempre o mais importante."
+    image="/images/lp/cta-jackeline.webp"
+    id="lp-cta-heading"
+  />
+
+</BaseLayout>
+
+<style>
+  /* ========== HERO ========== */
+  .lp-hero {
+    position: relative;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .lp-hero-bg { position: absolute; top: 0; left: 0; right: 0; height: 130vh; z-index: 0; overflow: hidden; will-change: transform; }
+  .lp-hero-bg-img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+  .lp-hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(30,52,80,0.55) 0%, rgba(30,52,80,0.4) 40%, rgba(30,52,80,0.35) 70%, rgba(30,52,80,0.5) 100%);
+  }
+  .lp-hero-content {
+    position: relative; z-index: 2;
+    padding-top: calc(80px + var(--space-16));
+    padding-bottom: calc(var(--space-20) + 60px);
+    max-width: 700px;
+    text-align: center;
+    margin-inline: auto;
+  }
+  .lp-hero-content .overline { color: var(--color-orange-400); }
+  .lp-hero-content h1 { color: var(--color-white); font-size: var(--text-h1); margin-top: var(--space-3); text-shadow: 0 2px 20px rgba(0,0,0,0.15); }
+  .lp-hero-content h1 em { color: var(--color-orange-400); font-style: italic; }
+  .lp-hero-content p { color: rgba(255,255,255,0.9); margin-top: var(--space-4); margin-inline: auto; max-width: 55ch; text-shadow: 0 1px 8px rgba(0,0,0,0.1); }
+  .lp-hero-wave { position: absolute; bottom: -2px; left: 0; right: 0; z-index: 3; line-height: 0; }
+  .lp-hero-wave svg { width: 100%; height: clamp(70px, 9vw, 130px); display: block; }
+
+  /* ========== INTRO ========== */
+  .intro { background-color: var(--color-cream); }
+  .intro-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-10); align-items: center; }
+  .intro-text { display: flex; flex-direction: column; gap: var(--space-4); }
+  .intro-text h2 em { color: var(--color-orange-500); font-style: italic; }
+  .intro-image img { border-radius: var(--radius-2xl); width: 100%; max-width: 480px; }
+
+  .intro-checklist {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-top: var(--space-2);
+  }
+
+  .intro-checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    color: var(--color-charcoal-700);
+    font-size: var(--text-body);
+    line-height: 1.5;
+  }
+
+  .intro-checklist li svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ========== WHO IS IT FOR ========== */
+  .who {
+    background-color: var(--color-blue-800);
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(74, 106, 143, 0.25) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 50%, rgba(200, 134, 10, 0.04) 0%, transparent 40%);
+  }
+  .who h2 { color: var(--color-white); }
+  .who h2 em { color: var(--color-orange-400); font-style: italic; }
+
+  .who-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    margin-top: var(--space-8);
+  }
+
+  .who-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-6);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
+    transition: background var(--duration-normal) ease, border-color var(--duration-normal) ease;
+  }
+
+  .who-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .who-card svg { flex-shrink: 0; }
+  .who-card span { color: rgba(255, 255, 255, 0.85); font-size: var(--text-body); }
+
+  .who-reinforcement {
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: var(--space-8);
+    max-width: 50ch;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  /* ========== STEPS ========== */
+  .steps { background-color: var(--color-cream); }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .step-card {
+    background: var(--color-white);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    text-align: center;
+    border: 1px solid rgba(46, 74, 110, 0.06);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .step-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-orange-400), var(--color-orange-500));
+  }
+
+  .step-icon {
+    width: 56px; height: 56px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--color-orange-100);
+    border-radius: var(--radius-md);
+    margin: 0 auto var(--space-3);
+  }
+
+  .step-number {
+    font-family: var(--font-primary);
+    font-size: var(--text-h1);
+    font-weight: var(--weight-bold);
+    color: var(--color-orange-100);
+    display: block;
+    margin-bottom: var(--space-3);
+  }
+
+  .step-card h3 { margin-bottom: var(--space-2); color: var(--color-blue-700); }
+  .step-card p { color: var(--color-charcoal-600); max-width: none; }
+
+  .steps-cta {
+    text-align: center;
+    margin-top: var(--space-10);
+  }
+
+  /* ========== STATS BANNER ========== */
+  .stats-banner {
+    background-color: var(--color-orange-100);
+    padding-block: var(--space-12);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+    text-align: center;
+  }
+
+  .stat-item {
+    padding-top: var(--space-4);
+    border-top: 2px solid var(--color-orange-500);
+  }
+
+  .stat-number {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: var(--weight-bold);
+    color: var(--color-blue-800);
+    line-height: 1.1;
+  }
+
+  .stat-label {
+    display: block;
+    font-size: var(--text-small);
+    color: var(--color-charcoal-600);
+    margin-top: var(--space-2);
+    max-width: 18ch;
+    margin-inline: auto;
+  }
+
+  /* ========== TESTIMONIAL ========== */
+  .testimonial-section {
+    background-color: var(--color-blue-800);
+    padding-block: var(--space-16);
+  }
+
+  /* ========== WHY CHOOSE ========== */
+  .why-choose { background-color: var(--color-cream); }
+  .why-choose h2 em { color: var(--color-orange-500); font-style: italic; }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    margin-top: var(--space-8);
+  }
+
+  .why-item {
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4) var(--space-6);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .why-item strong {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: var(--text-body);
+    color: var(--color-blue-700);
+    margin-bottom: var(--space-1);
+  }
+
+  .why-item p {
+    font-size: var(--text-small);
+    color: var(--color-charcoal-600);
+    max-width: none;
+  }
+
+  /* ========== FAQ ========== */
+  .lp-faq {
+    background-color: var(--color-cream);
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (min-width: 768px) {
+    .intro-grid { grid-template-columns: 1.2fr 1fr; }
+    .who-grid { grid-template-columns: 1fr 1fr; }
+    .steps-grid { grid-template-columns: repeat(4, 1fr); }
+    .why-grid { grid-template-columns: 1fr 1fr; }
+    .stats-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+</style>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  if (reveals.length > 0 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const observer = new IntersectionObserver(
+      (entries) => { entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-visible'); observer.unobserve(e.target); } }); },
+      { threshold: 0.15, rootMargin: '0px 0px -50px 0px' }
+    );
+    reveals.forEach((el) => observer.observe(el));
+  } else { reveals.forEach((el) => el.classList.add('is-visible')); }
+</script>
+<script>
+  const heroBg = document.getElementById('hero-parallax-bg');
+  if (heroBg && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let ticking = false;
+    const update = () => { heroBg.style.transform = `translate3d(0, ${window.scrollY * -0.5}px, 0)`; ticking = false; };
+    window.addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(update); ticking = true; } }, { passive: true });
+  }
+</script>
