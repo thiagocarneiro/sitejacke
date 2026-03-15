@@ -25,7 +25,7 @@ const structuredData = [
 
   <!-- HERO (fullwidth bg + overlay + wave) -->
   <section class="atend-hero" aria-labelledby="atend-heading">
-    <div class="atend-hero-bg" aria-hidden="true">
+    <div class="atend-hero-bg" id="hero-parallax-bg" aria-hidden="true">
       <img src="/images/about/experiencia.png" alt="" class="atend-hero-bg-img" width="1440" height="900" fetchpriority="high" />
       <div class="atend-hero-overlay"></div>
     </div>
@@ -196,7 +196,7 @@ const structuredData = [
     padding-top: 0;
     padding-bottom: 0;
   }
-  .atend-hero-bg { position: absolute; inset: 0; z-index: 0; }
+  .atend-hero-bg { position: absolute; top: 0; left: 0; right: 0; height: 130vh; z-index: 0; overflow: hidden; will-change: transform; }
   .atend-hero-bg-img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
   .atend-hero-overlay {
     position: absolute; inset: 0;
@@ -314,4 +314,12 @@ const structuredData = [
     );
     reveals.forEach((el) => observer.observe(el));
   } else { reveals.forEach((el) => el.classList.add('is-visible')); }
+</script>
+<script>
+  const heroBg = document.getElementById('hero-parallax-bg');
+  if (heroBg && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let ticking = false;
+    const update = () => { heroBg.style.transform = `translate3d(0, ${window.scrollY * -0.5}px, 0)`; ticking = false; };
+    window.addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(update); ticking = true; } }, { passive: true });
+  }
 </script>

@@ -38,7 +38,7 @@ const structuredData = [
 
   <!-- ========== HERO (fullwidth bg + overlay + wave) ========== -->
   <section class="sobre-hero" aria-labelledby="sobre-heading">
-    <div class="sobre-hero-bg" aria-hidden="true">
+    <div class="sobre-hero-bg" id="hero-parallax-bg" aria-hidden="true">
       <img
         src="/images/about/nutricionista-jackeline2.png"
         alt=""
@@ -284,8 +284,13 @@ const structuredData = [
 
   .sobre-hero-bg {
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 130vh;
     z-index: 0;
+    overflow: hidden;
+    will-change: transform;
   }
 
   .sobre-hero-bg-img {
@@ -522,4 +527,12 @@ const structuredData = [
     );
     reveals.forEach((el) => observer.observe(el));
   } else { reveals.forEach((el) => el.classList.add('is-visible')); }
+</script>
+<script>
+  const heroBg = document.getElementById('hero-parallax-bg');
+  if (heroBg && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let ticking = false;
+    const update = () => { heroBg.style.transform = `translate3d(0, ${window.scrollY * -0.5}px, 0)`; ticking = false; };
+    window.addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(update); ticking = true; } }, { passive: true });
+  }
 </script>
