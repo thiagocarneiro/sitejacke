@@ -4,6 +4,7 @@ import Button from '../components/ui/Button.astro';
 import WaveDivider from '../components/ui/WaveDivider.astro';
 import SectionHeading from '../components/ui/SectionHeading.astro';
 import ServiceCard from '../components/ui/ServiceCard.astro';
+import MarqueeText from '../components/ui/MarqueeText.astro';
 import { siteInfo } from '../data/navigation';
 import { services } from '../data/services';
 import { getBreadcrumbSchema, getLocalBusinessSchema } from '../data/seo';
@@ -65,23 +66,30 @@ const structuredData = [
     </div>
   </section>
 
-  <!-- SERVICES -->
+  <!-- MARQUEE -->
+  <div class="marquee-section">
+    <MarqueeText text="nossos serviços" />
+  </div>
+
+  <!-- SERVICES (same module as home) -->
   <section class="atend-services" aria-labelledby="atend-services-heading">
     <div class="container">
-      <SectionHeading overline="FORMATOS">
-        <Fragment set:html={'Escolha o formato ideal para <em>seu objetivo</em>'} />
+      <SectionHeading overline="FORMATOS DE ACOMPANHAMENTO">
+        <Fragment set:html={'Conheça os <em>formatos</em> de atendimento'} />
       </SectionHeading>
-      <div class="services-stack stagger">
+
+      <div class="services-sticky-stack">
         {services.map((svc, i) => (
-          <div class="reveal fade-up">
+          <div class="sticky-card-wrapper" style={`--card-index: ${i};`}>
             <ServiceCard
               number={svc.number}
               title={svc.title}
               description={svc.description}
-              href={siteInfo.whatsappUrl}
-              linkText="Entrar em contato"
+              href={svc.href}
+              linkText={svc.linkText}
               variant={i % 2 === 0 ? 'dark' : 'light'}
-              icon={svc.icon}
+              image={svc.image}
+              imageAlt={svc.imageAlt}
             />
           </div>
         ))}
@@ -223,8 +231,30 @@ const structuredData = [
   .format-text h2 em { color: var(--color-orange-500); font-style: italic; }
   .format-image img { border-radius: var(--radius-2xl); width: 100%; max-width: 480px; }
 
+  .marquee-section {
+    background-color: var(--color-orange-100);
+    color: var(--color-orange-600);
+    overflow: hidden;
+  }
+
   .atend-services { background-color: var(--color-cream); }
-  .services-stack { display: flex; flex-direction: column; gap: var(--space-8); }
+
+  .services-sticky-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .sticky-card-wrapper {
+    position: sticky;
+    top: calc(80px + var(--card-index, 0) * 8px);
+    z-index: calc(var(--card-index, 0) + 1);
+    padding-bottom: var(--space-6);
+  }
+
+  .sticky-card-wrapper :global(.service-card) {
+    box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.08), 0 10px 40px rgba(0, 0, 0, 0.12);
+  }
 
   .who {
     background-color: var(--color-blue-800);
