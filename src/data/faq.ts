@@ -30,6 +30,6 @@ export const faqItems = [
   },
   {
     question: 'Qual endereço?',
-    answer: '<p><strong>Bela Vista:</strong> Av. Angélica, 2491, 9º andar.</p><p><strong>Pinheiros:</strong> Av. Brigadeiro Faria Lima, 1461, 6º andar (quartas pela manhã).</p>',
+    answer: '<p><strong>Bela Vista:</strong> Av. Angélica, 2491, 9º andar.</p><p><strong>Pinheiros:</strong> Av. Brigadeiro Faria Lima, 1461, 6º andar (quartas pela manhã).</p><p><strong>Perdizes:</strong> Av. Antártica, 675, 19º e 20º andar (consultar horários).</p>',
   },
 ];

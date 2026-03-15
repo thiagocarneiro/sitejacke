@@ -28,5 +28,11 @@ export const siteInfo = {
       city: 'São Paulo - SP',
       hours: 'Quartas pela manhã',
     },
+    {
+      name: 'Perdizes',
+      address: 'Av. Antártica, 675, 19º e 20º andar',
+      city: 'São Paulo - SP, 05003-020',
+      hours: 'Consultar horários',
+    },
   ],
 };

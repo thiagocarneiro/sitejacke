@@ -30,6 +30,15 @@ export function getLocalBusinessSchema() {
         addressCountry: 'BR',
         name: 'Consultório Pinheiros',
       },
+      {
+        '@type': 'PostalAddress',
+        streetAddress: 'Av. Antártica, 675, 19º e 20º andar',
+        addressLocality: 'São Paulo',
+        addressRegion: 'SP',
+        postalCode: '05003-020',
+        addressCountry: 'BR',
+        name: 'Consultório Perdizes',
+      },
     ],
     openingHoursSpecification: {
       '@type': 'OpeningHoursSpecification',
