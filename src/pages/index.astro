@@ -29,20 +29,19 @@ const structuredData = [
   structuredData={structuredData}
 >
 
-  <!-- ========== HERO (fullwidth bg image + parallax + wave) ========== -->
+  <!-- ========== HERO (fixed bg image revealed on scroll + wave) ========== -->
+  <div class="hero-fixed-bg" aria-hidden="true">
+    <img
+      src="/images/hero/jackeline-hero.png"
+      alt=""
+      class="hero-bg-img"
+      width="1440"
+      height="900"
+      fetchpriority="high"
+    />
+    <div class="hero-overlay"></div>
+  </div>
   <section class="hero" aria-label="Apresentação">
-    <div class="hero-bg-wrapper parallax-container">
-      <img
-        src="/images/hero/jackeline-hero.png"
-        alt=""
-        class="hero-bg-img parallax-image"
-        width="1440"
-        height="900"
-        fetchpriority="high"
-        aria-hidden="true"
-      />
-      <div class="hero-overlay"></div>
-    </div>
     <div class="container hero-content-wrapper">
       <div class="hero-content reveal fade-up">
         <h1 class="text-hero">
@@ -319,25 +318,21 @@ const structuredData = [
 </BaseLayout>
 
 <style>
-  /* ========== HERO ========== */
-  .hero {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    padding-top: 0;
-    padding-bottom: 0;
-  }
+  /* ========== HERO (fixed background revealed on scroll) ========== */
 
-  .hero-bg-wrapper {
-    position: absolute;
-    inset: -80px 0 0 0;
+  /* Fixed background layer — stays in place while page scrolls over it */
+  .hero-fixed-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    z-index: 0;
   }
 
   .hero-bg-img {
     width: 100%;
-    height: calc(100% + 160px);
+    height: 100%;
     object-fit: cover;
     object-position: center 30%;
   }
@@ -350,8 +345,19 @@ const structuredData = [
       rgba(30, 52, 80, 0.55) 0%,
       rgba(30, 52, 80, 0.4) 40%,
       rgba(30, 52, 80, 0.3) 70%,
-      rgba(30, 52, 80, 0.5) 100%
+      rgba(30, 52, 80, 0.45) 100%
     );
+  }
+
+  /* Hero section — transparent, sits over the fixed bg */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 0;
+    padding-bottom: 0;
+    z-index: 1;
   }
 
   .hero-content-wrapper {
@@ -388,6 +394,7 @@ const structuredData = [
     text-shadow: 0 1px 8px rgba(0,0,0,0.1);
   }
 
+  /* Wave at bottom of hero — scrolls with page, covers fixed bg */
   .hero-wave {
     position: absolute;
     bottom: -2px;
@@ -406,6 +413,8 @@ const structuredData = [
   /* ========== WELCOME ========== */
   .welcome {
     background-color: var(--color-cream);
+    position: relative;
+    z-index: 1;
   }
 
   .welcome-grid {

@@ -61,6 +61,7 @@ ul, ol {
 section {
   padding-block: var(--section-padding);
   position: relative;
+  z-index: 1;
 }
 
 /* === ACCESSIBILITY === */
