@@ -4,18 +4,19 @@ import Button from '../components/ui/Button.astro';
 import WaveDivider from '../components/ui/WaveDivider.astro';
 import { siteInfo } from '../data/navigation';
 import { getBreadcrumbSchema, getLocalBusinessSchema } from '../data/seo';
+import Breadcrumb from '../components/ui/Breadcrumb.astro';
 
 const structuredData = [
   getLocalBusinessSchema(),
   getBreadcrumbSchema([
     { name: 'Home', url: 'https://nutricionistajackeline.com.br/' },
-    { name: 'Contato', url: 'https://nutricionistajackeline.com.br/contato' },
+    { name: 'Contato', url: 'https://nutricionistajackeline.com.br/contato/' },
   ]),
 ];
 ---
 
 <BaseLayout
-  title="Contato | Dra Jackeline Queiroz - Nutricionista São Paulo"
+  title="Contato | Nutricionista em São Paulo - Dra Jackeline Queiroz"
   description="Entre em contato com a Dra Jackeline Queiroz. WhatsApp (11) 97063-2874. Consultórios em Bela Vista e Pinheiros, São Paulo. Horário: 08h às 21h."
   structuredData={structuredData}
 >

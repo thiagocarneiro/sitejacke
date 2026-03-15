@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Página não encontrada"
+  description="A página que você procura não existe ou foi movida."
+  noindex={true}
+>
+  <section class="not-found">
+    <div class="container not-found-content reveal fade-up is-visible">
+      <span class="error-code" aria-hidden="true">404</span>
+      <h1>Página não encontrada</h1>
+      <p>A página que você procura não existe ou foi movida. Confira os links abaixo para continuar navegando.</p>
+      <nav class="not-found-links" aria-label="Links úteis">
+        <a href="/">Página inicial</a>
+        <a href="/atendimento-e-consultas/">Atendimento</a>
+        <a href="/blog/">Blog</a>
+        <a href="/contato/">Contato</a>
+      </nav>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found {
+    background-color: var(--color-cream);
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: calc(80px + var(--space-16)) 0 var(--space-16);
+  }
+
+  .not-found-content {
+    text-align: center;
+    max-width: min(520px, 85vw);
+    margin-inline: auto;
+  }
+
+  .error-code {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: clamp(5rem, 12vw, 10rem);
+    font-weight: var(--weight-bold);
+    color: var(--color-orange-400);
+    opacity: 0.35;
+    line-height: 1;
+    margin-bottom: var(--space-4);
+  }
+
+  .not-found h1 {
+    font-size: var(--text-h2);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-4);
+  }
+
+  .not-found p {
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-normal);
+    margin-bottom: var(--space-8);
+  }
+
+  .not-found-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    justify-content: center;
+  }
+
+  .not-found-links a {
+    font-family: var(--font-button);
+    font-size: var(--text-small);
+    font-weight: var(--weight-semibold);
+    color: var(--color-blue-700);
+    background-color: var(--color-blue-50);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    transition: background-color var(--duration-fast) ease, color var(--duration-fast) ease;
+  }
+
+  .not-found-links a:hover {
+    background-color: var(--color-orange-500);
+    color: var(--color-white);
+  }
+</style>

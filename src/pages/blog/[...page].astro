@@ -1,24 +1,34 @@
 ---
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import WaveDivider from '../../components/ui/WaveDivider.astro';
-import { blogPreviews } from '../../data/services';
 import { getBreadcrumbSchema } from '../../data/seo';
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const sorted = posts.sort(
+    (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+  );
+  return paginate(sorted, { pageSize: 9 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
 
 const structuredData = [
   getBreadcrumbSchema([
     { name: 'Home', url: 'https://nutricionistajackeline.com.br/' },
-    { name: 'Blog', url: 'https://nutricionistajackeline.com.br/blog' },
+    { name: 'Blog', url: 'https://nutricionistajackeline.com.br/blog/' },
   ]),
 ];
 ---
 
 <BaseLayout
-  title="Blog | Dra Jackeline Queiroz - Nutrição, Saúde e Bem-estar"
-  description="Artigos sobre nutrição funcional, emagrecimento, saúde da mulher e performance esportiva. Conteúdo pela Dra Jackeline Queiroz."
+  title="Blog de Nutrição | Dra Jackeline Queiroz - Dicas e Artigos"
+  description="Artigos sobre nutrição funcional, emagrecimento, saúde da mulher e performance esportiva. Conteúdo por uma nutricionista com mais de 15 anos de experiência em São Paulo."
   structuredData={structuredData}
 >
 
-  <!-- HERO (fullwidth bg + overlay + wave) -->
+  <!-- HERO -->
   <section class="blog-hero" aria-labelledby="blog-heading">
     <div class="blog-hero-bg" id="hero-parallax-bg" aria-hidden="true">
       <img src="/images/about/nutricionista-jackeline.png" alt="" class="blog-hero-bg-img" width="1440" height="900" fetchpriority="high" />
@@ -45,30 +55,62 @@ const structuredData = [
     <div class="container">
       <h2 id="posts-heading" class="sr-only">Artigos</h2>
       <div class="blog-grid stagger">
-        {blogPreviews.map((post, i) => (
+        {page.data.map((post, i) => (
           <article class="blog-card reveal fade-up hover-lift">
-            <div class="blog-card-image">
-              <div class:list={['blog-card-placeholder', `blog-placeholder-${i + 1}`]}>
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" aria-hidden="true">
-                  <path d="M4 19.5A2.5 2.5 0 016.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
-                </svg>
+            <a href={`/${post.id}/`} class="blog-card-link-wrapper">
+              <div class="blog-card-image">
+                {post.data.featuredImage ? (
+                  <img
+                    src={post.data.featuredImage}
+                    alt={post.data.featuredImageAlt || post.data.title}
+                    width="400"
+                    height="225"
+                    loading={i < 3 ? 'eager' : 'lazy'}
+                  />
+                ) : (
+                  <div class:list={['blog-card-placeholder', `blog-placeholder-${(i % 3) + 1}`]}>
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" aria-hidden="true">
+                      <path d="M4 19.5A2.5 2.5 0 016.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
+                    </svg>
+                  </div>
+                )}
               </div>
-            </div>
-            <div class="blog-card-content">
-              <h3>{post.title}</h3>
-              <p>{post.excerpt}</p>
-              <a href={post.href} target="_blank" rel="noopener noreferrer" class="blog-card-link">
-                Leia o artigo →
-              </a>
-            </div>
+              <div class="blog-card-content">
+                {post.data.category && (
+                  <span class="blog-card-category">{post.data.category}</span>
+                )}
+                <h3>{post.data.title}</h3>
+                <p>{post.data.description.slice(0, 150)}...</p>
+                <div class="blog-card-footer">
+                  <time datetime={post.data.publishDate.toISOString().split('T')[0]}>
+                    {post.data.publishDate.toLocaleDateString('pt-BR', { year: 'numeric', month: 'short', day: 'numeric' })}
+                  </time>
+                  <span class="blog-card-read">Leia o artigo &rarr;</span>
+                </div>
+              </div>
+            </a>
           </article>
         ))}
       </div>
 
-      <p class="blog-soon reveal fade-up">
-        Em breve, mais artigos aqui. Enquanto isso, acompanhe o conteúdo no
-        <a href="https://www.instagram.com/jackequeiroz.nutricionista/" target="_blank" rel="noopener noreferrer">Instagram</a>.
-      </p>
+      <!-- Pagination -->
+      {page.lastPage > 1 && (
+        <nav class="pagination" aria-label="Paginação do blog">
+          {page.url.prev ? (
+            <a href={page.url.prev} class="pagination-link">&larr; Anterior</a>
+          ) : (
+            <span class="pagination-link disabled">&larr; Anterior</span>
+          )}
+          <span class="pagination-info">
+            Página {page.currentPage} de {page.lastPage}
+          </span>
+          {page.url.next ? (
+            <a href={page.url.next} class="pagination-link">Próxima &rarr;</a>
+          ) : (
+            <span class="pagination-link disabled">Próxima &rarr;</span>
+          )}
+        </nav>
+      )}
     </div>
   </section>
 
@@ -116,6 +158,19 @@ const structuredData = [
     border: 1px solid rgba(46, 74, 110, 0.06);
   }
 
+  .blog-card-link-wrapper {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .blog-card-image img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block;
+  }
+
   .blog-card-placeholder {
     width: 100%;
     aspect-ratio: 16/9;
@@ -132,28 +187,74 @@ const structuredData = [
     padding: var(--space-6);
     display: flex;
     flex-direction: column;
-    gap: var(--space-3);
+    gap: var(--space-2);
+  }
+
+  .blog-card-category {
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    font-weight: var(--weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-orange-500);
   }
 
   .blog-card-content h3 { font-size: var(--text-h4); line-height: 1.3; }
-  .blog-card-content p { font-size: var(--text-small); color: var(--color-charcoal-600); max-width: none; }
+  .blog-card-content p { font-size: var(--text-small); color: var(--color-charcoal-600); max-width: none; margin-top: var(--space-1); }
 
-  .blog-card-link {
+  .blog-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: var(--space-3);
+    font-size: var(--text-small);
+  }
+
+  .blog-card-footer time {
+    color: var(--color-charcoal-400);
+    font-family: var(--font-body);
+  }
+
+  .blog-card-read {
     font-family: var(--font-primary);
+    font-weight: var(--weight-medium);
+    color: var(--color-orange-500);
+  }
+
+  /* Pagination */
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-6);
+    margin-top: var(--space-12);
+    padding-bottom: var(--space-4);
+  }
+
+  .pagination-link {
+    font-family: var(--font-body);
     font-size: var(--text-small);
     font-weight: var(--weight-medium);
     color: var(--color-orange-500);
     text-decoration: none;
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-full);
+    transition: background-color var(--duration-fast) ease;
   }
-  .blog-card-link:hover { text-decoration: underline; }
 
-  .blog-soon {
-    text-align: center;
-    margin-top: var(--space-12);
-    color: var(--color-charcoal-600);
-    font-size: var(--text-body);
+  .pagination-link:hover {
+    background-color: var(--color-orange-50);
   }
-  .blog-soon a { color: var(--color-orange-500); text-decoration: underline; }
+
+  .pagination-link.disabled {
+    color: var(--color-charcoal-400);
+    pointer-events: none;
+  }
+
+  .pagination-info {
+    font-size: var(--text-small);
+    color: var(--color-charcoal-600);
+  }
 
   @media (min-width: 768px) {
     .blog-grid { grid-template-columns: repeat(3, 1fr); }

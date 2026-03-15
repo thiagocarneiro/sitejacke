@@ -1,0 +1,420 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { getBreadcrumbSchema, getArticleSchema } from '../data/seo';
+import Breadcrumb from '../components/ui/Breadcrumb.astro';
+import WaveDivider from '../components/ui/WaveDivider.astro';
+import '../styles/prose.css';
+
+interface Props {
+  title: string;
+  description: string;
+  publishDate: Date;
+  updatedDate?: Date;
+  category?: string;
+  tags?: string[];
+  featuredImage?: string;
+  featuredImageAlt?: string;
+  slug: string;
+}
+
+const {
+  title,
+  description,
+  publishDate,
+  updatedDate,
+  category,
+  tags = [],
+  featuredImage,
+  featuredImageAlt = '',
+  slug,
+} = Astro.props;
+
+const siteUrl = 'https://nutricionistajackeline.com.br';
+
+const structuredData = [
+  getBreadcrumbSchema([
+    { name: 'Home', url: `${siteUrl}/` },
+    { name: 'Blog', url: `${siteUrl}/blog/` },
+    { name: title, url: `${siteUrl}/${slug}/` },
+  ]),
+  getArticleSchema({
+    title,
+    description,
+    publishDate,
+    updatedDate,
+    featuredImage,
+    slug,
+  }),
+];
+
+const formattedDate = publishDate.toLocaleDateString('pt-BR', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<BaseLayout
+  title={`${title} | Dra Jackeline Queiroz`}
+  description={description}
+  canonicalUrl={`${siteUrl}/${slug}/`}
+  ogImage={featuredImage ? `${siteUrl}${featuredImage}` : undefined}
+  structuredData={structuredData}
+  ogType="article"
+  articleMeta={{
+    publishedTime: publishDate.toISOString(),
+    modifiedTime: (updatedDate || publishDate).toISOString(),
+    author: 'https://nutricionistajackeline.com.br/sobre/',
+  }}
+>
+
+  <article class="blog-article">
+    <!-- Header -->
+    <header class="article-header">
+      <div class="container article-header-content">
+        <Breadcrumb items={[{ name: 'Home', href: '/' }, { name: 'Blog', href: '/blog/' }, { name: title, href: `/${slug}/` }]} />
+        <a href="/blog/" class="back-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M19 12H5" /><path d="M12 19l-7-7 7-7" />
+          </svg>
+          Voltar ao Blog
+        </a>
+        {category && <span class="overline">{category}</span>}
+        <h1>{title}</h1>
+        <div class="article-meta">
+          <time datetime={publishDate.toISOString().split('T')[0]}>
+            {formattedDate}
+          </time>
+          <span class="meta-author">Dra Jackeline Queiroz</span>
+        </div>
+      </div>
+    </header>
+
+    <WaveDivider topColor="var(--color-blue-800)" bottomColor="var(--color-cream)" variant={2} flip />
+
+    <!-- Featured Image -->
+    {featuredImage && (
+      <div class="article-featured-image">
+        <div class="container">
+          <img
+            src={featuredImage}
+            alt={featuredImageAlt}
+            width="1080"
+            height="560"
+            loading="eager"
+          />
+        </div>
+      </div>
+    )}
+
+    <!-- Content -->
+    <div class="article-body">
+      <div class="container">
+        <div class="prose">
+          <slot />
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+      <div class="container">
+        {tags.length > 0 && (
+          <div class="article-tags">
+            {tags.map((tag) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+        )}
+        <!-- Author Bio (E-E-A-T) -->
+        <div class="author-bio">
+          <img src="/images/about/nutricionista-jackeline2.png" alt="Dra Jackeline Queiroz" width="80" height="80" loading="lazy" class="author-photo" />
+          <div class="author-info">
+            <strong>Dra Jackeline Queiroz</strong>
+            <span class="author-title">Nutricionista Funcional e Esportiva | CRN-3</span>
+            <p>Mais de 15 anos de experiência clínica, 3 pós-graduações e certificação ISAK. Especializada em emagrecimento, composição corporal e performance esportiva.</p>
+            <a href="/sobre/" class="author-link">Saiba mais sobre a Dra Jackeline &rarr;</a>
+          </div>
+        </div>
+
+        <div class="article-cta">
+          <p>Quer uma orientação nutricional personalizada?</p>
+          <a href="https://wa.me/5511970632874" target="_blank" rel="noopener noreferrer" class="cta-button">
+            Agende sua consulta
+          </a>
+        </div>
+        <a href="/blog/" class="back-link back-link-bottom">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M19 12H5" /><path d="M12 19l-7-7 7-7" />
+          </svg>
+          Ver todos os artigos
+        </a>
+      </div>
+    </footer>
+  </article>
+
+</BaseLayout>
+
+<style>
+  .blog-article {
+    background-color: var(--color-cream);
+  }
+
+  /* Header */
+  .article-header {
+    background-color: var(--color-blue-800);
+    padding-top: calc(80px + var(--space-12));
+    padding-bottom: var(--space-12);
+  }
+
+  .article-header-content {
+    max-width: var(--container-text);
+    margin-inline: auto;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: var(--weight-medium);
+    color: var(--color-orange-400);
+    text-decoration: none;
+    margin-bottom: var(--space-6);
+    transition: color var(--duration-fast) ease;
+  }
+
+  .back-link:hover {
+    color: var(--color-orange-500);
+  }
+
+  .article-header .overline {
+    color: var(--color-orange-400);
+    display: block;
+    margin-bottom: var(--space-3);
+  }
+
+  .article-header h1 {
+    color: var(--color-white);
+    font-size: var(--text-h2);
+    max-width: 20ch;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+    font-size: var(--text-small);
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .article-header-content :global(.breadcrumb a) {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .article-header-content :global(.breadcrumb a:hover) {
+    color: var(--color-orange-400);
+  }
+
+  .article-header-content :global(.breadcrumb [aria-current="page"]) {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .article-header-content :global(.breadcrumb-separator) {
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  .article-meta time {
+    font-family: var(--font-body);
+  }
+
+  .meta-author {
+    font-family: var(--font-meta);
+    font-style: italic;
+  }
+
+  .meta-author::before {
+    content: '\00B7';
+    margin-right: var(--space-4);
+  }
+
+  /* Featured Image */
+  .article-featured-image {
+    position: relative;
+    z-index: 2;
+    margin-top: -80px;
+    padding-bottom: var(--space-10);
+  }
+
+  .article-featured-image .container {
+    max-width: var(--container-text);
+    margin-inline: auto;
+  }
+
+  .article-featured-image img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Body */
+  .article-body {
+    padding-bottom: var(--space-16);
+  }
+
+  .article-body .container {
+    max-width: var(--container-text);
+    margin-inline: auto;
+  }
+
+  /* Footer */
+  .article-footer {
+    border-top: 1px solid var(--color-charcoal-200);
+    padding: var(--space-10) 0 var(--space-16);
+  }
+
+  .article-footer .container {
+    max-width: var(--container-text);
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  .article-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    justify-content: center;
+  }
+
+  .tag {
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    font-weight: var(--weight-medium);
+    color: var(--color-blue-700);
+    background-color: var(--color-blue-50);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+  }
+
+  /* Author Bio */
+  .author-bio {
+    display: flex;
+    gap: var(--space-4);
+    padding: var(--space-6);
+    background-color: var(--color-orange-50);
+    border-radius: var(--radius-xl);
+    width: 100%;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(46, 74, 110, 0.06);
+  }
+
+  .author-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .author-info strong {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: var(--text-body);
+    color: var(--color-text-primary);
+  }
+
+  .author-title {
+    display: block;
+    font-family: var(--font-meta);
+    font-size: var(--text-caption);
+    font-style: italic;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-2);
+  }
+
+  .author-info p {
+    font-size: var(--text-small);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-normal);
+    margin-bottom: var(--space-2);
+    max-width: none;
+  }
+
+  .author-link {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: var(--weight-semibold);
+    color: var(--color-orange-500);
+    text-decoration: none;
+  }
+
+  .author-link:hover {
+    text-decoration: underline;
+  }
+
+  .article-cta {
+    text-align: center;
+    padding: var(--space-8);
+    background-color: var(--color-orange-50);
+    border-radius: var(--radius-xl);
+    width: 100%;
+  }
+
+  .article-cta p {
+    font-family: var(--font-heading);
+    font-size: var(--text-h4);
+    font-weight: var(--weight-medium);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-4);
+    max-width: none;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-button);
+    font-size: var(--text-body);
+    font-weight: var(--weight-semibold);
+    color: var(--color-white);
+    background-color: var(--color-cta-primary);
+    padding: var(--space-3) var(--space-8);
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    transition: background-color var(--duration-fast) ease;
+  }
+
+  .cta-button:hover {
+    background-color: var(--color-cta-primary-hover);
+  }
+
+  .back-link-bottom {
+    color: var(--color-text-secondary);
+  }
+
+  @media (max-width: 768px) {
+    .article-header {
+      padding-top: calc(70px + var(--space-8));
+      padding-bottom: var(--space-8);
+    }
+
+    .article-header h1 {
+      font-size: var(--text-h3);
+    }
+
+    .author-bio {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+</style>

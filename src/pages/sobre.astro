@@ -7,34 +7,38 @@ import MarqueeText from '../components/ui/MarqueeText.astro';
 import FinalCTA from '../components/ui/FinalCTA.astro';
 import { siteInfo } from '../data/navigation';
 import { getLocalBusinessSchema, getBreadcrumbSchema } from '../data/seo';
+import Breadcrumb from '../components/ui/Breadcrumb.astro';
 
 const structuredData = [
   getLocalBusinessSchema(),
   getBreadcrumbSchema([
     { name: 'Home', url: 'https://nutricionistajackeline.com.br/' },
-    { name: 'Sobre', url: 'https://nutricionistajackeline.com.br/sobre' },
+    { name: 'Sobre', url: 'https://nutricionistajackeline.com.br/sobre/' },
   ]),
   {
     '@context': 'https://schema.org',
     '@type': 'Person',
+    '@id': 'https://nutricionistajackeline.com.br/sobre/#person',
     name: 'Jackeline Queiroz',
     jobTitle: 'Nutricionista Funcional e Esportiva',
-    description: 'Nutricionista clínica e esportiva funcional com mais de 15 anos de experiência em São Paulo.',
-    knowsAbout: ['Nutrição Funcional', 'Nutrição Esportiva', 'Emagrecimento', 'Composição Corporal', 'Saúde da Mulher'],
+    description: 'Dra Jackeline Queiroz é nutricionista funcional e esportiva em São Paulo, com mais de 15 anos de experiência clínica, 3 pós-graduações e certificação ISAK. Especializada em emagrecimento, composição corporal, performance esportiva e saúde da mulher.',
+    knowsAbout: ['Nutrição Funcional', 'Nutrição Esportiva', 'Emagrecimento', 'Composição Corporal', 'Saúde da Mulher', 'Performance Esportiva'],
     alumniOf: [
       { '@type': 'CollegeOrUniversity', name: 'Centro Universitário do Triângulo Mineiro' },
       { '@type': 'CollegeOrUniversity', name: 'VP Consultoria Nutricional' },
       { '@type': 'CollegeOrUniversity', name: 'Instituto Ganep' },
     ],
     memberOf: { '@type': 'Organization', name: 'IBNF - Instituto Brasileiro de Nutrição Funcional' },
-    url: 'https://nutricionistajackeline.com.br/sobre',
+    worksFor: { '@id': 'https://nutricionistajackeline.com.br/#business' },
+    sameAs: ['https://www.instagram.com/jackequeiroz.nutricionista/'],
+    url: 'https://nutricionistajackeline.com.br/sobre/',
   },
 ];
 ---
 
 <BaseLayout
-  title="Sobre Dra Jackeline Queiroz | Nutricionista com +15 Anos de Experiência"
-  description="Conheça a Dra Jackeline Queiroz: nutricionista funcional e esportiva em São Paulo, com 3 pós-graduações e mais de 15 anos de experiência em consultório."
+  title="Nutricionista Funcional e Esportiva em SP | Sobre Dra Jackeline Queiroz"
+  description="Conheça a Dra Jackeline Queiroz: nutricionista funcional e esportiva em São Paulo, com 3 pós-graduações, certificação ISAK e mais de 15 anos de experiência. Saiba mais sobre a abordagem que já transformou mais de 2000 pacientes."
   structuredData={structuredData}
 >
 
@@ -70,11 +74,14 @@ const structuredData = [
 
   <!-- ========== BIO (image left, text right) ========== -->
   <section class="bio" aria-labelledby="bio-heading">
+    <div class="container">
+      <Breadcrumb items={[{ name: 'Home', href: '/' }, { name: 'Sobre', href: '/sobre/' }]} />
+    </div>
     <div class="container bio-grid">
       <div class="bio-image reveal scale-in">
         <div class="bio-image-wrapper">
           <img
-            src="/images/about/jackeline-about.png"
+            src="/images/about/nutricionista-jackeline5.png"
             alt="Dra Jackeline Queiroz, nutricionista funcional e esportiva"
             width="480"
             height="580"
@@ -86,14 +93,19 @@ const structuredData = [
         <span class="overline">Sobre a Dra Jackeline</span>
         <h2 id="bio-heading">Mineira, nutricionista e apaixonada por <em>transformar vidas</em></h2>
         <p>
-          Formada em Nutrição pelo Centro Universitário do Triângulo Mineiro em 2008, construí
+          Dra. Jackeline Queiroz é nutricionista funcional e esportiva em São Paulo, com mais de 15 anos de experiência clínica
+          e 3 pós-graduações: Nutrição Clínica Funcional, Nutrição Esportiva Funcional e Nutrição Clínica e Terapia Nutricional.
+          Com certificação ISAK internacional e mais de 2000 pacientes acompanhados, atende em 3 consultórios na cidade:
+          Bela Vista, Pinheiros e Perdizes.
+        </p>
+        <p>
+          Formada em Nutrição pelo Centro Universitário do Triângulo Mineiro em 2008, construiu
           uma trajetória sólida unindo ciência, prática clínica e comportamento alimentar, com
           cursos de extensão em nutrição esportiva, bioquímica, exames laboratoriais e nutrição comportamental.
         </p>
         <p>
-          Hoje, com mais de 15 anos de experiência em consultório, acompanho praticantes de crossfit,
-          corrida, triathlon e lutas, com um método que torna a jornada mais leve, possível e
-          sustentável — sem dietas extremas ou soluções temporárias.
+          Hoje acompanha praticantes de crossfit, corrida, triathlon e lutas, com um método que torna a jornada
+          mais leve, possível e sustentável — sem dietas extremas ou soluções temporárias.
         </p>
         <blockquote>
           "Amo acompanhar de perto a transformação dos meus pacientes — resultado de verdade acontece
@@ -336,6 +348,9 @@ const structuredData = [
     </div>
   </section>
 
+  <!-- ========== WAVE: cream → orange-100 (values) ========== -->
+  <WaveDivider topColor="var(--color-cream)" bottomColor="var(--color-orange-100)" variant={3} />
+
   <!-- ========== VALUES (icon cards) ========== -->
   <section class="values" aria-labelledby="values-heading">
     <div class="container">
@@ -386,8 +401,8 @@ const structuredData = [
     </div>
   </section>
 
-  <!-- ========== WAVE + FINAL CTA ========== -->
-  <WaveDivider topColor="var(--color-cream)" bottomColor="var(--color-blue-800)" variant={1} />
+  <!-- ========== WAVE: orange-100 → dark (final CTA) ========== -->
+  <WaveDivider topColor="var(--color-orange-100)" bottomColor="var(--color-blue-800)" variant={1} />
 
   <FinalCTA id="sobre-cta-heading" />
 
@@ -782,7 +797,7 @@ const structuredData = [
   }
 
   /* ========== VALUES (icon cards) ========== */
-  .values { background-color: var(--color-cream); }
+  .values { background-color: var(--color-orange-100); }
 
   .values-grid {
     display: grid;

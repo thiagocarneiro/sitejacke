@@ -7,11 +7,7 @@ import { mainNav, siteInfo } from '../../data/navigation';
     <!-- Col 1: Brand -->
     <div class="footer-brand">
       <a href="/" class="footer-logo" aria-label="Página inicial">
-        <span class="footer-logo-icon" aria-hidden="true">
-          <svg width="32" height="20" viewBox="0 0 32 20" fill="none">
-            <path d="M2 18C8 6 24 6 30 18" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
-          </svg>
-        </span>
+        <img src="/images/logo-jackeline-queiroz_.png" alt="" class="footer-logo-img" width="54" height="54" aria-hidden="true" />
         <span class="footer-logo-text">
           <strong>Jackeline Queiroz</strong>
           <small>Nutricionista Funcional e Esportiva</small>
@@ -45,7 +41,7 @@ import { mainNav, siteInfo } from '../../data/navigation';
     <div class="footer-nav">
       <h3 class="footer-heading">Navegação</h3>
       <ul>
-        <li><a href="/">Home</a></li>
+        <li><a href="/">Página Inicial</a></li>
         {mainNav.map((item) => (
           <li><a href={item.href}>{item.label}</a></li>
         ))}
@@ -99,9 +95,10 @@ import { mainNav, siteInfo } from '../../data/navigation';
     margin-bottom: var(--space-6);
   }
 
-  .footer-logo-icon {
-    color: var(--color-orange-400);
-    display: flex;
+  .footer-logo-img {
+    height: 70px;
+    width: auto;
+    object-fit: contain;
   }
 
   .footer-logo-text {
@@ -118,10 +115,11 @@ import { mainNav, siteInfo } from '../../data/navigation';
   }
 
   .footer-logo-text small {
-    font-family: var(--font-secondary);
+    font-family: var(--font-accent);
+    font-style: italic;
     font-size: var(--text-caption);
-    color: rgba(255, 255, 255, 0.6);
-    letter-spacing: 0.03em;
+    color: var(--color-orange-400);
+    letter-spacing: 0.02em;
   }
 
   .footer-social {

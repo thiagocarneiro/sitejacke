@@ -1,8 +1,8 @@
 export const mainNav = [
-  { label: 'Sobre', href: '/sobre' },
-  { label: 'Atendimento', href: '/atendimento-e-consultas' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Contato', href: '/contato' },
+  { label: 'Sobre', href: '/sobre/' },
+  { label: 'Atendimento', href: '/atendimento-e-consultas/' },
+  { label: 'Blog', href: '/blog/' },
+  { label: 'Contato', href: '/contato/' },
 ];
 
 export const siteInfo = {

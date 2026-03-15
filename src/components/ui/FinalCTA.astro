@@ -1,0 +1,136 @@
+---
+import Button from './Button.astro';
+import { siteInfo } from '../../data/navigation';
+
+interface Props {
+  overline?: string;
+  heading: string;
+  headingEmphasis?: string;
+  description: string;
+  buttonText?: string;
+  buttonHref?: string;
+  image?: string;
+  imageAlt?: string;
+  id?: string;
+}
+
+const {
+  overline = 'Vem comigo',
+  heading = 'Vamos',
+  headingEmphasis = 'conversar?',
+  description = 'Agende sua consulta e descubra como a nutrição personalizada pode transformar sua saúde e seus resultados.',
+  buttonText = 'Agende sua Consulta',
+  buttonHref = siteInfo.whatsappUrl,
+  image = '/images/about/nutricionista-jackeline3.png',
+  imageAlt = 'Dra Jackeline Queiroz, nutricionista funcional e esportiva',
+  id = 'cta-heading',
+} = Astro.props;
+---
+
+<section class="final-cta" aria-labelledby={id}>
+  <div class="container final-cta-layout">
+    <div class="final-cta-image reveal scale-in">
+      <img
+        src={image}
+        alt={imageAlt}
+        width="520"
+        height="640"
+        loading="lazy"
+      />
+    </div>
+    <div class="final-cta-card reveal fade-up">
+      <span class="overline">{overline}</span>
+      <h2 id={id}>
+        {heading} <em>{headingEmphasis}</em>
+      </h2>
+      <p>{description}</p>
+      <Button href={buttonHref} variant="primary" size="lg" isExternal>
+        {buttonText}
+      </Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .final-cta {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-blue-800);
+    background-image:
+      radial-gradient(ellipse at 20% 80%, rgba(74, 106, 143, 0.25) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(200, 134, 10, 0.04) 0%, transparent 40%);
+    padding-block: var(--space-16);
+  }
+
+  .final-cta-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    align-items: center;
+  }
+
+  .final-cta-image {
+    display: flex;
+    justify-content: center;
+  }
+
+  .final-cta-image img {
+    border-radius: var(--radius-2xl);
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 3/4;
+  }
+
+  .final-cta-card {
+    background-color: rgba(248, 246, 243, 0.95);
+    backdrop-filter: blur(8px);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-10);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    text-align: center;
+  }
+
+  .final-cta-card .overline {
+    color: var(--color-orange-500);
+  }
+
+  .final-cta-card h2 {
+    color: var(--color-charcoal-900);
+    font-size: var(--text-h2);
+  }
+
+  .final-cta-card h2 em {
+    font-style: italic;
+    color: var(--color-orange-500);
+  }
+
+  .final-cta-card p {
+    color: var(--color-charcoal-600);
+    max-width: 45ch;
+    margin-inline: auto;
+  }
+
+  @media (min-width: 768px) {
+    .final-cta-layout {
+      grid-template-columns: 1fr 1.1fr;
+    }
+
+    .final-cta-image img {
+      max-width: 520px;
+    }
+
+    .final-cta-card {
+      margin-left: calc(-1 * var(--space-10));
+      text-align: left;
+    }
+
+    .final-cta-card p {
+      margin-inline: 0;
+    }
+  }
+</style>

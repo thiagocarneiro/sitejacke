@@ -13,6 +13,10 @@ const {
   flip = false,
 } = Astro.props;
 
+// When flipped, swap colors so topColor always visually matches the section above
+const resolvedTop = flip ? bottomColor : topColor;
+const resolvedBottom = flip ? topColor : bottomColor;
+
 const paths: Record<number, string> = {
   1: 'M0,64 C320,120 480,0 720,48 C960,96 1120,16 1440,64 L1440,0 L0,0 Z',
   2: 'M0,48 C240,96 480,16 720,64 C960,112 1200,32 1440,48 L1440,0 L0,0 Z',
@@ -22,7 +26,7 @@ const paths: Record<number, string> = {
 
 <div
   class:list={['wave-divider', { 'wave-flip': flip }]}
-  style={`--wave-top: ${topColor}; --wave-bottom: ${bottomColor};`}
+  style={`--wave-top: ${resolvedTop}; --wave-bottom: ${resolvedBottom};`}
   aria-hidden="true"
 >
   <svg
@@ -39,16 +43,19 @@ const paths: Record<number, string> = {
     position: relative;
     width: 100%;
     line-height: 0;
+    font-size: 0;
     background-color: var(--wave-bottom);
-    margin-top: -1px;
+    margin-top: -4px;
+    margin-bottom: -4px;
     overflow: hidden;
-    z-index: 1;
+    z-index: 2;
   }
 
   .wave-divider svg {
     width: 100%;
     height: clamp(50px, 7vw, 100px);
     display: block;
+    vertical-align: bottom;
   }
 
   .wave-flip {

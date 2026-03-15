@@ -17,12 +17,13 @@ const recentPosts = allPosts
   .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
   .slice(0, 3);
 import { faqItems } from '../data/faq';
-import { getLocalBusinessSchema, getFAQSchema, getBreadcrumbSchema, getWebsiteSchema } from '../data/seo';
+import { getLocalBusinessSchema, getFAQSchema, getBreadcrumbSchema, getWebsiteSchema, getOrganizationSchema } from '../data/seo';
 
 const structuredData = [
   getLocalBusinessSchema(),
   getFAQSchema(),
   getWebsiteSchema(),
+  getOrganizationSchema(),
   getBreadcrumbSchema([
     { name: 'Home', url: 'https://nutricionistajackeline.com.br/' },
   ]),
@@ -30,8 +31,8 @@ const structuredData = [
 ---
 
 <BaseLayout
-  title="Dra Jackeline Queiroz | Nutricionista Funcional e Esportiva em São Paulo"
-  description="Nutricionista funcional e esportiva com mais de 15 anos de experiência. Emagrecimento, composição corporal e performance esportiva. Atendimento em Bela Vista e Pinheiros, São Paulo."
+  title="Nutricionista em São Paulo | Dra Jackeline Queiroz - Funcional e Esportiva"
+  description="Nutricionista funcional e esportiva em São Paulo com mais de 15 anos de experiência. Emagrecimento, composição corporal e performance esportiva. Consultórios em Bela Vista, Pinheiros e Perdizes. Agende pelo WhatsApp."
   transparentHeader={true}
   structuredData={structuredData}
 >
@@ -88,9 +89,13 @@ const structuredData = [
           Nutrição personalizada para quem quer <em>resultados reais</em> e sustentáveis
         </h2>
         <p>
-          Bem vindo ao espaço dedicado a ajudar você a alcançar seus objetivos de emagrecimento,
-          ganho de massa magra e performance com saúde e vitalidade. Descubra como uma abordagem
-          personalizada pode fazer toda a diferença em sua jornada de bem-estar.
+          Dra. Jackeline Queiroz é nutricionista funcional e esportiva em São Paulo, com mais de 15 anos
+          de experiência clínica. Sua abordagem une ciência, prática e comportamento alimentar para
+          construir resultados reais em emagrecimento, composição corporal e performance esportiva.
+        </p>
+        <p>
+          Com 3 pós-graduações, certificação ISAK internacional e atendimento em 3 consultórios na cidade,
+          descubra como uma abordagem personalizada pode fazer toda a diferença em sua jornada de bem-estar.
         </p>
         <Button href={siteInfo.whatsappUrl} variant="primary" isExternal>
           Conhecer o atendimento
@@ -183,7 +188,7 @@ const structuredData = [
           Atendo desde pessoas que buscam mais saúde até atletas e praticantes de crossfit,
           corrida, triathlon e lutas, sempre com um acompanhamento individualizado e aplicado à vida real.
         </p>
-        <Button href="/sobre" variant="outline">
+        <Button href="/sobre/" variant="outline">
           Saiba mais
         </Button>
       </div>
@@ -223,8 +228,8 @@ const structuredData = [
     </div>
   </section>
 
-  <!-- ========== WAVE: cream → dark (testimonials) ========== -->
-  <WaveDivider topColor="var(--color-cream)" bottomColor="var(--color-blue-800)" variant={2} />
+  <!-- ========== WAVE: orange-100 → dark (testimonials) ========== -->
+  <WaveDivider topColor="var(--color-orange-100)" bottomColor="var(--color-blue-800)" variant={2} />
 
   <!-- ========== TESTIMONIALS ========== -->
   <section class="testimonials" aria-labelledby="testimonials-heading">
@@ -265,7 +270,7 @@ const structuredData = [
           <li>Melhorar performance esportiva</li>
           <li>Cuidar da saúde hormonal e metabólica</li>
         </ul>
-        <Button href="/atendimento-e-consultas" variant="primary" size="lg">
+        <Button href="/atendimento-e-consultas/" variant="primary" size="lg">
           Conheça os formatos
         </Button>
       </div>
@@ -283,6 +288,9 @@ const structuredData = [
       </div>
     </div>
   </section>
+
+  <!-- ========== WAVE: cream → orange-100 (blog) ========== -->
+  <WaveDivider topColor="var(--color-cream)" bottomColor="var(--color-orange-100)" variant={3} />
 
   <!-- ========== BLOG PREVIEW ========== -->
   <section class="blog-preview" aria-labelledby="blog-heading">
@@ -602,7 +610,8 @@ const structuredData = [
   .about-image img {
     border-radius: var(--radius-2xl);
     width: 100%;
-    height: 100%;
+    height: auto;
+    object-fit: cover;
   }
 
   /* ========== STATS BANNER ========== */
@@ -728,7 +737,7 @@ const structuredData = [
 
   /* ========== BLOG ========== */
   .blog-preview {
-    background-color: var(--color-cream);
+    background-color: var(--color-orange-100);
   }
 
   .blog-grid {

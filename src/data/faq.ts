@@ -1,3 +1,26 @@
+export const atendimentoFaqItems = [
+  {
+    question: 'Quanto custa uma consulta com nutricionista em São Paulo?',
+    answer: '<p>Os valores variam conforme o formato de acompanhamento escolhido: consulta avulsa, trimestral ou 6 meses. Para valores atualizados, entre em contato pelo <strong>WhatsApp (11) 97063-2874</strong>.</p>',
+  },
+  {
+    question: 'Qual a diferença entre consulta avulsa e acompanhamento?',
+    answer: '<p>A <strong>consulta avulsa</strong> inclui avaliação completa e plano alimentar personalizado. O <strong>acompanhamento trimestral ou de 6 meses</strong> inclui consultas regulares, alinhamentos online entre as consultas, materiais de apoio e suporte contínuo para ajustes na rotina.</p>',
+  },
+  {
+    question: 'Nutricionista atende online?',
+    answer: '<p>Sim! A consulta online funciona da mesma forma que a presencial, pelo Google Meet, com link enviado no horário da consulta. A única diferença é a avaliação física. <strong>Consultas online têm 10% de desconto</strong>.</p>',
+  },
+  {
+    question: 'Preciso de encaminhamento médico para consultar um nutricionista?',
+    answer: '<p>Não é necessário encaminhamento médico. Você pode agendar diretamente pelo WhatsApp. A nutricionista pode solicitar exames complementares durante o acompanhamento, se necessário.</p>',
+  },
+  {
+    question: 'O que faz um nutricionista funcional e esportivo?',
+    answer: '<p>O <strong>nutricionista funcional</strong> analisa o organismo de forma integrada, considerando sinais, sintomas e individualidades bioquímicas. O <strong>nutricionista esportivo</strong> foca na otimização da alimentação para performance, recuperação e composição corporal. A Dra Jackeline combina ambas as abordagens para resultados mais completos.</p>',
+  },
+];
+
 export const faqItems = [
   {
     question: 'Atende plano de saúde?',
