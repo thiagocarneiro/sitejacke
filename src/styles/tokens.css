@@ -86,10 +86,10 @@
   --space-32: 8rem;
 
   /* === LAYOUT === */
-  --container-max: 1440px;
-  --container-narrow: 1080px;
-  --container-text: 780px;
-  --gutter: clamp(1.5rem, 4vw, 3rem);
+  --container-max: 90vw;
+  --container-narrow: min(1080px, 85vw);
+  --container-text: min(780px, 80vw);
+  --gutter: clamp(1.5rem, 5vw, 4rem);
   --section-padding: clamp(2.5rem, 5vw, 4.5rem);
 
   /* === BORDERS & RADIUS === */
