@@ -29,19 +29,19 @@ const structuredData = [
   structuredData={structuredData}
 >
 
-  <!-- ========== HERO (fixed bg image revealed on scroll + wave) ========== -->
-  <div class="hero-fixed-bg" aria-hidden="true">
-    <img
-      src="/images/hero/jackeline-hero.png"
-      alt=""
-      class="hero-bg-img"
-      width="1440"
-      height="900"
-      fetchpriority="high"
-    />
-    <div class="hero-overlay"></div>
-  </div>
+  <!-- ========== HERO (slow parallax bg + wave) ========== -->
   <section class="hero" aria-label="Apresentação">
+    <div class="hero-fixed-bg" id="hero-parallax-bg" aria-hidden="true">
+      <img
+        src="/images/hero/jackeline-hero.png"
+        alt=""
+        class="hero-bg-img"
+        width="1440"
+        height="900"
+        fetchpriority="high"
+      />
+      <div class="hero-overlay"></div>
+    </div>
     <div class="container hero-content-wrapper">
       <div class="hero-content reveal fade-up">
         <h1 class="text-hero">
@@ -318,16 +318,18 @@ const structuredData = [
 </BaseLayout>
 
 <style>
-  /* ========== HERO (fixed background revealed on scroll) ========== */
+  /* ========== HERO (slow parallax — image scrolls at ~50% speed) ========== */
 
-  /* Fixed background layer — stays in place while page scrolls over it */
+  /* Background layer — absolute, tall, moves via JS parallax */
   .hero-fixed-bg {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 100vh;
+    height: 130vh;
     z-index: 0;
+    overflow: hidden;
+    will-change: transform;
   }
 
   .hero-bg-img {
@@ -349,7 +351,7 @@ const structuredData = [
     );
   }
 
-  /* Hero section — transparent, sits over the fixed bg */
+  /* Hero section — contains the fixed bg and content */
   .hero {
     position: relative;
     min-height: 100vh;
@@ -358,6 +360,7 @@ const structuredData = [
     padding-top: 0;
     padding-bottom: 0;
     z-index: 1;
+    overflow: hidden;
   }
 
   .hero-content-wrapper {
@@ -889,34 +892,25 @@ const structuredData = [
   }
 </script>
 
-<!-- Parallax Script -->
+<!-- Hero Parallax Script — bg scrolls at 50% speed -->
 <script>
-  const parallaxImages = document.querySelectorAll('.parallax-image');
+  const heroBg = document.getElementById('hero-parallax-bg');
 
-  if (parallaxImages.length > 0 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (heroBg && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     let ticking = false;
 
-    const updateParallax = () => {
-      parallaxImages.forEach((img) => {
-        const container = img.closest('.parallax-container') as HTMLElement;
-        if (!container) return;
-        const rect = container.getBoundingClientRect();
-        const viewportHeight = window.innerHeight;
-        if (rect.bottom < -100 || rect.top > viewportHeight + 100) return;
-        const progress = (viewportHeight - rect.top) / (viewportHeight + rect.height);
-        const offset = (progress - 0.5) * 150;
-        (img as HTMLElement).style.transform = `translate3d(0, ${offset}px, 0) scale(1.15)`;
-      });
+    const updateHeroParallax = () => {
+      const scrollY = window.scrollY;
+      // Move background at 50% of scroll speed (slower = reveals gradually)
+      heroBg.style.transform = `translate3d(0, ${scrollY * -0.5}px, 0)`;
       ticking = false;
     };
 
     window.addEventListener('scroll', () => {
       if (!ticking) {
-        requestAnimationFrame(updateParallax);
+        requestAnimationFrame(updateHeroParallax);
         ticking = true;
       }
     }, { passive: true });
-
-    updateParallax();
   }
 </script>
