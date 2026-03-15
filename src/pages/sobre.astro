@@ -3,6 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/ui/Button.astro';
 import WaveDivider from '../components/ui/WaveDivider.astro';
 import SectionHeading from '../components/ui/SectionHeading.astro';
+import MarqueeText from '../components/ui/MarqueeText.astro';
+import FinalCTA from '../components/ui/FinalCTA.astro';
 import { siteInfo } from '../data/navigation';
 import { getLocalBusinessSchema, getBreadcrumbSchema } from '../data/seo';
 
@@ -17,7 +19,7 @@ const structuredData = [
     '@type': 'Person',
     name: 'Jackeline Queiroz',
     jobTitle: 'Nutricionista Funcional e Esportiva',
-    description: 'Nutricionista clínica e esportiva funcional com mais de 10 anos de experiência em São Paulo.',
+    description: 'Nutricionista clínica e esportiva funcional com mais de 15 anos de experiência em São Paulo.',
     knowsAbout: ['Nutrição Funcional', 'Nutrição Esportiva', 'Emagrecimento', 'Composição Corporal', 'Saúde da Mulher'],
     alumniOf: [
       { '@type': 'CollegeOrUniversity', name: 'Centro Universitário do Triângulo Mineiro' },
@@ -31,8 +33,8 @@ const structuredData = [
 ---
 
 <BaseLayout
-  title="Sobre Dra Jackeline Queiroz | Nutricionista com +10 Anos de Experiência"
-  description="Conheça a Dra Jackeline Queiroz: nutricionista funcional e esportiva em São Paulo, com 3 pós-graduações e mais de 10 anos de experiência em consultório."
+  title="Sobre Dra Jackeline Queiroz | Nutricionista com +15 Anos de Experiência"
+  description="Conheça a Dra Jackeline Queiroz: nutricionista funcional e esportiva em São Paulo, com 3 pós-graduações e mais de 15 anos de experiência em consultório."
   structuredData={structuredData}
 >
 
@@ -55,7 +57,7 @@ const structuredData = [
         <h1 id="sobre-heading">Uma rotina de saúde que funciona <em>com a sua vida</em>, não contra ela</h1>
         <p>
           Nutricionista clínica e esportiva funcional com especialização em comportamento alimentar
-          e mais de 10 anos de experiência em consultório.
+          e mais de 15 anos de experiência em consultório.
         </p>
       </div>
     </div>
@@ -66,101 +68,129 @@ const structuredData = [
     </div>
   </section>
 
-  <!-- ========== BIO ========== -->
+  <!-- ========== BIO (image left, text right) ========== -->
   <section class="bio" aria-labelledby="bio-heading">
     <div class="container bio-grid">
+      <div class="bio-image reveal scale-in">
+        <div class="bio-image-wrapper">
+          <img
+            src="/images/about/jackeline-about.png"
+            alt="Dra Jackeline Queiroz, nutricionista funcional e esportiva"
+            width="480"
+            height="580"
+            loading="lazy"
+          />
+        </div>
+      </div>
       <div class="bio-text reveal fade-up">
-        <h2 id="bio-heading" class="sr-only">Biografia</h2>
+        <span class="overline">Sobre a Dra Jackeline</span>
+        <h2 id="bio-heading">Mineira, nutricionista e apaixonada por <em>transformar vidas</em></h2>
         <p>
-          Sou mineira, formada em Nutrição pelo Centro Universitário do Triângulo Mineiro, em 2008,
-          e desde então construí uma trajetória sólida unindo ciência, prática clínica e comportamento alimentar.
+          Formada em Nutrição pelo Centro Universitário do Triângulo Mineiro em 2008, construí
+          uma trajetória sólida unindo ciência, prática clínica e comportamento alimentar, com
+          cursos de extensão em nutrição esportiva, bioquímica, exames laboratoriais e nutrição comportamental.
         </p>
         <p>
-          Ao longo da minha formação, realizei diversos cursos de extensão nas áreas de nutrição esportiva,
-          bioquímica, exames laboratoriais, nutrição estética, nutrição comportamental e coaching em nutrição,
-          sempre com foco em aprofundar o olhar clínico e individualizado.
-        </p>
-        <p>
-          Hoje, somo mais de 10 anos de experiência em consultório, com foco em emagrecimento, ganho de massa
-          magra e performance esportiva, acompanhando praticantes de crossfit, corrida, triathlon e lutas,
-          sempre respeitando rotina, treinos e individualidade.
-        </p>
-        <p>
-          Com toda essa vivência, desenvolvi um método de acompanhamento que torna a jornada em busca do
-          objetivo mais leve, possível, saudável e sustentável — sem dietas extremas ou soluções temporárias.
+          Hoje, com mais de 15 anos de experiência em consultório, acompanho praticantes de crossfit,
+          corrida, triathlon e lutas, com um método que torna a jornada mais leve, possível e
+          sustentável — sem dietas extremas ou soluções temporárias.
         </p>
         <blockquote>
-          "Amo acompanhar de perto a transformação, evolução e superação dos meus pacientes — porque
-          resultado de verdade acontece quando existe orientação, constância e apoio ao longo do caminho."
+          "Amo acompanhar de perto a transformação dos meus pacientes — resultado de verdade acontece
+          quando existe orientação, constância e apoio ao longo do caminho."
         </blockquote>
       </div>
-      <div class="bio-image reveal scale-in">
-        <img
-          src="/images/about/jackeline-contact.png"
-          alt="Dra Jackeline Queiroz em seu consultório"
-          width="480"
-          height="580"
-          loading="lazy"
-        />
+    </div>
+  </section>
+
+  <!-- ========== STATS BANNER ========== -->
+  <section class="stats-banner" aria-label="Números da trajetória">
+    <div class="container">
+      <div class="stats-grid stagger">
+        <div class="stat-item reveal fade-up">
+          <span class="stat-number">+15</span>
+          <span class="stat-label">anos de experiência em consultório</span>
+        </div>
+        <div class="stat-item reveal fade-up">
+          <span class="stat-number">3</span>
+          <span class="stat-label">pós-graduações concluídas</span>
+        </div>
+        <div class="stat-item reveal fade-up">
+          <span class="stat-number">2</span>
+          <span class="stat-label">consultórios em São Paulo</span>
+        </div>
+        <div class="stat-item reveal fade-up">
+          <span class="stat-number">+2000</span>
+          <span class="stat-label">pacientes acompanhados</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ========== EXPERIENCE ========== -->
+  <!-- ========== EXPERIENCE (timeline + sticky image) ========== -->
   <section class="experience" aria-labelledby="experience-heading">
-    <div class="container container--narrow">
-      <SectionHeading overline="EXPERIÊNCIA" align="center">
-        Trajetória <em>profissional</em>
+    <div class="container">
+      <SectionHeading overline="TRAJETÓRIA" align="center">
+        Experiência <em>profissional</em>
       </SectionHeading>
 
-      <div class="experience-timeline stagger">
-        <div class="timeline-item reveal fade-up">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <h3>Hospital Santa Catarina — EMTN</h3>
-            <p>
-              Integrou a Equipe Multidisciplinar de Terapia Nutricional em São Paulo,
-              atuando com nutrição enteral e parenteral. Base clínica sólida e olhar
-              responsável sobre o cuidado com o paciente.
-            </p>
+      <div class="experience-layout">
+        <div class="experience-timeline stagger">
+          <div class="timeline-item reveal fade-up">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3>2008–2010 · Hospital Santa Catarina — EMTN</h3>
+              <p>
+                Equipe Multidisciplinar de Terapia Nutricional em São Paulo, atuando com nutrição
+                enteral e parenteral. Base clínica sólida e olhar responsável.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item reveal fade-up">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3>2010+ · Consultório Clínico</h3>
+              <p>
+                Atendimentos focados em emagrecimento, saúde e bem-estar. Acompanhamento de
+                intolerâncias, doenças autoimunes, gestação e inflamações intestinais.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item reveal fade-up">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3>Nutrição Esportiva</h3>
+              <p>
+                Performance e composição corporal para praticantes de atividade física e atletas
+                amadores, respeitando rotina de treinos e objetivos individuais.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item reveal fade-up">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3>Nutrição Comportamental</h3>
+              <p>
+                Cuidado que vai além do alimento: comportamento alimentar, hábitos, rotina e a
+                relação com a comida para mudanças reais e sustentáveis.
+              </p>
+            </div>
           </div>
         </div>
-        <div class="timeline-item reveal fade-up">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <h3>Consultório — desde 2010</h3>
-            <p>
-              Atendimentos clínicos com foco em emagrecimento, saúde e bem-estar. Acompanhamento de
-              intolerâncias alimentares, doenças autoimunes, gestação, diabetes, dislipidemias e
-              inflamações intestinais.
-            </p>
-          </div>
-        </div>
-        <div class="timeline-item reveal fade-up">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <h3>Nutrição Esportiva</h3>
-            <p>
-              Atendimentos voltados para praticantes de atividade física e atletas amadores,
-              com foco em performance, rendimento esportivo e composição corporal.
-            </p>
-          </div>
-        </div>
-        <div class="timeline-item reveal fade-up">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <h3>Nutrição Comportamental</h3>
-            <p>
-              O cuidado nutricional vai além do alimento em si. Os atendimentos levam em consideração
-              o comportamento alimentar, os hábitos, a rotina e a relação com a comida.
-            </p>
-          </div>
+        <div class="experience-image">
+          <img
+            src="/images/about/experiencia.png"
+            alt="Dra Jackeline em atendimento"
+            width="480"
+            height="580"
+            loading="lazy"
+          />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ========== WAVE ========== -->
+  <!-- ========== WAVE: cream → dark ========== -->
   <WaveDivider topColor="var(--color-cream)" bottomColor="var(--color-blue-800)" variant={1} />
 
   <!-- ========== CREDENTIALS ========== -->
@@ -172,106 +202,199 @@ const structuredData = [
 
       <div class="credentials-grid stagger">
         <div class="credential-card reveal fade-up">
+          <div class="credential-icon" aria-hidden="true">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--color-orange-400)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 3 6 3s6-1.9 6-3v-5"/></svg>
+          </div>
           <h3>Nutrição Clínica Funcional</h3>
           <p>Pós-graduação pela VP Consultoria Nutricional, São Paulo</p>
         </div>
         <div class="credential-card reveal fade-up">
+          <div class="credential-icon" aria-hidden="true">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--color-orange-400)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="11" x2="13" y2="11"/></svg>
+          </div>
           <h3>Nutrição Esportiva Funcional</h3>
           <p>Pós-graduação pela VP Consultoria Nutricional, São Paulo</p>
         </div>
         <div class="credential-card reveal fade-up">
+          <div class="credential-icon" aria-hidden="true">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--color-orange-400)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1"/><path d="M5 21V5a2 2 0 012-2h10a2 2 0 012 2v16"/></svg>
+          </div>
           <h3>Nutrição Clínica e Terapia Nutricional</h3>
           <p>Pós-graduação pelo Instituto Ganep, com atendimento prático no Hospital Beneficência Portuguesa</p>
         </div>
       </div>
 
-      <div class="credentials-extra reveal fade-up">
+      <div class="credentials-badges reveal fade-up">
         <h3>Formação complementar</h3>
-        <ul>
-          <li>Nutrição pela Universidade do Triângulo Mineiro, Uberlândia – MG</li>
-          <li>Cursos em Nutrição Funcional e Ortomolecular: Saúde da Mulher, Detoxificação, Suplementos Esportivos, Exames Laboratoriais, Vitaminas e Minerais, Bioquímica, Microbiota Intestinal</li>
-          <li>Participação em Congressos Nacionais e Internacionais</li>
-          <li>Membro do IBNF — Instituto Brasileiro de Nutrição Funcional</li>
-        </ul>
+        <div class="badges-wrap">
+          <span class="badge">Universidade do Triângulo Mineiro</span>
+          <span class="badge">Nutrição Funcional e Ortomolecular</span>
+          <span class="badge">Saúde da Mulher</span>
+          <span class="badge">Suplementos Esportivos</span>
+          <span class="badge">Exames Laboratoriais</span>
+          <span class="badge">Bioquímica</span>
+          <span class="badge">Microbiota Intestinal</span>
+          <span class="badge">Congressos Nacionais e Internacionais</span>
+          <span class="badge">Membro do IBNF</span>
+        </div>
+      </div>
+
+      <!-- Mid-page CTA -->
+      <div class="mid-cta reveal fade-up">
+        <p>Quer saber como funciona uma consulta?</p>
+        <Button href={siteInfo.whatsappUrl} variant="primary" size="md" isExternal>
+          Fale comigo no WhatsApp
+        </Button>
       </div>
     </div>
   </section>
 
-  <!-- ========== WAVE ========== -->
+  <!-- ========== WAVE: dark → cream ========== -->
   <WaveDivider topColor="var(--color-blue-800)" bottomColor="var(--color-cream)" variant={3} flip />
 
-  <!-- ========== DIFFERENTIALS ========== -->
+  <!-- ========== MARQUEE ========== -->
+  <div class="marquee-section">
+    <MarqueeText text="diferenciais técnicos" />
+  </div>
+
+  <!-- ========== DIFFERENTIALS (alternating rows) ========== -->
   <section class="differentials" aria-labelledby="differentials-heading">
     <div class="container">
       <SectionHeading overline="DIFERENCIAIS TÉCNICOS" align="center">
         Ferramentas e <em>tecnologia</em>
       </SectionHeading>
 
-      <div class="differentials-grid stagger">
-        <div class="diff-card reveal fade-up hover-lift">
+      <!-- Row 1: image left, text right -->
+      <div class="diff-row reveal fade-up">
+        <div class="diff-row-image">
+          <img
+            src="/images/about/nutricionista-jackeline.png"
+            alt="Avaliação física com certificação ISAK"
+            width="520"
+            height="400"
+            loading="lazy"
+          />
+        </div>
+        <div class="diff-row-text">
+          <span class="diff-badge">Certificação Internacional</span>
           <h3>Certificação ISAK</h3>
-          <p>Avaliação física certificada internacionalmente pelo ISAK, modelo australiano de padronização de medidas corporais.</p>
+          <p>
+            Avaliação física certificada internacionalmente pelo ISAK, modelo australiano de
+            padronização de medidas corporais. Precisão e confiabilidade na avaliação da composição
+            corporal para acompanhar sua evolução com dados reais.
+          </p>
         </div>
-        <div class="diff-card reveal fade-up hover-lift">
+      </div>
+
+      <!-- Row 2: text left, image right -->
+      <div class="diff-row diff-row--reversed reveal fade-up">
+        <div class="diff-row-image">
+          <img
+            src="/images/about/experiencia2.png"
+            alt="Ultrassom Bodymetrix para avaliação corporal"
+            width="520"
+            height="400"
+            loading="lazy"
+          />
+        </div>
+        <div class="diff-row-text">
           <h3>Ultrassom Bodymetrix</h3>
-          <p>Aparelho de ultrassom que mostra em imagem o tecido de gordura e massa magra, com dados importantes para saúde e performance.</p>
+          <p>
+            Aparelho de ultrassom que mostra em imagem o tecido de gordura e massa magra, fornecendo
+            dados importantes para saúde e performance. Tecnologia de ponta para um acompanhamento
+            mais preciso e visual da sua evolução.
+          </p>
         </div>
-        <div class="diff-card reveal fade-up hover-lift">
+      </div>
+
+      <!-- Row 3: image left, text right -->
+      <div class="diff-row reveal fade-up">
+        <div class="diff-row-image">
+          <img
+            src="/images/about/nutricai-personalizada.png"
+            alt="Aplicativo do paciente com plano alimentar personalizado"
+            width="520"
+            height="400"
+            loading="lazy"
+          />
+        </div>
+        <div class="diff-row-text">
           <h3>App do Paciente</h3>
-          <p>Acesso ao aplicativo com plano alimentar, avaliação física, diário alimentar, receitas e novidades, além de contato direto via WhatsApp.</p>
+          <p>
+            Acesso ao aplicativo com plano alimentar, avaliação física, diário alimentar, receitas
+            e novidades, além de contato direto via WhatsApp.
+          </p>
+          <div class="diff-tags">
+            <span class="diff-tag">Plano alimentar</span>
+            <span class="diff-tag">Avaliação física</span>
+            <span class="diff-tag">Diário alimentar</span>
+            <span class="diff-tag">Receitas</span>
+            <span class="diff-tag">Contato direto</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ========== VALUES ========== -->
+  <!-- ========== VALUES (icon cards) ========== -->
   <section class="values" aria-labelledby="values-heading">
-    <div class="container container--narrow">
-      <SectionHeading align="center">
-        Valores e <em>diferenciais</em>
+    <div class="container">
+      <SectionHeading overline="FILOSOFIA" align="center">
+        Minha <em>abordagem</em>
       </SectionHeading>
 
-      <div class="values-text reveal fade-up">
-        <p>
-          Minha proposta vai além de um plano alimentar. É um processo de cuidado e reequilíbrio,
-          construído de forma individual, respeitando suas características bioquímicas, comportamentais e emocionais.
-        </p>
-        <p>
-          O planejamento alimentar é pensado para nutrir o corpo de forma adequada, favorecendo a melhora do
-          metabolismo, da saúde e da qualidade de vida. A estética faz parte do processo, mas surge como
-          consequência de um organismo mais equilibrado e funcional.
-        </p>
-        <p>
-          Acredito em um processo de transformação de dentro para fora, onde o equilíbrio de nutrientes fornecidos
-          às células promove melhora metabólica, bem-estar e saúde. Quando o corpo funciona melhor, o resultado
-          físico acontece de forma natural e duradoura.
-        </p>
+      <div class="values-grid stagger">
+        <div class="value-card reveal fade-up hover-lift">
+          <div class="value-icon" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-orange-500)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          </div>
+          <h3>Cuidado Individual</h3>
+          <p>
+            Minha proposta vai além de um plano alimentar. É um processo de cuidado construído de forma
+            individual, respeitando suas características bioquímicas, comportamentais e emocionais.
+          </p>
+        </div>
+        <div class="value-card reveal fade-up hover-lift">
+          <div class="value-icon" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-orange-500)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c4-4 8-7.5 8-12a8 8 0 10-16 0c0 4.5 4 8 8 12z"/><path d="M12 10V6"/><path d="M10 14c0-1 .5-2 2-2s2 1 2 2"/></svg>
+          </div>
+          <h3>Nutrição com Propósito</h3>
+          <p>
+            O planejamento alimentar é pensado para nutrir o corpo de forma adequada, favorecendo a
+            melhora do metabolismo e da qualidade de vida. A estética surge como consequência natural.
+          </p>
+        </div>
+        <div class="value-card reveal fade-up hover-lift">
+          <div class="value-icon" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-orange-500)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.66 0 3-4.03 3-9s-1.34-9-3-9m0 18c-1.66 0-3-4.03-3-9s1.34-9 3-9m-9 9a9 9 0 019-9"/></svg>
+          </div>
+          <h3>Resultado Duradouro</h3>
+          <p>
+            Acredito em transformação de dentro para fora. Quando o corpo funciona melhor, o resultado
+            físico acontece de forma natural e duradoura — sem extremismos.
+          </p>
+        </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ========== WAVE + CTA ========== -->
-  <WaveDivider topColor="var(--color-cream)" bottomColor="var(--color-blue-800)" variant={1} />
-
-  <section class="page-cta text-on-dark" aria-labelledby="sobre-cta-heading">
-    <div class="container" style="text-align: center;">
-      <div class="reveal fade-up">
-        <span class="overline">Vem comigo</span>
-        <h2 id="sobre-cta-heading">Vamos <em>conversar?</em></h2>
-        <p style="max-width: 45ch; margin-inline: auto; color: rgba(255,255,255,0.8); margin-bottom: var(--space-8);">
-          Agende sua consulta e descubra como a nutrição personalizada pode transformar sua saúde e seus resultados.
-        </p>
-        <Button href={siteInfo.whatsappUrl} variant="primary" size="lg" isExternal>
+      <!-- Inline CTA -->
+      <div class="inline-cta reveal fade-up">
+        <p>Pronta para começar sua jornada?</p>
+        <Button href={siteInfo.whatsappUrl} variant="outline" size="md" isExternal>
           Agende sua Consulta
         </Button>
       </div>
     </div>
   </section>
 
+  <!-- ========== WAVE + FINAL CTA ========== -->
+  <WaveDivider topColor="var(--color-cream)" bottomColor="var(--color-blue-800)" variant={1} />
+
+  <FinalCTA id="sobre-cta-heading" />
+
 </BaseLayout>
 
 <style>
-  /* HERO (fullwidth bg image) */
+  /* ========== HERO (fullwidth bg image) ========== */
   .sobre-hero {
     position: relative;
     min-height: 70vh;
@@ -340,7 +463,7 @@ const structuredData = [
     display: block;
   }
 
-  /* BIO */
+  /* ========== BIO (image left, text right) ========== */
   .bio { background-color: var(--color-cream); }
 
   .bio-grid {
@@ -350,7 +473,41 @@ const structuredData = [
     align-items: start;
   }
 
-  .bio-text { display: flex; flex-direction: column; gap: var(--space-4); }
+  .bio-image-wrapper {
+    position: relative;
+  }
+
+  .bio-image-wrapper::before {
+    content: '';
+    position: absolute;
+    top: var(--space-4);
+    left: calc(-1 * var(--space-4));
+    width: 100%;
+    height: 100%;
+    background: var(--color-orange-100);
+    border-radius: var(--radius-2xl);
+    z-index: 0;
+  }
+
+  .bio-image-wrapper img {
+    position: relative;
+    z-index: 1;
+    border-radius: var(--radius-2xl);
+    width: 100%;
+    max-width: 480px;
+    object-fit: cover;
+  }
+
+  .bio-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .bio-text h2 em {
+    font-style: italic;
+    color: var(--color-orange-500);
+  }
 
   .bio-text blockquote {
     font-family: var(--font-primary);
@@ -362,14 +519,51 @@ const structuredData = [
     margin-top: var(--space-4);
   }
 
-  .bio-image img {
-    border-radius: var(--radius-2xl);
-    width: 100%;
-    max-width: 480px;
+  /* ========== STATS BANNER ========== */
+  .stats-banner {
+    background-color: var(--color-orange-100);
+    padding-block: var(--space-12);
   }
 
-  /* EXPERIENCE */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+    text-align: center;
+  }
+
+  .stat-item {
+    padding-top: var(--space-4);
+    border-top: 2px solid var(--color-orange-500);
+  }
+
+  .stat-number {
+    display: block;
+    font-family: var(--font-primary);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: var(--weight-bold);
+    color: var(--color-blue-800);
+    line-height: 1.1;
+  }
+
+  .stat-label {
+    display: block;
+    font-size: var(--text-small);
+    color: var(--color-charcoal-600);
+    margin-top: var(--space-2);
+    max-width: 18ch;
+    margin-inline: auto;
+  }
+
+  /* ========== EXPERIENCE (timeline + image) ========== */
   .experience { background-color: var(--color-cream); }
+
+  .experience-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+    align-items: start;
+  }
 
   .experience-timeline {
     display: flex;
@@ -411,7 +605,17 @@ const structuredData = [
     color: var(--color-charcoal-600);
   }
 
-  /* CREDENTIALS */
+  .experience-image {
+    display: none;
+  }
+
+  .experience-image img {
+    border-radius: var(--radius-2xl);
+    width: 100%;
+    object-fit: cover;
+  }
+
+  /* ========== CREDENTIALS ========== */
   .credentials {
     background-color: var(--color-blue-800);
     background-image:
@@ -439,6 +643,17 @@ const structuredData = [
     border-color: rgba(255,255,255,0.15);
   }
 
+  .credential-icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(219, 164, 74, 0.1);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-4);
+  }
+
   .credential-card h3 {
     color: var(--color-orange-400);
     font-size: var(--text-h4);
@@ -450,74 +665,220 @@ const structuredData = [
     font-size: var(--text-small);
   }
 
-  .credentials-extra {
+  /* Badges */
+  .credentials-badges {
     text-align: center;
+    margin-bottom: var(--space-10);
   }
 
-  .credentials-extra h3 {
+  .credentials-badges h3 {
     color: var(--color-orange-400);
     font-size: var(--text-h4);
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-6);
   }
 
-  .credentials-extra ul {
-    list-style: none;
+  .badges-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+
+  .badge {
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.8);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-full);
+    font-size: var(--text-small);
+    font-family: var(--font-secondary);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  /* Mid-page CTA */
+  .mid-cta {
+    text-align: center;
+    padding-top: var(--space-8);
+  }
+
+  .mid-cta p {
+    color: rgba(255,255,255,0.8);
+    margin-bottom: var(--space-4);
+    font-size: var(--text-body);
+  }
+
+  /* ========== MARQUEE ========== */
+  .marquee-section {
+    background-color: var(--color-orange-100);
+    color: var(--color-orange-600);
+    overflow: hidden;
+  }
+
+  /* ========== DIFFERENTIALS (alternating rows) ========== */
+  .differentials { background-color: var(--color-cream); }
+
+  .diff-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    align-items: center;
+    margin-bottom: var(--space-16);
+  }
+
+  .diff-row:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .diff-row-image img {
+    border-radius: var(--radius-2xl);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 4/3;
+  }
+
+  .diff-row-text {
     display: flex;
     flex-direction: column;
     gap: var(--space-3);
   }
 
-  .credentials-extra li {
-    color: rgba(255,255,255,0.7);
-    font-size: var(--text-small);
+  .diff-badge {
+    display: inline-block;
+    width: fit-content;
+    background: var(--color-orange-100);
+    color: var(--color-orange-600);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    font-size: var(--text-caption);
+    font-weight: var(--weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
-  /* DIFFERENTIALS */
-  .differentials { background-color: var(--color-cream); }
+  .diff-row-text h3 {
+    font-size: var(--text-h3);
+    color: var(--color-blue-700);
+  }
 
-  .differentials-grid {
+  .diff-row-text p {
+    color: var(--color-charcoal-600);
+    max-width: 50ch;
+  }
+
+  .diff-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+  }
+
+  .diff-tag {
+    background: var(--color-blue-50);
+    color: var(--color-blue-700);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    font-size: var(--text-caption);
+    font-weight: var(--weight-medium);
+  }
+
+  /* ========== VALUES (icon cards) ========== */
+  .values { background-color: var(--color-cream); }
+
+  .values-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-6);
   }
 
-  .diff-card {
+  .value-card {
     background: var(--color-white);
     border-radius: var(--radius-xl);
     padding: var(--space-8);
     border: 1px solid rgba(46, 74, 110, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
   }
 
-  .diff-card h3 {
+  .value-icon {
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-orange-100);
+    border-radius: var(--radius-lg);
+  }
+
+  .value-card h3 {
     color: var(--color-blue-700);
-    margin-bottom: var(--space-3);
     padding-bottom: var(--space-3);
     border-bottom: 2px solid var(--color-orange-100);
   }
 
-  .diff-card p { color: var(--color-charcoal-600); max-width: none; }
-
-  /* VALUES */
-  .values { background-color: var(--color-cream); }
-  .values-text { display: flex; flex-direction: column; gap: var(--space-4); text-align: center; }
-  .values-text p { margin-inline: auto; }
-
-  /* CTA */
-  .page-cta {
-    background-color: var(--color-blue-800);
-    padding-block: var(--space-16);
+  .value-card p {
+    color: var(--color-charcoal-600);
+    max-width: none;
   }
 
-  .page-cta h2 { color: var(--color-white); }
-  .page-cta h2 em { color: var(--color-orange-400); font-style: italic; }
+  /* Inline CTA */
+  .inline-cta {
+    text-align: center;
+    margin-top: var(--space-12);
+  }
 
+  .inline-cta p {
+    font-family: var(--font-primary);
+    font-size: var(--text-h4);
+    color: var(--color-charcoal-900);
+    margin-bottom: var(--space-4);
+  }
+
+  /* ========== RESPONSIVE ========== */
   @media (min-width: 768px) {
-    .bio-grid { grid-template-columns: 1.3fr 1fr; }
-    .credentials-grid { grid-template-columns: repeat(3, 1fr); }
-    .differentials-grid { grid-template-columns: repeat(3, 1fr); }
+    .bio-grid {
+      grid-template-columns: 1fr 1.3fr;
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .experience-layout {
+      grid-template-columns: 1.2fr 1fr;
+    }
+
+    .experience-image {
+      display: block;
+      position: sticky;
+      top: 100px;
+      align-self: start;
+    }
+
+    .credentials-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .diff-row {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .diff-row--reversed {
+      direction: rtl;
+    }
+
+    .diff-row--reversed > * {
+      direction: ltr;
+    }
+
+    .values-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
   }
 </style>
 
+<!-- Scroll Reveal Script -->
 <script>
   const reveals = document.querySelectorAll('.reveal');
   if (reveals.length > 0 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -528,6 +889,8 @@ const structuredData = [
     reveals.forEach((el) => observer.observe(el));
   } else { reveals.forEach((el) => el.classList.add('is-visible')); }
 </script>
+
+<!-- Hero Parallax Script -->
 <script>
   const heroBg = document.getElementById('hero-parallax-bg');
   if (heroBg && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {

@@ -7,8 +7,15 @@ import MarqueeText from '../components/ui/MarqueeText.astro';
 import ServiceCard from '../components/ui/ServiceCard.astro';
 import TestimonialCard from '../components/ui/TestimonialCard.astro';
 import FAQAccordion from '../components/ui/FAQAccordion.astro';
+import FinalCTA from '../components/ui/FinalCTA.astro';
 import { siteInfo } from '../data/navigation';
-import { services, testimonials, blogPreviews } from '../data/services';
+import { services, testimonials } from '../data/services';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const recentPosts = allPosts
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+  .slice(0, 3);
 import { faqItems } from '../data/faq';
 import { getLocalBusinessSchema, getFAQSchema, getBreadcrumbSchema, getWebsiteSchema } from '../data/seo';
 
@@ -24,7 +31,7 @@ const structuredData = [
 
 <BaseLayout
   title="Dra Jackeline Queiroz | Nutricionista Funcional e Esportiva em São Paulo"
-  description="Nutricionista funcional e esportiva com mais de 10 anos de experiência. Emagrecimento, composição corporal e performance esportiva. Atendimento em Bela Vista e Pinheiros, São Paulo."
+  description="Nutricionista funcional e esportiva com mais de 15 anos de experiência. Emagrecimento, composição corporal e performance esportiva. Atendimento em Bela Vista e Pinheiros, São Paulo."
   transparentHeader={true}
   structuredData={structuredData}
 >
@@ -68,8 +75,8 @@ const structuredData = [
     <div class="container welcome-grid">
       <div class="welcome-image reveal scale-in">
         <img
-          src="/images/about/jackeline-about.png"
-          alt="Dra Jackeline Queiroz em atendimento"
+          src="/images/about/nutricai-personalizada.png"
+          alt="Mãos preparando um bowl de açaí com frutas frescas e granola"
           width="520"
           height="600"
           loading="lazy"
@@ -122,7 +129,7 @@ const structuredData = [
             <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--color-orange-400)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="11" x2="13" y2="11"/></svg>
           </div>
           <h3>Evidência Científica</h3>
-          <p>Abordagem baseada em nutrição clínica, esportiva e funcional, com mais de 10 anos de experiência em consultório e formação contínua.</p>
+          <p>Abordagem baseada em nutrição clínica, esportiva e funcional, com mais de 15 anos de experiência em consultório e formação contínua.</p>
         </div>
       </div>
     </div>
@@ -150,7 +157,8 @@ const structuredData = [
               href={svc.href}
               linkText={svc.linkText}
               variant={i % 2 === 0 ? 'dark' : 'light'}
-              icon={svc.icon}
+              image={svc.image}
+              imageAlt={svc.imageAlt}
             />
           </div>
         ))}
@@ -164,7 +172,7 @@ const structuredData = [
       <div class="about-text reveal fade-up">
         <span class="overline">Sobre a Dra Jackeline</span>
         <h2 id="about-heading">
-          Nutricionista clínica e esportiva funcional com mais de <em>10 anos</em> de experiência
+          Nutricionista clínica e esportiva funcional com mais de <em>15 anos</em> de experiência
         </h2>
         <p>
           Sou especializada em comportamento alimentar e meu trabalho é focado em ajudar pessoas
@@ -181,12 +189,36 @@ const structuredData = [
       </div>
       <div class="about-image reveal scale-in">
         <img
-          src="/images/about/jackeline-about.png"
+          src="/images/about/experiencia2.png"
           alt="Dra Jackeline Queiroz, nutricionista funcional e esportiva em São Paulo"
           width="480"
           height="580"
           loading="lazy"
         />
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== STATS BANNER ========== -->
+  <section class="stats-banner" aria-label="Números da trajetória">
+    <div class="container">
+      <div class="stats-grid stagger">
+        <div class="stat-item reveal fade-up">
+          <span class="stat-number">+15</span>
+          <span class="stat-label">anos de experiência em consultório</span>
+        </div>
+        <div class="stat-item reveal fade-up">
+          <span class="stat-number">3</span>
+          <span class="stat-label">pós-graduações concluídas</span>
+        </div>
+        <div class="stat-item reveal fade-up">
+          <span class="stat-number">2</span>
+          <span class="stat-label">consultórios em São Paulo</span>
+        </div>
+        <div class="stat-item reveal fade-up">
+          <span class="stat-number">+2000</span>
+          <span class="stat-label">pacientes acompanhados</span>
+        </div>
       </div>
     </div>
   </section>
@@ -260,20 +292,31 @@ const structuredData = [
       </SectionHeading>
 
       <div class="blog-grid stagger">
-        {blogPreviews.map((post, i) => (
+        {recentPosts.map((post, i) => (
           <article class="blog-card reveal fade-up hover-lift">
             <div class="blog-card-image">
-              <div class:list={['blog-card-placeholder', `blog-placeholder-${i + 1}`]}>
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" aria-hidden="true">
-                  <path d="M4 19.5A2.5 2.5 0 016.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
-                </svg>
-              </div>
+              {post.data.featuredImage ? (
+                <img
+                  src={post.data.featuredImage}
+                  alt={post.data.featuredImageAlt || post.data.title}
+                  width="400"
+                  height="225"
+                  loading="lazy"
+                  class="blog-card-img"
+                />
+              ) : (
+                <div class:list={['blog-card-placeholder', `blog-placeholder-${i + 1}`]}>
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" aria-hidden="true">
+                    <path d="M4 19.5A2.5 2.5 0 016.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
+                  </svg>
+                </div>
+              )}
             </div>
             <div class="blog-card-content">
-              <h3>{post.title}</h3>
-              <p>{post.excerpt}</p>
-              <a href={post.href} target="_blank" rel="noopener noreferrer" class="blog-card-link">
-                Leia o artigo →
+              <h3>{post.data.title}</h3>
+              <p>{post.data.description.slice(0, 150)}...</p>
+              <a href={`/${post.id}/`} class="blog-card-link">
+                Leia o artigo &rarr;
               </a>
             </div>
           </article>
@@ -282,38 +325,13 @@ const structuredData = [
     </div>
   </section>
 
-  <!-- ========== FINAL CTA (reference-inspired: full bg + overlapping card) ========== -->
-  <section class="final-cta" aria-labelledby="cta-heading">
-    <div class="final-cta-bg">
-      <img
-        src="/images/about/jackeline-contact.png"
-        alt=""
-        class="final-cta-bg-person"
-        width="480"
-        height="560"
-        loading="lazy"
-        aria-hidden="true"
-      />
-      <div class="final-cta-bg-overlay"></div>
-    </div>
-    <div class="container final-cta-layout">
-      <div class="final-cta-spacer"></div>
-      <div class="final-cta-card reveal fade-up">
-        <span class="overline">Dê o próximo passo</span>
-        <h2 id="cta-heading">
-          E se você não precisasse resolver <em>tudo sozinha?</em>
-        </h2>
-        <p>
-          Ter orientação profissional faz toda a diferença. Com acompanhamento individualizado,
-          você não precisa adivinhar o que funciona — recebe direcionamento, suporte e ajustes
-          ao longo do caminho para construir resultados que se mantêm.
-        </p>
-        <Button href={siteInfo.whatsappUrl} variant="primary" size="lg" isExternal>
-          Agende sua Consulta
-        </Button>
-      </div>
-    </div>
-  </section>
+  <!-- ========== FINAL CTA ========== -->
+  <FinalCTA
+    overline="Dê o próximo passo"
+    heading="E se você não precisasse resolver"
+    headingEmphasis="tudo sozinha?"
+    description="Ter orientação profissional faz toda a diferença. Com acompanhamento individualizado, você não precisa adivinhar o que funciona — recebe direcionamento, suporte e ajustes ao longo do caminho para construir resultados que se mantêm."
+  />
 
 </BaseLayout>
 
@@ -424,13 +442,17 @@ const structuredData = [
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-10);
-    align-items: center;
+    align-items: stretch;
+  }
+
+  .welcome-image {
+    display: flex;
   }
 
   .welcome-image img {
     border-radius: var(--radius-2xl);
     width: 100%;
-    max-width: 520px;
+    height: 100%;
     object-fit: cover;
   }
 
@@ -456,7 +478,7 @@ const structuredData = [
   /* ========== APPROACH ========== */
   .approach {
     background-color: var(--color-blue-800);
-    padding-bottom: var(--space-4);
+    padding-bottom: var(--space-16);
     background-image:
       radial-gradient(ellipse at 20% 80%, rgba(74, 106, 143, 0.25) 0%, transparent 50%),
       radial-gradient(ellipse at 80% 20%, rgba(200, 134, 10, 0.04) 0%, transparent 40%);
@@ -558,13 +580,14 @@ const structuredData = [
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-10);
-    align-items: center;
+    align-items: stretch;
   }
 
   .about-text {
     display: flex;
     flex-direction: column;
     gap: var(--space-4);
+    justify-content: center;
   }
 
   .about-text h2 em {
@@ -572,10 +595,50 @@ const structuredData = [
     color: var(--color-orange-500);
   }
 
+  .about-image {
+    display: flex;
+  }
+
   .about-image img {
     border-radius: var(--radius-2xl);
     width: 100%;
-    max-width: 480px;
+    height: 100%;
+  }
+
+  /* ========== STATS BANNER ========== */
+  .stats-banner {
+    background-color: var(--color-orange-100);
+    padding-block: var(--space-12);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+    text-align: center;
+  }
+
+  .stat-item {
+    padding-top: var(--space-4);
+    border-top: 2px solid var(--color-orange-500);
+  }
+
+  .stat-number {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: var(--weight-bold);
+    color: var(--color-blue-800);
+    line-height: 1.1;
+  }
+
+  .stat-label {
+    display: block;
+    font-size: var(--text-small);
+    color: var(--color-charcoal-600);
+    margin-top: var(--space-2);
+    max-width: 18ch;
+    margin-inline: auto;
     object-fit: cover;
   }
 
@@ -681,6 +744,13 @@ const structuredData = [
     border: 1px solid rgba(46, 74, 110, 0.06);
   }
 
+  .blog-card-img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block;
+  }
+
   .blog-card-placeholder {
     width: 100%;
     aspect-ratio: 16/9;
@@ -745,88 +815,6 @@ const structuredData = [
     text-decoration: underline;
   }
 
-  /* ========== FINAL CTA ========== */
-  .final-cta {
-    position: relative;
-    overflow: hidden;
-    min-height: 600px;
-    display: flex;
-    align-items: center;
-    padding-block: var(--space-16);
-  }
-
-  .final-cta-bg {
-    position: absolute;
-    inset: 0;
-  }
-
-  .final-cta-bg-person {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: auto;
-    height: 100%;
-    max-width: 55%;
-    object-fit: contain;
-    object-position: left bottom;
-    z-index: 1;
-  }
-
-  .final-cta-bg-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      135deg,
-      rgba(30, 52, 80, 0.6) 0%,
-      rgba(30, 52, 80, 0.85) 40%,
-      rgba(30, 52, 80, 0.95) 70%,
-      rgba(30, 52, 80, 0.98) 100%
-    );
-    z-index: 2;
-  }
-
-  .final-cta-layout {
-    position: relative;
-    z-index: 3;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-8);
-    align-items: center;
-  }
-
-  .final-cta-spacer {
-    display: none;
-  }
-
-  .final-cta-card {
-    background-color: rgba(248, 246, 243, 0.95);
-    backdrop-filter: blur(8px);
-    border-radius: var(--radius-2xl);
-    padding: var(--space-10);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-  }
-
-  .final-cta-card .overline {
-    color: var(--color-orange-500);
-  }
-
-  .final-cta-card h2 {
-    color: var(--color-charcoal-900);
-    font-size: var(--text-h2);
-  }
-
-  .final-cta-card h2 em {
-    font-style: italic;
-    color: var(--color-orange-500);
-  }
-
-  .final-cta-card p {
-    color: var(--color-charcoal-600);
-  }
-
   /* ========== RESPONSIVE ========== */
   @media (min-width: 768px) {
     .welcome-grid {
@@ -841,26 +829,12 @@ const structuredData = [
       grid-template-columns: 1.2fr 1fr;
     }
 
+    .stats-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
     .blog-grid {
       grid-template-columns: repeat(3, 1fr);
-    }
-
-    .final-cta-layout {
-      grid-template-columns: 1fr 1.1fr;
-    }
-
-    .final-cta-spacer {
-      display: block;
-    }
-
-    .final-cta-bg-overlay {
-      background: linear-gradient(
-        to right,
-        rgba(30, 52, 80, 0.3) 0%,
-        rgba(30, 52, 80, 0.5) 30%,
-        rgba(30, 52, 80, 0.88) 55%,
-        rgba(30, 52, 80, 0.98) 100%
-      );
     }
 
     .results-card {

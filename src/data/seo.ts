@@ -8,7 +8,7 @@ export function getLocalBusinessSchema() {
     name: 'Dra Jackeline Queiroz',
     alternateName: 'Jackeline Queiroz Nutricionista',
     description:
-      'Nutricionista funcional e esportiva em São Paulo com mais de 10 anos de experiência. Especializada em emagrecimento, composição corporal, performance esportiva e saúde da mulher.',
+      'Nutricionista funcional e esportiva em São Paulo com mais de 15 anos de experiência. Especializada em emagrecimento, composição corporal, performance esportiva e saúde da mulher.',
     url: 'https://nutricionistajackeline.com.br',
     telephone: '+5511970632874',
     email: siteInfo.email,
@@ -75,6 +75,38 @@ export function getBreadcrumbSchema(items: { name: string; url: string }[]) {
       name: item.name,
       item: item.url,
     })),
+  };
+}
+
+export function getArticleSchema(post: {
+  title: string;
+  description: string;
+  publishDate: Date;
+  updatedDate?: Date;
+  featuredImage?: string;
+  slug: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.description,
+    datePublished: post.publishDate.toISOString(),
+    dateModified: (post.updatedDate || post.publishDate).toISOString(),
+    image: post.featuredImage
+      ? `https://nutricionistajackeline.com.br${post.featuredImage}`
+      : undefined,
+    url: `https://nutricionistajackeline.com.br/${post.slug}/`,
+    author: {
+      '@type': 'Person',
+      name: 'Dra Jackeline Queiroz',
+      url: 'https://nutricionistajackeline.com.br/sobre',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Dra Jackeline Queiroz',
+      url: 'https://nutricionistajackeline.com.br',
+    },
   };
 }
 
